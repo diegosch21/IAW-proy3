@@ -1,0 +1,100 @@
+
+.Sheet
+{
+	position:relative;
+	z-index:0;
+	margin:0 auto;
+	width: 1280px;
+	min-width:51px;
+	min-height:51px;
+}
+
+.main
+{
+	padding-top: 200px;
+	position:relative;
+	z-index:0;
+	width: 1280px;
+	min-width:51px;
+	min-height:51px;
+}
+.left
+{
+	float:left;
+	position:relative;
+	z-index:0;
+	width: 200px;
+}
+.content
+{
+	float:left;
+	position:relative;
+	z-index:0;
+	width: 880px;
+	
+}
+.right
+{
+	float:left;
+	position:relative;
+	z-index:0;
+	width: 200px;
+	
+}
+.login
+{
+	
+	display:block;
+	text-align: center;
+	height: 140px;
+	width: 180px;
+	box-shadow: 4px 4px 4px #666;
+	-moz-box-shadow: 4px 4px 4px #666;
+	-webkit-box-shadow: 4px 4px 4px #666;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelRadius=3,MakeShadow=true,ShadowOpacity=0.5)";
+
+	z-index:1;
+
+}
+.search
+{
+	
+	text-align: center;
+	height: 40px;
+	width: 180px;
+	padding-top: 20px;
+	padding-bottom: 60px;
+	box-shadow: 4px 4px 4px #666;
+	-moz-box-shadow: 4px 4px 4px #666;
+	-webkit-box-shadow: 4px 4px 4px #666;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelRadius=3,MakeShadow=true,ShadowOpacity=0.5)";
+
+	z-index:1;
+
+
+}
+.Footer
+{
+	padding-top: 600px;
+}
+
+div.Header-png
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1280px;
+	height: 200px;
+	background-image: url('../images/HeaderRockola.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+/*demo page css*/
+body{ font: 62.5% "Trebuchet MS", sans-serif;}
+#dialog_link {text-decoration: none;position: relative;}
+#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%}
+ul#icons {margin: 0; padding: 0;}
+ul#icons li {position: relative; cursor: pointer; float: left;  list-style: none;}
+ul#icons span.ui-icon {float: left; margin: 0;}
+

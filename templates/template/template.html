@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="es-ES" xml:lang="es">
+<head>    
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+    <title>{titulo}</title>
+	<link type="text/css" href="templates/template/css/custom-theme/jquery-ui-1.8.20.custom.css" rel="stylesheet" />	
+    <link rel="stylesheet" href="templates/template/styles/style.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="templates/template/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="templates/template/js/jquery-ui-1.8.20.custom.min.js"></script>
+	<script type="text/javascript" src="templates/template/js/script.js"></script>
+
+</head>
+
+	<body>
+		<div class="Sheet">
+			<div class="Header-png"></div>
+			<div class="main">
+				<div class="left">					
+					
+					
+					<!-- Accordion -->
+					<h2 class="demoHeaders">Géneros</h2>
+					<div id="accordion">
+						<div>
+							<h3><a href="#">Rock Nacional</a></h3>
+							<div >
+								<a href="#">Link-1</a>
+								<a href="#">Link-1</a>
+								<a href="#">Link-1</a>
+								<a href="#">Link-1</a>
+							</div>
+							
+						</div>
+						<div>
+							<h3><a href="#">Reggae</a></h3>
+							<div>Phasellus mattis tincidunt nibh.</div>
+						</div>
+						<div>
+							<h3><a href="#">Ska</a></h3>
+							<div>Nam dui erat, auctor a, dignissim quis.</div>
+						</div>
+						<div>
+							<h3><a href="#">Rock Progresivo</a></h3>
+							<div>Nam dui erat, auctor a, dignissim quis.</div>
+						</div>
+						<div>
+							<h3><a href="#">Rock Alternativo</a></h3>
+							<div>Nam dui erat, auctor a, dignissim quis.</div>
+						</div>
+						<div>
+							<h3><a href="#">Candombe</a></h3>
+							<div>Nam dui erat, auctor a, dignissim quis.</div>
+						</div>
+						<div>
+							<h3><a href="#">Folclore</a></h3>
+							<div>Nam dui erat, auctor a, dignissim quis.</div>
+						</div>
+					</div>	               
+				
+				</div>
+				<div class="content">					
+					
+					
+					<!-- Tabs -->
+					<h2 class="demoHeaders">Tabs</h2>
+					<div id="tabs">
+						<ul>
+							<li><a href="#tabs-1">home</a></li>
+							<li><a href="#tabs-2">bandas</a></li>
+							<li><a href="#tabs-3">contacto</a></li>
+						</ul>
+						<div id="tabs-1">{Homecontent}</div>
+						<div id="tabs-2">{Bandascontent}</div>
+						<div id="tabs-3">{Contactcontent}</div>
+					</div>		               
+				
+				</div>
+				<div class="right">
+					<div class="search">			
+						<h3>Search:</h3>
+						<div>
+							<input id="search" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
+							<div id="buttonSearch">Search</div>
+						</div>
+					</div>
+					<div class="login">			
+						<h3>Access</h3>
+						<div>
+							<div>User:</div>
+							<input id="user" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
+							<div>Pass:</div>
+							<input id="pass" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
+							<div id="button">Login</div>
+						</div>
+					</div>
+				</div>
+				<div class="Footer">
+					{footer}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

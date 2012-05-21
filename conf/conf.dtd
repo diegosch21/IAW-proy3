@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!ELEMENT conf (template, titulo, header, footer,anio, Homecontent, Contactocontent, BandasContent)>
+ <!ELEMENT template (#PCDATA)>
+ <!ELEMENT titulo (#PCDATA)>
+ <!ELEMENT header (#PCDATA)>
+ <!ELEMENT footer (#PCDATA)>
+ <!ELEMENT anio (#PCDATA)>
+  <!ELEMENT Homecontent (#PCDATA)>
+ <!ELEMENT Contactocontent (#PCDATA)>
+ <!ELEMENT BandasContent (#PCDATA)>
