@@ -4,9 +4,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
     <title>{titulo}</title>
 	<link type="text/css" href="templates/template/css/custom-theme/jquery-ui-1.8.20.custom.css" rel="stylesheet" />	
-    <link rel="stylesheet" href="templates/template/css/style.css" type="text/css" media="screen" />
-	<script type="text/javascript" src="public_html/js/lib/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="public_html/js/lib/jquery-ui-1.8.20.custom.min.js"></script>
+    <link rel="stylesheet" href="templates/template/styles/style.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="templates/template/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="templates/template/js/jquery-ui-1.8.20.custom.min.js"></script>
 	<script type="text/javascript" src="templates/template/js/script.js"></script>
 
 </head>
@@ -19,15 +19,14 @@
 					
 					
 					<!-- Accordion -->
-					<h2 class="demoHeaders">Géneros</h2>
 					<div id="accordion">
 						<div>
-							<h3><a href="#">Rock Nacional</a></h3>
+							<h3><a href="#" class="TituloGenero">Rock Nacional</a></h3>
 							<div >
-								<a href="#">Link-1</a>
-								<a href="#">Link-1</a>
-								<a href="#">Link-1</a>
-								<a href="#">Link-1</a>
+								<a href="#" class="linkGenero">Link-1</a>
+								<a href="#" class="linkGenero">Link-1</a>
+								<a href="#" class="linkGenero">Link-1</a>
+								<a href="#" class="linkGenero">Link-1</a>
 							</div>
 							
 						</div>
@@ -60,19 +59,8 @@
 				</div>
 				<div class="content">					
 					
-					
-					<!-- Tabs -->
-					<h2 class="demoHeaders">Tabs</h2>
-					<div id="tabs">
-						<ul>
-							<li><a href="#tabs-1">home</a></li>
-							<li><a href="#tabs-2">bandas</a></li>
-							<li><a href="#tabs-3">contacto</a></li>
-						</ul>
-						<div id="tabs-1">{Homecontent}</div>
-						<div id="tabs-2">{Bandascontent}</div>
-						<div id="tabs-3">{Contactcontent}</div>
-					</div>		               
+					{maincontent}
+             
 				
 				</div>
 				<div class="right">
@@ -83,15 +71,9 @@
 							<div id="buttonSearch">Search</div>
 						</div>
 					</div>
+
 					<div class="login">			
-						<h3>Access</h3>
-						<div>
-							<div>User:</div>
-							<input id="user" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
-							<div>Pass:</div>
-							<input id="pass" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
-							<div id="button">Login</div>
-						</div>
+						{login}	
 					</div>
 				</div>
 				<div class="Footer">

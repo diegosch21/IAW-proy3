@@ -1,4 +1,25 @@
+
 $(function(){
+
+				
+				$(".submit_btn").click(function() {  
+				
+					//llamo al php para q me registre la sesion
+					var user = $("input#user").val();  
+					var pass = $("input#pass").val();
+				
+					if ((user=="admin")&&(pass=="admin")){
+						$('#mensajeError').hide("normal");
+
+					}
+					else{
+						$('#mensajeError').show("normal");
+						return false; 
+					}
+					// validate and process form here  
+				  }); 
+				  
+
 
 				// Tabs
 				$('#tabs').tabs();
@@ -12,6 +33,11 @@ $(function(){
 					      primary: 'ui-icon ui-icon-key',
 					   }
 					});
+				$("#buttonLogout").button({
+				   icons: {
+					  primary: 'ui-icon ui-icon-circle-close',
+				   }
+				});
 				$("#buttonSearch").button({
 					   icons: {
 					      primary: 'ui-icon ui-icon-search',
@@ -68,3 +94,4 @@ $(function(){
 				);
 */
 			});
+			

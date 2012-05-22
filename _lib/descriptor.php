@@ -21,7 +21,11 @@ class descriptor
 	  $this->agregarItem(trim('Homecontent'), trim($sx->Homecontent));
 	  $this->agregarItem(trim('Contactcontent'), trim($sx->Contactocontent));
 	  $this->agregarItem(trim('Bandascontent'), trim($sx->Bandascontent));
-
+	  $this->agregarItem(trim('add'), trim($sx->add));
+	  $this->agregarItem(trim('edit'), trim($sx->edit));
+	  $this->agregarItem(trim('delete'), trim($sx->delete));
+	  $this->agregarItem(trim('config'), trim($sx->config));
+	  $this->agregarItem(trim('backup'), trim($sx->backup));
 	}
 	// FunciÃ³n que agrega un nuevo item al arreglo de tags.
 	function agregarItem($campo, $valor)

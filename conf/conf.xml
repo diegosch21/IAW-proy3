@@ -3,9 +3,15 @@
 <conf>
 	<template>templates/template/template.html</template>
 	<titulo>Pagina zarpada</titulo>
-	<header>public_html/headers/header1.html</header>
-	<footer>public_html/footers/footer1.html</footer>
-	<Homecontent>public_html/contents/home.html</Homecontent>
-	<Contactocontent>public_html/contents/contacto.html</Contactocontent>
-	<Bandascontent>public_html/contents/bandas.html</Bandascontent>
+	<header>html/headers/header1.html</header>
+	<footer>html/footers/footer1.html</footer>
+	<Homecontent>html/contents/home.html</Homecontent>
+	<Contactocontent>html/contents/contacto.html</Contactocontent>
+	<Bandascontent>html/contents/bandas.html</Bandascontent>
+	<admin>html/contents/admin.html</admin>
+	<add>html/contents/add.html</add>
+	<edit>html/contents/edit.html</edit>
+	<delete>html/contents/delete.html</delete>
+	<config>html/contents/config.html</config>
+	<backup>html/contents/backup.html</backup>
 </conf>
