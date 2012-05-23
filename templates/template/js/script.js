@@ -38,6 +38,11 @@ $(function(){
 					  primary: 'ui-icon ui-icon-circle-close',
 				   }
 				});
+				$("#buttonEdit").button({
+				   icons: {
+					  primary: 'ui-icon ui-icon-wrench',
+				   }
+				});
 				$("#buttonSearch").button({
 					   icons: {
 					      primary: 'ui-icon ui-icon-search',
