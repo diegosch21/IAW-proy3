@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="es-ES" xml:lang="es">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
-<head>    
+<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
     <title>{titulo}</title>
 	<link type="text/css" href="templates/template/css/custom-theme/jquery-ui-1.8.20.custom.css" rel="stylesheet" />	
@@ -11,8 +11,7 @@
 	<script type="text/javascript" src="templates/template/js/script.js"></script>
 
 </head>
-
-	<body>
+<body>
 		<div id="fb-root"></div>  
 		<script>  
 		  window.fbAsyncInit = function() {  
@@ -73,7 +72,8 @@
 				</div>
 				
 				<div class="content">					
-					
+										
+
 					{maincontent}
              
 				
@@ -96,5 +96,13 @@
 		<div class="Footer">
 			{footer}
 		</div>
+		
+	<script type="text/javascript" src="templates/template/lib/js/mootools-core-1.4.5-full-compat-yc.js"></script>
+	<script type="text/javascript" src="templates/template/lib/js/mootools-more-1.4.0.1.js"></script>
+	<script type="text/javascript" src="templates/template/lib/js/Carousel.js"></script>
+	<script type="text/javascript">
+	new Carousel('example');
+	</script>
+
 	</body>
 </html>

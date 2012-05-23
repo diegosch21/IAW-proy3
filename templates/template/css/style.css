@@ -132,3 +132,71 @@ font-weight: normal;
 }
 
 .linkGenero:hover {color: #6bace6;font-weight: bold;}
+
+
+
+#example {
+	position: relative;
+}
+
+#example .stage {
+	height: 220px;
+	margin: 40px 0 0 0;
+}
+
+#example .stage img {
+	float: left;
+	margin-right: 20px;
+}
+
+#example .stage h3 {
+	margin: 0;
+}
+
+#example .stage p {
+	width: auto;
+	overflow: hidden;
+}
+
+.leftButton,.rightButton {
+	font-size: 3em;
+	margin-top: 40px;
+	color: #511;
+	cursor: pointer;
+	position: absolute;
+}
+
+.leftButton {
+  left: 0px;
+}
+
+.rightButton {
+	right: 10px;
+}
+
+.scroll {
+	margin-left:30px;
+	width: 470px;
+}
+
+.scroll ul {
+
+	width: 900px;
+}
+
+.scroll ul li {
+
+	float: left;
+	margin: 10px;
+	border: 2px solid #200;
+	display: inline;
+}
+
+.scroll ul li img {
+left: 40 px;
+	display: block;
+}
+
+.scroll ul li a:focus {
+	outline: none;
+}

@@ -1,19 +1,19 @@
-
-$(function(){
+jQuery.noConflict();
+jQuery(function(){
 
 				
-				$(".submit_btn").click(function() {  
+				jQuery(".submit_btn").click(function() {  
 				
 					//llamo al php para q me registre la sesion
-					var user = $("input#user").val();  
-					var pass = $("input#pass").val();
+					var user = jQuery("input#user").val();  
+					var pass = jQuery("input#pass").val();
 				
 					if ((user=="admin")&&(pass=="admin")){
-						$('#mensajeError').hide("normal");
+						jQuery('#mensajeError').hide("normal");
 
 					}
 					else{
-						$('#mensajeError').show("normal");
+						jQuery('#mensajeError').show("normal");
 						return false; 
 					}
 					// validate and process form here  
@@ -22,35 +22,35 @@ $(function(){
 
 
 				// Tabs
-				$('#tabs').tabs();
+				jQuery('#tabs').tabs();
 				
 				// Accordion
-				$("#accordion").accordion({ header: "h3" });
+				jQuery("#accordion").accordion({ header: "h3" });
 				
 
-				$("#button").button({
+				jQuery("#button").button({
 					   icons: {
 					      primary: 'ui-icon ui-icon-key',
 					   }
 					});
-				$("#buttonLogout").button({
+				jQuery("#buttonLogout").button({
 				   icons: {
 					  primary: 'ui-icon ui-icon-circle-close',
 				   }
 				});
-				$("#buttonEdit").button({
+				jQuery("#buttonEdit").button({
 				   icons: {
 					  primary: 'ui-icon ui-icon-wrench',
 				   }
 				});
-				$("#buttonSearch").button({
+				jQuery("#buttonSearch").button({
 					   icons: {
 					      primary: 'ui-icon ui-icon-search',
 					   }
 					});
 				
 
-				$('.bandaButton').each(function(index) {
+				jQuery('.bandaButton').each(function(index) {
 					 $(this).button();
 				});
 /*
