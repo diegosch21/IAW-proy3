@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE conf SYSTEM "conf.dtd">
 <conf>
-	<template>templates/template/template.html</template>
+	<template>public_html/templates/template1/index.html</template>
 	<titulo>Pagina zarpada</titulo>
 	<header>public_html/headers/header1.html</header>
 	<footer>public_html/footers/footer1.html</footer>

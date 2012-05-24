@@ -1,24 +1,8 @@
-jQuery.noConflict();
+//jQuery.noConflict();
 jQuery(function(){
 
 				
-				jQuery(".submit_btn").click(function() {  
 				
-					//llamo al php para q me registre la sesion
-					var user = jQuery("input#user").val();  
-					var pass = jQuery("input#pass").val();
-				
-					if ((user=="admin")&&(pass=="admin")){
-						jQuery('#mensajeError').hide("normal");
-
-					}
-					else{
-						jQuery('#mensajeError').show("normal");
-						return false; 
-					}
-					// validate and process form here  
-				  }); 
-				  
 
 
 				// Tabs
