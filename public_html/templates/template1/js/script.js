@@ -1,42 +1,38 @@
 //jQuery.noConflict();
 jQuery(function(){
 
-				
-				
+	// Tabs
+	jQuery('#tabs').tabs();
+	
+	// Accordion
+	jQuery("#accordion").accordion({ header: "h3" });
+	
 
+	jQuery("#buttonLogin").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-key',
+		   }
+		});
+	jQuery("#buttonLogout").button({
+	   icons: {
+		  primary: 'ui-icon ui-icon-circle-close',
+	   }
+	});
+	jQuery("#buttonEdit").button({
+	   icons: {
+		  primary: 'ui-icon ui-icon-wrench',
+	   }
+	});
+	jQuery("#buttonSearch").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-search',
+		   }
+		});
+	
 
-				// Tabs
-				jQuery('#tabs').tabs();
-				
-				// Accordion
-				jQuery("#accordion").accordion({ header: "h3" });
-				
-
-				jQuery("#button").button({
-					   icons: {
-					      primary: 'ui-icon ui-icon-key',
-					   }
-					});
-				jQuery("#buttonLogout").button({
-				   icons: {
-					  primary: 'ui-icon ui-icon-circle-close',
-				   }
-				});
-				jQuery("#buttonEdit").button({
-				   icons: {
-					  primary: 'ui-icon ui-icon-wrench',
-				   }
-				});
-				jQuery("#buttonSearch").button({
-					   icons: {
-					      primary: 'ui-icon ui-icon-search',
-					   }
-					});
-				
-
-				jQuery('.bandaButton').each(function(index) {
-					 $(this).button();
-				});
+	jQuery('.bandaButton').each(function(index) {
+		 $(this).button();
+	});
 /*
 
 
@@ -82,5 +78,5 @@ jQuery(function(){
 					function() { $(this).removeClass('ui-state-hover'); }
 				);
 */
-			});
+});
 			
