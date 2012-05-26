@@ -34,7 +34,7 @@ function getUserId() {
 
 
 function validateUser($user, $pass) {
-	$db = openDB("db/iaw_proy3.sqlite");
+	$db = openDB();
 	$usuarios = query($db,"SELECT pass FROM usuarios WHERE user='$user'");
 	$usuario = getRow($db,$usuarios); 
 	var_dump($usuario[0])	;

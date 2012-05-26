@@ -7,6 +7,7 @@ require_once('_lib/db.php');
 // Creo el descriptor del sito web.
 $desc = new descriptor("conf/conf.xml");
 //$db = new DB("db/iaw_proy3.sqlite");
+$db = openDB();
 
 
 $maincontent = 'public_html/contents/home.html';
