@@ -1,9 +1,6 @@
 //jQuery.noConflict();
+
 jQuery(function(){
-
-				
-				
-
 
 				// Tabs
 				jQuery('#tabs').tabs();
