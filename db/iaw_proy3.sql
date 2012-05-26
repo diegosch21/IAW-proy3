@@ -1,10 +1,13 @@
 DROP TABLE IF EXISTS "CDs";
-CREATE TABLE "CDs" ("id_cd" INTEGER PRIMARY KEY  NOT NULL ,"id_artista" INTEGER,"nombre" TEXT,"año" INTEGER,"canciones" TEXT,"imagenes" TEXT,"link" TEXT);
+CREATE TABLE "CDs" ("id_cd" INTEGER PRIMARY KEY  NOT NULL ,"id_artista" INTEGER,"nombre" TEXT,"anio" INTEGER,"canciones" TEXT,"imagenes" TEXT,"link" TEXT);
 DROP TABLE IF EXISTS "artistas";
-CREATE TABLE "artistas" ("id_artista" INTEGER PRIMARY KEY  NOT NULL , "nombre" TEXT NOT NULL , "id_genero" INTEGER NOT NULL , "nacionalidad" TEXT, "banda" TEXT);
+CREATE TABLE 'artistas' ('id_artista' INTEGER PRIMARY KEY  NOT NULL , 'nombre' TEXT NOT NULL , 'id_genero' INTEGER NOT NULL , 'nacionalidad' TEXT, 'banda' TEXT, "imagenes" TEXT, "link" TEXT);
 DROP TABLE IF EXISTS "cd_tag";
-CREATE TABLE "cd_tag" ("id_cd" INTEGER NOT NULL , "id_tag" INTEGER NOT NULL );
+CREATE TABLE 'cd_tag' ('id_cd' INTEGER NOT NULL , 'id_tag' INTEGER NOT NULL );
 DROP TABLE IF EXISTS "generos";
-CREATE TABLE "generos" ("id_genero" INTEGER PRIMARY KEY  NOT NULL , "nombre" TEXT NOT NULL );
+CREATE TABLE 'generos' ('id_genero' INTEGER PRIMARY KEY  NOT NULL , 'nombre' TEXT NOT NULL );
 DROP TABLE IF EXISTS "tags";
-CREATE TABLE "tags" ("id_tag" INTEGER PRIMARY KEY  NOT NULL , "nombre" TEXT NOT NULL );
+CREATE TABLE 'tags' ('id_tag' INTEGER PRIMARY KEY  NOT NULL , 'nombre' TEXT NOT NULL );
+DROP TABLE IF EXISTS "usuarios";
+CREATE TABLE "usuarios" ("id_user" INTEGER PRIMARY KEY  NOT NULL , "user" TEXT, "pass" TEXT);
+INSERT INTO "usuarios" VALUES(1,'admin','21232f297a57a5a743894a0e4a801fc3');
