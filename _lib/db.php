@@ -14,7 +14,7 @@ class DB {
 	
 
 	function create($dbfile) {
-		$sql = file_get_contents($dbfile.'.sql');
+		$sql = file_get_contents($dbfile.'.sql'); //SOLUCIONAR ENCODING UTF-8
 		echo 'DB creada';
 		
 		$this->db->exec($sql);
