@@ -1,17 +1,110 @@
-<div>
-	<!-- Tabs -->
-	<div id="tabs">
-		<ul>
-			<li><a href="#tabs-1">Agregar item</a></li>
-			<li><a href="#tabs-2">Modificar item</a></li>
-			<li><a href="#tabs-3">Eliminar item</a></li>
-			<li><a href="#tabs-4">Configurar inicio</a></li>
-			<li><a href="#tabs-5">Resguardar</a></li>
-		</ul>
-		<div id="tabs-1">{add}</div>
-		<div id="tabs-2">{edit}</div>
-		<div id="tabs-3">{delete}</div>
-		<div id="tabs-4">{config}</div>
-		<div id="tabs-5">{backup}</div>
-	</div>	
-</div>
+
+					<script type="text/javascript">
+var myform3=new formtowizard({
+ formid: 'staff_feedbackform',
+ validate: ['artist'],
+ revealfx: ['slide', 500] //<--no comma after last setting
+})
+</script>
+			<form id="staff_feedbackform">
+
+<fieldset class="sectionwrap">
+<legend>Selecciona el artista</legend>
+		<ul >			
+		<li id="li_7" >
+		<label class="description" for="element_7">Artista </label>
+		<div>
+		<select class="element select medium" id="artist" name="element_7"> 
+			<option value="" selected="selected"></option>
+			<option value="1" >Arjona</option>
+			<option value="2" >Otra opcion</option>
+			<option value="3" >Otra mas</option>
+
+		</select>
+		</div>
+		</li>		
+		<li class="section_break">
+			<h3>Registra nuevo artista</h3>
+			<p></p>
+		</li>		<li id="li_2" >
+		<label class="description" for="element_2">Nombre </label>
+		<div>
+			<input id="element_2" name="element_2" class="element text medium" type="text" maxlength="255" value=""/> 
+		</div> 
+		</li>		<li id="li_3" >
+		<label class="description" for="element_3">Website </label>
+		<div>
+			<input id="element_3" name="element_3" class="element text medium" type="text" maxlength="255" value=""/> 
+		</div> 
+		</li>		<li id="li_4" >
+		<label class="description" for="element_4">Descripcion </label>
+		<div>
+			<textarea id="element_4" name="element_4" class="element textarea medium"></textarea> 
+		</div> 
+		</li>		<li id="li_5" >
+		<label class="description" for="element_5">Subi una imagen de tu computadora </label>
+		<div>
+			<input id="element_5" name="element_5" class="element file" type="file"/> 
+		</div>  
+		</li>		<li id="li_6" >
+		<label class="description" for="element_6">Agrega una imagen insertando su URL </label>
+		<div>
+			<input id="element_6" name="element_6" class="element text medium" type="text" maxlength="255" value=""/> 
+		</div> 
+		</li>
+			
+					<li class="buttons">
+			    <input type="hidden" name="form_id" value="418809" />
+			    
+				<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+		</li>
+			</ul>
+</fieldset>
+<fieldset class="sectionwrap">
+<legend>Datos del CD</legend>
+	<ul >		
+		<li id="li_7" >
+		<label class="description" for="element_7">Nombre CD </label>
+		<div>
+			<input id="element_7" name="element_7" class="element text medium" type="text" maxlength="255" value=""/> 
+		</div> 
+		</li>		<li id="li_9" >
+		<label class="description" for="element_9">a&ntildeo </label>
+		<div>
+			<input id="element_9" name="element_9" class="element text medium" type="text" maxlength="255" value=""/> 
+		</div> 
+		</li>		<li id="li_8" >
+		<label class="description" for="element_8">Descripcion </label>
+		<div>
+			<textarea id="element_8" name="element_8" class="element textarea medium"></textarea> 
+		</div>
+		
+	</ul>
+</fieldset>
+
+<fieldset class="sectionwrap">
+<legend>Agrega imagenes</legend>
+	<ul >	
+		<li id="li_5" >
+		<label class="description" for="element_5">Subí una imagen de tu computadora </label>
+		<div>
+			<input id="element_5" name="element_5" class="element file" type="file"/> 
+		</div>  
+		</li>		<li id="li_6" >
+		<label class="description" for="element_6">Agrega una imagen insertando su URL </label>
+		<div>
+			<input id="element_6" name="element_6" class="element text medium" type="text" maxlength="255" value=""/> 
+		</div> 
+		</li>
+			
+					<li class="buttons">
+			    <input type="hidden" name="form_id" value="418809" />
+			    
+				<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+		</li>
+	</ul>
+</fieldset>
+
+</form>
+
+	
