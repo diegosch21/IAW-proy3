@@ -1,5 +1,11 @@
 //jQuery.noConflict();
 
+	
+jQuery(document).ready(function($) {
+	  	
+  new Carousel('example');
+	  	
+});  
 
 jQuery(function(){
 
