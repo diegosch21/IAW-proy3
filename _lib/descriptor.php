@@ -18,6 +18,7 @@ class descriptor
   	  $this->agregarItem(trim('header'), trim($sx->header));
   	  $this->agregarItem(trim('footer'), trim($sx->footer));
   	  $this->agregarItem(trim('anio'), trim($sx->anio));
+	  $this->agregarItem(trim('categorias'), trim($sx->categorias));
 	  $this->agregarItem(trim('Homecontent'), trim($sx->Homecontent));
 	  $this->agregarItem(trim('Contactcontent'), trim($sx->Contactocontent));
 	  $this->agregarItem(trim('Bandascontent'), trim($sx->Bandascontent));

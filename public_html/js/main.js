@@ -1,9 +1,5 @@
 $.noConflict();
-jQuery(document).ready(function($) {
-    
-	new Carousel('example');
 	
-});	
 	
 //valida que el campo no este vacio y no tenga solo espacios en blanco  
 function validarLogin() {

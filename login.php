@@ -34,12 +34,16 @@ function getUserId() {
 
 
 function validateUser($user, $pass) {
-	$db = openDB();
-	$usuarios = query($db,"SELECT pass FROM usuarios WHERE user='$user'");
-	$usuario = getRow($db,$usuarios); 
-	var_dump($usuario[0])	;
+	//$db = openDB();
+	$db = new DB("db/iaw_proy3");
+	$usuarios = $db->query("SELECT pass FROM usuarios WHERE user='$user'");
+	$usuario = $db->getRow($usuarios); 
+	//var_dump($usuario[0])	;
 	$claveEncriptada = $usuario[0]; 
+	$db->disconnect();
+	//echo md5($pass);
 	return strcmp($claveEncriptada, md5($pass)) == 0;
+	
 }
 
 

@@ -5,6 +5,7 @@
 	<titulo>Pagina zarpada</titulo>
 	<header>public_html/headers/header1.html</header>
 	<footer>public_html/footers/footer1.html</footer>
+	<categorias>public_html/contents/categorias.html</categorias>
 	<Homecontent>public_html/contents/home.html</Homecontent>
 	<Contactocontent>public_html/contents/contacto.html</Contactocontent>
 	<Bandascontent>public_html/contents/bandas.html</Bandascontent>

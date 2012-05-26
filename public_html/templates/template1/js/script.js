@@ -1,11 +1,13 @@
 //jQuery.noConflict();
+
+
 jQuery(function(){
 
 	// Tabs
 	jQuery('#tabs').tabs();
 	
 	// Accordion
-	jQuery("#accordion").accordion({ header: "h3" });
+//	jQuery("#accordion").accordion({ header: "h3" });
 	
 
 	jQuery("#buttonLogin").button({

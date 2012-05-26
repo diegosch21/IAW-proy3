@@ -6,8 +6,8 @@ require_once('_lib/db.php');
 
 // Creo el descriptor del sito web.
 $desc = new descriptor("conf/conf.xml");
-//$db = new DB("db/iaw_proy3.sqlite");
-$db = openDB();
+$db = new DB("db/iaw_proy3");
+//$db = openDB();
 
 
 $maincontent = 'public_html/contents/home.html';
@@ -33,7 +33,7 @@ else {
 
 //esto deberia hacerse con base de dato y generar el ensiassangrantes.html dinamicamente
 if (!(empty($_GET['ar']))) {
-	if($_GET['ar']=="enciassangrantes")
+	if($_GET['ar']=="1")
 		$maincontent = 'public_html/contents/enciassangrantes.html';
 
 }
