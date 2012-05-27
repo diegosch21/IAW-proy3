@@ -20,6 +20,7 @@ class descriptor
   	  $this->agregarItem(trim('anio'), trim($sx->anio));
 	  $this->agregarItem(trim('categorias'), trim($sx->categorias));
 	  $this->agregarItem(trim('Homecontent'), trim($sx->Homecontent));
+	  $this->agregarItem(trim('Itemcontent'), trim($sx->Itemcontent));
 	  $this->agregarItem(trim('Contactcontent'), trim($sx->Contactocontent));
 	  $this->agregarItem(trim('Bandascontent'), trim($sx->Bandascontent));
 	  $this->agregarItem(trim('add'), trim($sx->add));

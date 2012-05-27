@@ -7,6 +7,7 @@
 	<footer>public_html/footers/footer1.html</footer>
 	<categorias>public_html/contents/categorias.html</categorias>
 	<Homecontent>public_html/contents/home.html</Homecontent>
+	<Itemcontent>public_html/contents/item.html</Itemcontent>
 	<Contactocontent>public_html/contents/contacto.html</Contactocontent>
 	<Bandascontent>public_html/contents/bandas.html</Bandascontent>
 	<admin>public_html/contents/admin.html</admin>

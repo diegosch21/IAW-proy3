@@ -73,7 +73,16 @@ function vacio(q) {
     return true;  
 } 
 
-	
+
+function loadItem(i) {  
+	jQuery("#HomeContent").hide();
+	jQuery("#ItemContent").show();
+    jQuery.getJSON('data/item.php?ar='+i+'&page=1',function(json) {
+		var output = Mustache.render(jQuery("#template").html(), json)
+		jQuery("#templateTarget").html(output);
+	});
+
+}
 
 
 

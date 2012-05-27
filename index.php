@@ -11,6 +11,7 @@ $db = new DB("db/iaw_proy3");
 
 
 $maincontent = 'public_html/contents/home.html';
+$itemcontent = 'public_html/contents/item.html';
 
 session_start();
 if (isset($_SESSION['logged'])){
@@ -30,14 +31,7 @@ else {
 }
 
 
-
-//esto deberia hacerse con base de dato y generar el ensiassangrantes.html dinamicamente
-if (!(empty($_GET['ar']))) {
-	if($_GET['ar']=="1")
-		$maincontent = 'public_html/contents/enciassangrantes.html';
-
-}
-	
+$desc->agregarItem('itemcontent', $itemcontent);
 $desc->agregarItem('maincontent', $maincontent);
 $desc->agregarItem('login', $login);
 

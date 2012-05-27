@@ -8,8 +8,9 @@ jQuery(document).ready(function($) {
 			html+=json[i].genero + '</a></h3> <div>';
 			for (j=0;j<json[i].artistas.length;j++) {
 				var ar = json[i].artistas[j];
-				html+="<a href='index.php?ar="+ar.id+"' class='linkGenero'>"; //no tiene q ser un link a otra pag
-				html+=ar.artista+"</a>";
+				html+="<div><a href='#' onclick='loadItem("+ar.id+")' class='linkGenero'>"; 
+				//html+="<a href='index.php?ar="+ar.id+"' class='linkGenero'>"; //no tiene q ser un link a otra pag
+				html+=ar.artista+"</a></div>";
 			}
 			
 			
@@ -19,7 +20,5 @@ jQuery(document).ready(function($) {
 		$('#menuCategorias').html(html).accordion({ header: "h3" });
 
 	});
-	
-	
-	
+
 });

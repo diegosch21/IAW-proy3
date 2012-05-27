@@ -26,8 +26,24 @@
 	z-index:0;
 	width: 200px;
 }
-.content
+.HomeContent
 {
+	float:left;
+	position:relative;
+	z-index:0;
+	margin-left: 10px;
+	width: 550px;
+	box-shadow: 4px 4px 4px #666;
+	-moz-box-shadow: 4px 4px 4px #666;
+	-webkit-box-shadow: 4px 4px 4px #666;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelRadius=3,MakeShadow=true,ShadowOpacity=0.5)";
+
+	z-index:1;
+	
+}
+.ItemContent
+{
+	display:none;
 	float:left;
 	position:relative;
 	z-index:0;
