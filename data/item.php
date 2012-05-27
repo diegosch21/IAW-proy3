@@ -29,8 +29,7 @@ if(isset($_GET['ar']) && is_numeric($_GET['ar'])) {
 		$k = 0;
 		foreach($imgs as $img) {
 			$result['imagenes'][$k] = array();
-			$result['imagenes'][$k]['url'] = $img;	
-			$k++;
+			$result['imagenes'][$k++]['url'] = $img;	
 		}
 		$result['link'] = $infoArtista['link'];
 		$result['visitas'] = $infoArtista['visitas'];
@@ -59,8 +58,7 @@ if(isset($_GET['ar']) && is_numeric($_GET['ar'])) {
 			$k = 0;
 			foreach($imgs as $img) {
 				$result['CDs'][$i]['imagenes'][$k] = array();
-				$result['CDs'][$i]['imagenes'][$k]['url'] = $img;	
-				$k++;
+				$result['CDs'][$i]['imagenes'][$k++]['url'] = $img;	
 			}
 			$result['CDs'][$i]['link'] = $cd['link'];
 			$result['CDs'][$i]['visitas'] = $cd['visitas'];
@@ -69,7 +67,8 @@ if(isset($_GET['ar']) && is_numeric($_GET['ar'])) {
 			$result['CDs'][$i]['tags'] = array();
 			$j=0;
 			foreach ($tags as $tag) {
-				$result['CDs'][$i]['tags'][$j++] = $tag['nombre'];
+				$result['CDs'][$i]['tags'][$j] = array();	
+				$result['CDs'][$i]['tags'][$j++]['tag'] = $tag['nombre'];
 			}
 			
 			$i++;
