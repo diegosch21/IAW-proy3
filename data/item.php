@@ -29,7 +29,12 @@ if(isset($_GET['ar']) && is_numeric($_GET['ar'])) {
 		$k = 0;
 		foreach($imgs as $img) {
 			$result['imagenes'][$k] = array();
-			$result['imagenes'][$k++]['url'] = $img;	
+			$result['imagenes'][$k]['url'] = $img;	
+			if ($k==0)	
+					$result['imagenes'][$k]['caratula'] = TRUE;	
+				else
+					$result['imagenes'][$k]['caratula'] = FALSE;
+			$k++;	
 		}
 		$result['link'] = $infoArtista['link'];
 		$result['visitas'] = $infoArtista['visitas'];
@@ -58,7 +63,12 @@ if(isset($_GET['ar']) && is_numeric($_GET['ar'])) {
 			$k = 0;
 			foreach($imgs as $img) {
 				$result['CDs'][$i]['imagenes'][$k] = array();
-				$result['CDs'][$i]['imagenes'][$k++]['url'] = $img;	
+				$result['CDs'][$i]['imagenes'][$k]['url'] = $img;
+				if ($k==0)	
+					$result['CDs'][$i]['imagenes'][$k]['caratula'] = TRUE;	
+				else
+					$result['CDs'][$i]['imagenes'][$k]['caratula'] = FALSE;
+				$k++;	
 			}
 			$result['CDs'][$i]['link'] = $cd['link'];
 			$result['CDs'][$i]['visitas'] = $cd['visitas'];
