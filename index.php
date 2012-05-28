@@ -9,9 +9,10 @@ $desc = new descriptor("conf/conf.xml");
 $db = new DB("db/iaw_proy3");
 //$db = openDB();
 
-
-$maincontent = 'public_html/contents/busqueda.html';
+$cdcontent = 'public_html/contents/cd.html';
+$maincontent = 'public_html/contents/home.html';
 $itemcontent = 'public_html/contents/item.html';
+$busquedacontent = 'public_html/contents/busqueda.html';
 
 session_start();
 if (isset($_SESSION['logged'])){
@@ -30,7 +31,8 @@ else {
 	$login = 'public_html/contents/login.html';	
 }
 
-
+$desc->agregarItem('cdcontent', $cdcontent);
+$desc->agregarItem('busquedacontent', $busquedacontent);
 $desc->agregarItem('itemcontent', $itemcontent);
 $desc->agregarItem('maincontent', $maincontent);
 $desc->agregarItem('login', $login);

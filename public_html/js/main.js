@@ -1,8 +1,8 @@
 ﻿$.noConflict();
 pedirPagina();
 var info;
-function pedirPagina(){
-	url= 'data/cds.php?ar=1&page=1';
+function pedirPagina(artista){
+	url= 'data/cds.php?id='+artista+'&page=1';
    jQuery.getJSON(url,function(data) {
 		info = data;
 		var output = Mustache.render(jQuery("#templateB").html(), data)
@@ -26,9 +26,21 @@ function pedirPagina(){
 		});
 	});
 }
+function verCD(cd){
+	url= 'data/cd.php?id='+cd;
+   jQuery.getJSON(url,function(data) {		
+		var output = Mustache.render(jQuery("#templateCD").html(), data)
+		jQuery("#cdTarget").html(output);		
+	});
+	jQuery("#HomeContent").hide();
+	jQuery("#ItemContent").hide();
+	jQuery("#BusquedaContent").show();
+	jQuery("#CDContent").show();
+	
+}
 var info;
 function cambiar(pagina){
-	url= 'data/cds.php?ar=1&page='+pagina;
+	url= 'data/cds.php?id=1&page='+pagina;
    jQuery.getJSON(url,function(data) {
 		info = data;
 		var output = Mustache.render(jQuery("#templateB").html(), data)
@@ -63,12 +75,16 @@ function vacio(q) {
 
 
 function loadItem(i) {  
+	jQuery("#CDContent").hide();
 	jQuery("#HomeContent").hide();
 	jQuery("#ItemContent").show();
-    jQuery.getJSON('data/item.php?ar='+i+'&page=1',function(json) {
+	jQuery("#BusquedaContent").show();
+    jQuery.getJSON('data/artist.php?ar='+i,function(json) {
 		var output = Mustache.render(jQuery("#template").html(), json)
 		jQuery("#templateTarget").html(output);
+		pedirPagina(json.id);
 	});
+	
 
 	  
 

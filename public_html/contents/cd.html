@@ -1,18 +1,16 @@
-Ôªø
-<div id="templateTarget" ></div>
+<div id="cdTarget" ></div>
 
-<script type="text/html" id='template'>
+<script type="text/html" id='templateCD'>
 
 	<div style="padding-left:470px; padding-top:5px" class="fb-like" data-href="http://localhost/home/index.php?id={{id}}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 	<div>
 		<div class="artista">{{artista}}</div>
-		<div class="descripcionBanda"><a class="linkGenero" href="{{website}}">Sitio web oficial</a></div>
-		<div class="descripcionBanda">{{{banda}}}</div>
-		<div class="descripcionBanda">Nacionalidad: {{nacionalidad}}</div>
-		<div class="descripcionBanda">G√©nero: {{genero}}</div>
-		Im√°genes:
+		<div><a class="linkGenero" href="{{website}}">Sitio web oficial</a></div>
+		<div>{{{banda}}}</div>
+		<div>Nacionalidad: {{nacionalidad}}</div>
+		<div>GÈnero: {{genero}}</div>
+		Im·genes:
         {{#imagenes}}		
-
 			<a href="{{url}}" rel="ChillBox" title="{{url}}"><img width="300" src="{{url}}" alt="{{url}}" /></a>
 		{{/imagenes}}
     </div>

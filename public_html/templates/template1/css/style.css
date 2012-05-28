@@ -57,6 +57,28 @@
 	z-index:1;
 	
 }
+.BusquedaContent
+{
+	display:none;
+	float:left;
+	position:relative;
+	z-index:0;
+	margin-left: 10px;
+	width: 540px;
+
+	
+}
+.CDContent
+{
+	display:none;
+	float:left;
+	position:relative;
+	z-index:0;
+	margin-left: 10px;
+	width: 540px;
+
+	
+}
 .right
 {
 	float:left;
