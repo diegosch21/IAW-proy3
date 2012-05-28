@@ -10,7 +10,7 @@ $db = new DB("db/iaw_proy3");
 //$db = openDB();
 
 
-$maincontent = 'public_html/contents/home.html';
+$maincontent = 'public_html/contents/busqueda.html';
 $itemcontent = 'public_html/contents/item.html';
 
 session_start();

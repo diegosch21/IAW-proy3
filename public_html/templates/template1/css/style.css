@@ -170,6 +170,9 @@ font-weight: normal;
 	width: auto;
 	overflow: hidden;
 }
+.paginacion {
+	margin-bottom:50px;
+}
 
 .leftButton,.rightButton {
 	font-size: 3em;

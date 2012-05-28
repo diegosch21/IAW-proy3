@@ -3,12 +3,11 @@
 	
 jQuery(document).ready(function($) {
   new Carousel('example');
-    
-	  	
+ 
 });  
 
 jQuery(function(){
-
+	
 	
 	// Tabs
 	jQuery('#tabs').tabs();
