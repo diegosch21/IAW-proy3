@@ -11,47 +11,91 @@ if(isset($_GET['page']) && is_numeric($_GET['page'])) {
 $desde = $page*$paginado;
 $hasta = $desde+$paginado;
 
+if(isset($_GET['order'])) {
+	if($_GET['order'] == 'abc') {
+		$order = 'nombre';
+		$mode = 'ASC';
+	}
+	else if($_GET['order'] == 'anio'){
+		$order = 'anio';
+		$mode = 'ASC';
+	}
+	else if($_GET['order'] == 'vis'){
+		$order = 'visitas';
+		$mode = 'DESC';
+	}
+	else if($_GET['order'] == 'mg'){
+		$order = 'megusta';
+		$mode = 'DESC';
+	}
+	else{  
+		$order = 'anio';
+		$mode = 'DESC';
+	}
+}
+else {
+	$order = 'anio';
+	$mode = 'ASC';
+}
+
+if(isset($_GET['mode'])) {
+	if($_GET['mode'] == 'asc') {
+		$mode = 'ASC';
+	}
+	else if($_GET['mode'] == 'desc'){
+		$mode = 'DESC';
+	}
+}
+
+
 $db = new DB('../db/iaw_proy3');
 
 
 if(isset($_GET['ar']) && is_numeric($_GET['ar'])) { //id artista
 	$ar = $_GET['ar'];
-	$listaCDs = $db->query("SELECT * FROM CDs WHERE id_artista = $ar LIMIT $desde , $hasta");
+	$listaCDs = $db->query("SELECT * FROM CDs WHERE id_artista = $ar ORDER BY $order $mode LIMIT $desde , $hasta");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE id_artista = $ar");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
 } 
 else if(isset($_GET['tag'])) {
 	$tag = $_GET['tag'];	
-	$listaCDs = $db->query("SELECT c.* FROM CDs c NATURAL JOIN cd_tag ct, tags t WHERE t.nombre = '$tag' AND t.id_tag = ct.id_tag LIMIT $desde , $hasta");
+	$listaCDs = $db->query("SELECT c.* FROM CDs c NATURAL JOIN cd_tag ct, tags t WHERE t.nombre = '$tag' AND t.id_tag = ct.id_tag ORDER BY $order $mode LIMIT $desde , $hasta");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs c NATURAL JOIN cd_tag ct, tags t WHERE t.nombre = '$tag' AND t.id_tag = ct.id_tag");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
 }
 else if(isset($_GET['anio']) && is_numeric($_GET['anio'])) {
 	$anio = (int)$_GET['anio'];	
-	$listaCDs = $db->query("SELECT * FROM CDs WHERE anio = $anio LIMIT $desde , $hasta");
+	$listaCDs = $db->query("SELECT * FROM CDs WHERE anio = $anio ORDER BY $order $mode LIMIT $desde , $hasta");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE anio = $anio");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
 }
 else if(isset($_GET['artista'])){
 	$artista = $_GET['artista'];	
-	$listaCDs = $db->query("SELECT c.* FROM CDs c, artistas a WHERE a.nombre LIKE '%$artista%' AND a.id_artista = c.id_artista LIMIT $desde , $hasta");
+	$listaCDs = $db->query("SELECT c.* FROM CDs c, artistas a WHERE a.nombre LIKE '%$artista%' AND a.id_artista = c.id_artista ORDER BY $order $mode LIMIT $desde , $hasta");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs c, artistas a WHERE a.nombre LIKE '%$artista%' AND a.id_artista = c.id_artista");
+	if ($cantidad)
+		$count = $db->getRow($cantidad);
+}
+else if(isset($_GET['genero'])){
+	$gen = $_GET['genero'];	
+	$listaCDs = $db->query("SELECT c.* FROM CDs c, artistas a, generos g WHERE g.nombre LIKE '%$gen%' AND a.id_artista = c.id_artista AND a.id_genero = g.id_genero ORDER BY $order $mode LIMIT $desde , $hasta");
+	$cantidad = $db->query("SELECT COUNT() FROM CDs c, artistas a, generos g WHERE g.nombre LIKE '%$gen%' AND a.id_artista = c.id_artista AND a.id_genero = g.id_genero");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
 }
 else if(isset($_GET['cd'])){ //nombre CD
 	$cd = $_GET['cd'];	
-	$listaCDs = $db->query("SELECT * FROM CDs WHERE nombre LIKE '%$cd%' LIMIT $desde , $hasta");
+	$listaCDs = $db->query("SELECT * FROM CDs WHERE nombre LIKE '%$cd%' ORDER BY $order $mode LIMIT $desde , $hasta");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE nombre LIKE '%$cd%'");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
 }
 else if(isset($_GET['cancion'])){
 	$cancion = $_GET['cancion'];	
-	$listaCDs = $db->query("SELECT * FROM CDs WHERE canciones LIKE '%$cancion%' LIMIT $desde , $hasta");
+	$listaCDs = $db->query("SELECT * FROM CDs WHERE canciones LIKE '%$cancion%' ORDER BY $order $mode LIMIT $desde , $hasta");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE canciones LIKE '%$cancion%' ");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
