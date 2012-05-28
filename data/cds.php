@@ -52,7 +52,7 @@ $db = new DB('../db/iaw_proy3');
 
 
 if(isset($_GET['ar']) && is_numeric($_GET['ar'])) { //id artista
-	$ar = $_GET['ar'];
+	$ar = (int)$_GET['ar'];
 	$listaCDs = $db->query("SELECT * FROM CDs WHERE id_artista = $ar ORDER BY $order $mode LIMIT $desde , $hasta");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE id_artista = $ar");
 	if ($cantidad)
@@ -102,7 +102,8 @@ else if(isset($_GET['cancion'])){
 }
 else {	
 	//devolver JSON vacio o con error
-	echo '<br/>vacio11';
+	$error['error'] = 'Falta parametro de busqueda';
+	echo json_encode($error);
 }	
 
 if(isset($listaCDs) && $listaCDs && isset($count))	
@@ -142,28 +143,12 @@ if(isset($listaCDs) && $listaCDs && isset($count))
 		}
 		
 		$result['CDs'][$i]['anio'] = $cd['anio'];
-		$result['CDs'][$i]['canciones'] = $cd['canciones'];   //hacer explode
-		$result['CDs'][$i]['thumbnail'] = $cd['thumbnail'];
-		$imgs = explode('|-|',$cd['imagenes']);
-		$result['CDs'][$i]['imagenes'] = array();
-		$k = 0;
-		foreach($imgs as $img) {
-			$result['CDs'][$i]['imagenes'][$k] = array();
-			$result['CDs'][$i]['imagenes'][$k]['url'] = $img;	
-			$k++;	
-		}
 		
-		$result['CDs'][$i]['link'] = $cd['link'];
+		$result['CDs'][$i]['thumbnail'] = $cd['thumbnail'];
+				
 		$result['CDs'][$i]['visitas'] = $cd['visitas'];
 		$result['CDs'][$i]['megusta'] = $cd['megusta'];
 		
-		$tags = $db->query("SELECT t.nombre as nombre FROM tags t NATURAL JOIN cd_tag ct WHERE ct.id_cd = $idCD");
-		$result['CDs'][$i]['tags'] = array();
-		$j=0;
-		foreach ($tags as $tag) {
-			$result['CDs'][$i]['tags'][$j] = array();
-			$result['CDs'][$i]['tags'][$j++]['tag'] = $tag['nombre'];
-		}
 		$i++;
 	}
 	
@@ -174,7 +159,8 @@ if(isset($listaCDs) && $listaCDs && isset($count))
 
 }
 else {
-	echo "vaciooo";
+	$error['error'] = 'No se encontraron resultados';
+	echo json_encode($error);
 }
 
 
