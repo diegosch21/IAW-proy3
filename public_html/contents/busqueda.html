@@ -1,0 +1,41 @@
+﻿
+			<div id="paginacion">
+                <h1>Busqueda</h1>
+                <div id="p1" class="pagedemo _current" style="">Page 1</div>
+				<div id="p2" class="pagedemo" style="display:none;">Page 2</div>
+				<div id="p3" class="pagedemo" style="display:none;">Page 3</div>
+				<div id="p4" class="pagedemo" style="display:none;">Page 4</div>
+				<div id="p5" class="pagedemo" style="display:none;">Page 5</div>
+				<div id="p6" class="pagedemo" style="display:none;">Page 6</div>
+				<div id="p7" class="pagedemo" style="display:none;">Page 7</div>
+				<div id="p8" class="pagedemo" style="display:none;">Page 8</div>
+				<div id="p9" class="pagedemo" style="display:none;">Page 9</div>
+				<div id="p10" class="pagedemo" style="display:none;">Page 10</div>
+				<div id="paginate">                   
+                </div>
+            </div>
+
+       
+		
+		<script src="/home/public_html/templates/template1/js/lib/jquery.paginate.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		jQuery(function() {
+			jQuery("#paginate").paginate({
+				count 		: 10,
+				start 		: 1,
+				display     : 7,
+				border					: false,
+				text_color  			: '#79B5E3',
+				background_color    	: 'none',	
+				text_hover_color  		: '#2573AF',
+				background_hover_color	: 'none', 
+				images		: false,
+				mouse		: 'press',
+				onChange     			: function(page){
+											jQuery('._current','#paginacion').removeClass('_current').hide();
+											jQuery('#p'+page).addClass('_current').show();
+										  }
+			});
+		});
+		</script>
+
