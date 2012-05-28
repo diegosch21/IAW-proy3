@@ -14,8 +14,8 @@ $maincontent = 'public_html/contents/busqueda.html';
 $itemcontent = 'public_html/contents/item.html';
 
 session_start();
-if (isset($_SESSION['logged'])){
-	if ($_SESSION['logged']=='admin'){   //ACA DEBERIA CONTROLARSE EL USUARIO CN LA BD
+if (isset($_SESSION['user'])){
+	if ($_SESSION['user']=='admin'){   //ACA DEBERIA CONTROLARSE EL USUARIO CN LA BD
 		if (!(empty($_GET['edit']))&&$_GET['edit']==true)
 			$maincontent = 'public_html/contents/admin.html';
 		$login = 'public_html/contents/menuAdmin.html';

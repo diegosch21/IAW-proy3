@@ -2,18 +2,19 @@
 
 require_once('../_lib/db.php');
 
-if(isset($_GET['ar']) && is_numeric($_GET['ar'])) {
+if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 	$db = new DB('../db/iaw_proy3');
 		
-	$ar = (int)$_GET['ar'];	
+	$ar = (int)$_GET['id'];	
 	$artista = $db->query("SELECT a.id_artista as id, a.nombre as artista, g.nombre as genero, a.nacionalidad as nacionalidad, a.banda as banda, a.imagenes as imagenes, a.link as link, a.visitas as visitas, a.megusta as megusta FROM artistas a, generos g WHERE a.id_artista = $ar");
 	
 	
 	$infoArtista = $db->getRow($artista);
 	
 	if (!($infoArtista))	{
-		echo '<br/>vacio';
+		$error['error'] = "No existe artista con id=$ar";	
+		echo json_encode($error);
 	}
 	else {
 		
@@ -45,8 +46,9 @@ if(isset($_GET['ar']) && is_numeric($_GET['ar'])) {
 }
 
 else {	
-	//devolver JSON vacio o con error
-	echo '<br/>vacio';
+	
+	$error['error'] = 'Falta parametro id';
+	echo json_encode($error);
 }
 
 
