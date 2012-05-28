@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="es-ES" xml:lang="es">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>{titulo}</title>
 	<link type="text/css" href="public_html/templates/template1/css/custom-theme/jquery-ui-1.8.20.custom.css" rel="stylesheet" />	
     <link rel="stylesheet" href="public_html/templates/template1/css/style.css" type="text/css" media="screen" />
@@ -17,22 +17,12 @@
 	<script type="text/javascript" src="public_html/js/lib/mootools-more-1.4.0.1.js"></script>
 	<script type="text/javascript" src="public_html/js/lib/Carousel.js"></script>
 	<script type="text/javascript" src="public_html/templates/template1/js/lib/chillbox-packed.js"></script>
-	<script src="public_html/templates/template1/js/lib/formwizard.js" type="text/javascript">
+	
 </head>
 <body>
-		<div id="fb-root"></div>  
-		<script>  
-		  window.fbAsyncInit = function() {  
-			FB.init({appId: 'your app id', status: true, cookie: true,  
-					 xfbml: true});  
-		  };  
-		  (function() {  
-			var e = document.createElement('script'); e.async = true;  
-			e.src = document.location.protocol +  
-			  '//connect.facebook.net/en_US/all.js';  
-			document.getElementById('fb-root').appendChild(e);  
-		  }());  
-		</script>  
+  <div id="fb-root"></div>  
+
+		
 		<div class="Sheet">
 			<div class="Header-png"></div>
 			<div class="main">
@@ -42,10 +32,11 @@
 				
 				</div>
 				
-				<div class="HomeContent" id="HomeContent">					
+				<div class="HomeContent" id="HomeContent">	
+		
 					{maincontent}            
 				</div>
-				<div class="ItemContent" id="ItemContent">					
+				<div class="ItemContent" id="ItemContent">				
 					{itemcontent}            
 				</div>
 				<div class="right">
