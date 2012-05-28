@@ -70,6 +70,7 @@
 }
 .CDContent
 {
+	
 	display:none;
 	float:left;
 	position:relative;
@@ -363,6 +364,12 @@ span.jPag-sprevious-img{
 span.jPag-snext-img{
     background:transparent url(../images/snext.png) no-repeat center left;
             }
+.Ov{
+	position:fixed!important;
+	bottom: 0px!important;;
+	clear:both !important;
+	width:100%!important;
+	height: auto !important;
+	min-height:100%!important;
 
-
-
+    }
