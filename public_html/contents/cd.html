@@ -2,7 +2,7 @@
 
 <script type="text/html" id='templateCD'>
 
-	<div style="padding-left:470px; padding-top:5px" class="fb-like" data-href="http://localhost/home/index.php?id={{id}}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=www.larockolaiaw.com/{{artista}}/{{nombre}}";layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=70" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
 	<div>
 		<div class="artista">{{artista}}</div>
 		<div class="artista">{{nombre}}</div>
@@ -15,18 +15,10 @@
 		{{/imagenes}}
 		<div><a href="{{link}}" title="Descargar">Descargar!</a></div>
     </div>
-	<div style="margin-top=70%" class="fb-comments" data-href="http://localhost/home/index.php?id={{id}}" data-num-posts="2" data-width="550"></div>
+	<iframe src="http://www.facebook.com/plugins/comments.php?href=www.larockolaiaw.com/{{artista}}/{{nombre}}" frameborder="0" allowtransparency="allowtransparency" scrolling="no" style="border-bottom: medium none; border-left: medium none; width: 500px; height: 500px; border-top: medium none; border-right: medium none"></iframe>
+	
 	<script>
-	  window.fbAsyncInit = function() {  
-		FB.init({appId: 'your app id', status: true, cookie: true,  
-				 xfbml: true});  
-	  };  
-	  (function() {  
-		var e = document.createElement('script'); e.async = true;  
-		e.src = document.location.protocol +  
-		  '//connect.facebook.net/en_US/all.js';  
-		document.getElementById('fb-root').appendChild(e);  
-	  }()); 
+	  
 		jQuery(function(){ 
 		//jQuery('[rel$=ChillBox]').ChillBox();
 		jQuery('[rel$=ChillBoxGroup]').ChillBox();

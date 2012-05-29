@@ -1,5 +1,6 @@
 ﻿$.noConflict();
 pedirPagina();
+
 var info;
 function pedirPagina(artista){
 	url= 'data/cds.php?ar='+artista+'&page=1';
@@ -29,11 +30,12 @@ function pedirPagina(artista){
 function verCD(cd){
 
 	url= 'data/cd.php?id='+cd;
-   jQuery.getJSON(url,function(data) {		
-		var output = Mustache.render(jQuery("#templateCD").html(), data)
-		jQuery("#cdTarget").html(output);		
+   jQuery.getJSON(url,function(data) {	
+		
+		var output = Mustache.render(jQuery("#templateCD").html(), data);
+		jQuery("#cdTarget").html(output);	
 	});
-
+	
 	jQuery("#CDContent").show();
 	jQuery("#ItemContent").hide();
 	
@@ -46,6 +48,7 @@ function cambiar(artista, pagina){
 		var output = Mustache.render(jQuery("#templateB").html(), data)
 		jQuery("#templateBusqueda").html(output);
 	});
+	FB.XFBML.parse();
 }
 		
 //valida que el campo no este vacio y no tenga solo espacios en blanco  
@@ -83,15 +86,26 @@ function loadItem(i) {
 		var output = Mustache.render(jQuery("#template").html(), json)
 		jQuery("#templateTarget").html(output);
 		pedirPagina(json.id);
-	});
-	
-
-	  
+	});	  
 
 }
 
 
 
+	
+jQuery(document).ready(function($) {
+ 	  window.fbAsyncInit = function() {  
+		FB.init({appId: '1267879501', status: true, cookie: true,  
+				 xfbml: true});  
+	  };  
+	  (function() {  
+		var e = document.createElement('script'); e.async = true;  
+		e.src = document.location.protocol +  
+		  '//connect.facebook.net/en_US/all.js';  
+		document.getElementById('fb-root').appendChild(e);  
+	  }()); 
 
+ 
+});  
 
 
