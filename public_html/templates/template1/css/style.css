@@ -103,7 +103,22 @@
 	z-index:1;
 
 }
+.orden
+{
 
+}
+.mode
+{
+}
+.avanzadas
+{
+	margin-left: 30px;
+	display:block;
+	text-align: left;
+margin-bottom:10px;
+
+
+}
 
 .search
 {

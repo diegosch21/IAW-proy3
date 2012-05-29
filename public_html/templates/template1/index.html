@@ -35,11 +35,27 @@
 				<div class="HomeContent" id="HomeContent">			
 					{maincontent}            
 				</div>
-				<div class="ItemContent" id="ItemContent">				
-						{itemcontent}   
-						<div class="BusquedaContent" id="BusquedaContent">				
-							{busquedacontent}            
+				<div class="ItemContent" id="ItemContent">	
+					<div class="bandaContent" id="bandaContent">
+						{itemcontent}  
+					</div>
+					<div  id="OpcionesBusqueda">
+						<div>
+						<h4>Ordenar por:</h4>
+						<input type="radio" name="orden" value="abc"/> abc
+						<input type="radio" name="orden" value="anio"/> año   
+						<input type="radio" name="orden" value="vis"/> visitas  
+						<input type="radio" name="orden" value="mg"/> me gusta 		
 						</div>
+						<div>
+						<h4>Modo:</h4>
+						<input type="radio" name="mode" value="asc"/> ascendente
+						<input type="radio" name="mode" value="desc"/> descendente 	
+						</div>
+					</div>
+					<div class="BusquedaContent" id="BusquedaContent">				
+						{busquedacontent}            
+					</div>
 					</div>
 					<div class="CDContent" id="CDContent">
 			
@@ -47,10 +63,20 @@
 					</div>
 				</div>
 				<div class="right">
-					<div class="search">			
+					<div class="login">			
 						<h3>Search:</h3>
 						<div>
-							<input id="search" style="z-index: 100; position: relative" title="type &quot;a&quot;" />
+							<input type="text" id="search" name="busqueda" title="Ingrese una búsqueda" />
+							
+							<div class="avanzadas">	
+								<h4>Buscar por:</h4>
+								<input type="radio" name="tipo" value="artista"/> Artista
+								<input type="radio" name="tipo" value="cancion"/> Canción<br/>
+								<input type="radio" name="tipo" value="cd"/> Cd&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								<input type="radio" name="tipo" value="genero"/> Género<br/>
+								<input type="radio" name="tipo" value="anio"/> Año&nbsp&nbsp&nbsp&nbsp&nbsp
+								<input type="radio" name="tipo" value="tag"/> Tag<br/>
+							</div>
 							<div id="buttonSearch">Search</div>
 						</div>
 					</div>

@@ -1,9 +1,13 @@
 ﻿$.noConflict();
-pedirPagina();
+
 
 var info;
-function pedirPagina(artista){
-	url= 'data/cds.php?ar='+artista+'&page=1';
+var lastquery;
+var mode = "asd";
+var order = "anio";
+
+function pedirPagina(query){
+	url= 'data/cds.php?'+query+'&page=1';
    jQuery.getJSON(url,function(data) {
 		info = data;
 		var output = Mustache.render(jQuery("#templateB").html(), data)
@@ -22,7 +26,7 @@ function pedirPagina(artista){
 			onChange     			: function(page){
 										jQuery('._current','#paginacion').removeClass('_current').hide();
 										jQuery('#p'+page).addClass('_current').show();
-										cambiar(artista,page);
+										cambiar(query,page);
 									  }
 		});
 	});
@@ -40,15 +44,15 @@ function verCD(cd){
 	jQuery("#ItemContent").hide();
 	
 }
-var info;
-function cambiar(artista, pagina){
-	url= 'data/cds.php?ar='+artista+'&page='+pagina;
+
+function cambiar(query, pagina){
+alert('data/cds.php?'+query+'&page='+pagina);
+	url= 'data/cds.php?'+query+'&page='+pagina;
    jQuery.getJSON(url,function(data) {
 		info = data;
 		var output = Mustache.render(jQuery("#templateB").html(), data)
 		jQuery("#templateBusqueda").html(output);
 	});
-	FB.XFBML.parse();
 }
 		
 //valida que el campo no este vacio y no tenga solo espacios en blanco  
@@ -85,7 +89,8 @@ function loadItem(i) {
     jQuery.getJSON('data/artist.php?id='+i,function(json) {
 		var output = Mustache.render(jQuery("#template").html(), json)
 		jQuery("#templateTarget").html(output);
-		pedirPagina(json.id);
+		lastquery = "ar="+json.id;
+		pedirPagina(lastquery);
 	});	  
 
 }
@@ -94,18 +99,29 @@ function loadItem(i) {
 
 	
 jQuery(document).ready(function($) {
- 	  window.fbAsyncInit = function() {  
-		FB.init({appId: '1267879501', status: true, cookie: true,  
-				 xfbml: true});  
-	  };  
-	  (function() {  
-		var e = document.createElement('script'); e.async = true;  
-		e.src = document.location.protocol +  
-		  '//connect.facebook.net/en_US/all.js';  
-		document.getElementById('fb-root').appendChild(e);  
-	  }()); 
 
- 
+	jQuery("#buttonSearch").click(function(){
+		jQuery("#CDContent").hide();
+		jQuery("#HomeContent").hide();
+		jQuery("#ItemContent").show();
+		jQuery("#bandaContent").hide();
+		jQuery("#BusquedaContent").show();	
+		lastquery = ""+$('input:radio[name=tipo]:checked').val()+'='+$('input[type=text][name=busqueda]').val();
+		pedirPagina(lastquery);
+		});
+	
+	jQuery("input:radio[name=orden]").click(function(){
+		var query = lastquery+'&order='+$('input:radio[name=orden]:checked').val();
+		order = $('input:radio[name=orden]:checked').val();
+		pedirPagina(query+"&mode="+mode);
+	});
+		
+	jQuery("input:radio[name=mode]").click(function(){
+		var query = lastquery+'&mode='+$('input:radio[name=mode]:checked').val();
+		mode = $('input:radio[name=mode]:checked').val();
+		pedirPagina(query+"&order="+order);
+	});
+
 });  
 
 
