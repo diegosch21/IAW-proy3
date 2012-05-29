@@ -21,6 +21,7 @@ jQuery(function(){
 		      primary: 'ui-icon ui-icon-key',
 		   }
 		});
+
 	jQuery("#buttonLogout").button({
 	   icons: {
 		  primary: 'ui-icon ui-icon-circle-close',

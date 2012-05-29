@@ -1,21 +1,28 @@
 ﻿<div id="paginacion">
-	<h1>Busqueda</h1>
 	<div id="templateBusqueda"></div>
 	<script type="text/html" id='templateB'>
 
-		<div>
-		<div class="artista">{{artista}}</div>		
-        {{#CDs}}
-			<div class="cd"> 
-			{{nombre}}
-				<a href="#" title="Carátula" onclick="verCD({{id}})"><img width="150" height"150" src="{{thumbnail}}" alt="Carátula" /></a>
-			</div>
-		{{/CDs}}
-    </div>
+	<div>
 
-	</script>
-			<div id="paginate" class="paginacion">                   
+		<div id="resultados">
+					
+			{{#CDs}}
+				<div id="resultado" onclick="verCD({{id}})">
+					<div class="cd"> 
+					<div class="info">
+						<div class="resultadoTitulo">{{nombre}}</div>
+						<div class="resultadoAnio">{{anio}}</div>
+					</div>		
+						<img class="imagenresult" width="150" height"150" src="{{thumbnail}}" alt="Carátula" />
+					</div>
+				</div>
+			{{/CDs}}
+			
 		</div>
+	</div>
+	</script>
+
+	<div id="paginate" class="paginacion"></div>
 </div>
 
 

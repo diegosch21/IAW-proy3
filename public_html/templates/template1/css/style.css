@@ -41,6 +41,16 @@
 	z-index:1;
 	
 }
+.linkTitulo:hover {color: #727AB9;}
+
+.linkTitulo {
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size: 24px;
+text-decoration: none;
+color: #6bace6;
+border: 0px;
+-moz-outline-style: none;
+}
 .ItemContent
 {
 	display:none;
@@ -209,7 +219,13 @@ font-weight: normal;
 	overflow: hidden;
 }
 .paginacion {
+
 	margin-bottom:50px;
+}
+#paginate {
+
+	float:left;
+	display:block;
 }
 
 .leftButton,.rightButton {
@@ -261,6 +277,7 @@ font-size: 16px;
 display: block;
 font-weight: normal;
 }
+
 .descripcionBanda{
 	padding: 0, 40px,  0, 40px;
 	margin: 40px;
@@ -270,7 +287,7 @@ font-weight: normal;
 }
 .cd{
 	width: 150px;
-	height: 180px;
+		height: 200px!important!;
 }
 
 .jPaginate{
@@ -388,3 +405,84 @@ span.jPag-snext-img{
 	min-height:100%!important;
 
     }
+#resultado {
+margin-left:10px;
+margin-bottom:10px;
+	float:left;
+	width: 160px;
+	height: 180px!important!;
+	top: 100px;
+	right: 0px;
+	z-index: 1000;
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.3);
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+    -moz-box-background-clip: padding-box;
+    -webkit-box-background-clip: padding-box;
+    background-clip: padding-box;
+    -moz-box-border-radius: .3em;
+    -webkit-box-border-radius: .3em;
+    border-radius: .3em;
+    background: rgba(255,255,255,0.7);
+
+}
+#resultados {
+
+	display:block;
+	width: 540px;
+
+	z-index: 1000;
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.3);
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+    -moz-box-background-clip: padding-box;
+    -webkit-box-background-clip: padding-box;
+    background-clip: padding-box;
+    -moz-box-border-radius: .3em;
+    -webkit-box-border-radius: .3em;
+    border-radius: .3em;
+    background: rgba(255,255,255,0.7);
+
+}
+
+#resultado:hover {
+	cursor:pointer;
+	background: rgba(211,238,248,0.8);
+}
+.imagenresult {
+	height:150px;
+	margin-left:5px;
+	margin-bottom:10px;
+	}
+.info {
+vertical-align: middle;
+position: relative;
+height:45px;
+margin-bottom:2px;
+}
+.resultadoTitulo{
+
+border-top: 0; position: relative; 
+top: 1px; overflow: auto; display: none; zoom: 1;
+text-decoration: none;
+font-family: Arial, Helvetica, sans-serif; 
+font-size: 14px;
+display: block;
+font-weight: normal;
+color:#3b7ce6;
+margin-bottom:2px;
+
+}
+.resultadoAnio{
+
+	margin-bottom:2px;
+	border-top: 0; position: relative; 
+	bottom: 2px; overflow: auto; display: none; zoom: 1;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 12px;
+	display: block;
+	font-weight: normal;
+	color:#000000;
+
+}
