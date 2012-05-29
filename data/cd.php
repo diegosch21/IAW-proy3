@@ -1,14 +1,14 @@
 <?php
 require_once('../_lib/db.php');
 
-$db = new DB('../db/iaw_proy3');
-
+try {
 
 if(isset($_GET['id']) && is_numeric($_GET['id'])) { //id cd
 
 	$db = new DB('../db/iaw_proy3');
 
 	$id = $_GET['id'];
+	$db->exec("UPDATE CDs SET visitas = visitas+1 WHERE id_cd=$id");
 	$infoCD = $db->query("SELECT * FROM CDs WHERE id_cd = $id");
 	
 	$cd = $db->getRow($infoCD);
@@ -70,7 +70,11 @@ else {
 	$error['error'] = 'Falta parametro id';
 	echo json_encode($error);
 }
-	
+
+} catch(Exception $e){
+	$error['error'] = $e->getMessage();
+	echo json_encode($error);
+}
 
 
 ?>

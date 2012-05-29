@@ -28,6 +28,10 @@ class DB {
 		return $this->db->query($sql);
 	}
 	
+	function exec($sql) {
+		return $this->db->exec($sql);
+	}
+	
 	function getRow($table) {
 		return $table->fetch();
 	}

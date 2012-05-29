@@ -3,6 +3,8 @@ $paginado = 5;
 
 require_once('../_lib/db.php');
 
+try {
+
 if(isset($_GET['page']) && is_numeric($_GET['page'])) {
 	$page = (int)$_GET['page'] - 1;	
 } else {
@@ -166,5 +168,11 @@ else {
 
 
 $db->disconnect();
+
+} catch (Exception $e){
+	$error['error'] = $e->getMessage();
+	echo json_encode($error);
+}
+
 
 ?>

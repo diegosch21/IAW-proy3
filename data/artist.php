@@ -1,12 +1,14 @@
 <?php
 
 require_once('../_lib/db.php');
+try{
 
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 	$db = new DB('../db/iaw_proy3');
 		
 	$ar = (int)$_GET['id'];	
+	$db->exec("UPDATE artistas SET visitas = visitas+1 WHERE id_artista=$ar");
 	$artista = $db->query("SELECT a.id_artista as id, a.nombre as artista, g.nombre as genero, a.nacionalidad as nacionalidad, a.banda as banda, a.imagenes as imagenes, a.link as link, a.visitas as visitas, a.megusta as megusta FROM artistas a, generos g WHERE a.id_artista = $ar");
 	
 	
@@ -48,6 +50,11 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 else {	
 	
 	$error['error'] = 'Falta parametro id';
+	echo json_encode($error);
+}
+
+} catch(Exception $e){
+	$error['error'] =$e->getMessage();
 	echo json_encode($error);
 }
 
