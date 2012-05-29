@@ -1,3 +1,4 @@
+
 DROP TABLE IF EXISTS 'CDs';
 CREATE TABLE 'CDs' ('id_cd' INTEGER PRIMARY KEY  NOT NULL ,'id_artista' INTEGER,'nombre' TEXT,'anio' INTEGER,'canciones' TEXT,'thumbnail' TEXT, 'imagenes' TEXT,'link' TEXT, 'visitas' INTEGER, 'megusta' INTEGER);
 DROP TABLE IF EXISTS 'artistas';
