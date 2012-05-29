@@ -46,7 +46,6 @@ function verCD(cd){
 }
 
 function cambiar(query, pagina){
-alert('data/cds.php?'+query+'&page='+pagina);
 	url= 'data/cds.php?'+query+'&page='+pagina;
    jQuery.getJSON(url,function(data) {
 		info = data;
