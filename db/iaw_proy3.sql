@@ -1,6 +1,6 @@
 
 DROP TABLE IF EXISTS 'CDs';
-CREATE TABLE 'CDs' ('id_cd' INTEGER PRIMARY KEY  NOT NULL ,'id_artista' INTEGER,'nombre' TEXT,'anio' INTEGER,'canciones' TEXT,'thumbnail' TEXT, 'imagenes' TEXT,'link' TEXT, 'visitas' INTEGER, 'megusta' INTEGER);
+CREATE TABLE 'CDs' ('id_cd' INTEGER PRIMARY KEY  NOT NULL ,'id_artista' INTEGER NOT NULL,'nombre' TEXT NOT NULL,'anio' INTEGER,'canciones' TEXT,'thumbnail' TEXT, 'imagenes' TEXT,'link' TEXT, 'visitas' INTEGER, 'megusta' INTEGER);
 DROP TABLE IF EXISTS 'artistas';
 CREATE TABLE 'artistas' ('id_artista' INTEGER PRIMARY KEY  NOT NULL , 'nombre' TEXT NOT NULL , 'id_genero' INTEGER NOT NULL , 'nacionalidad' TEXT, 'banda' TEXT, 'imagenes' TEXT, 'link' TEXT, 'visitas' INTEGER, 'megusta' INTEGER);
 DROP TABLE IF EXISTS 'generos';
