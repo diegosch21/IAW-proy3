@@ -42,10 +42,19 @@
 	
 }
 .linkTitulo:hover {color: #727AB9;}
+.linkOficial:hover {color: #727AB9;}
 
 .linkTitulo {
 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 font-size: 24px;
+text-decoration: none;
+color: #6bace6;
+border: 0px;
+-moz-outline-style: none;
+}
+.linkOficial {
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size: 16px;
 text-decoration: none;
 color: #6bace6;
 border: 0px;
@@ -277,12 +286,48 @@ text-decoration: none;
 color: #6bace6;
 border: 0px;
 padding-top:20px;
+padding-bottom:20px;
 -moz-outline-style: none;
 }
 
 .descripcionBanda{
-	padding: 0, 40px,  0, 40px;
-	margin: 40px;
+margin: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 14px;
+	display: block;
+}
+.infoBanda{
+
+	margin: 20px;
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 14px;
+	display: block;
+}
+.linkOficial {
+	margin: 10px;
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	display: block;
+color: #6bace6;
+border: 0px;
+-moz-outline-style: none;
+}
+.imagenbanda {
+padding-left: 100px;
+	padding-bottom: 20px;
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	display: block;
+color: #6bace6;
+border: 0px;
+-moz-outline-style: none;
+}
+.subtituloBanda{
+	font-weight: bold;
+	padding: 0px, 40px,  0px, 0px!important;
+	text-decoration:none;
 	font-family: Arial, Helvetica, sans-serif; 
 	font-size: 14px;
 	display: block;
