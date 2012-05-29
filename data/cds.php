@@ -105,8 +105,7 @@ else if(isset($_GET['cancion'])){
 }
 else {	
 	//devolver JSON vacio o con error
-	$error['error'] = 'Falta parametro de busqueda';
-	echo json_encode($error);
+	$result['error'] = 'Falta parametro de busqueda';
 }	
 
 if(isset($listaCDs) && $listaCDs && isset($count))	
@@ -156,14 +155,10 @@ if(isset($listaCDs) && $listaCDs && isset($count))
 	}
 	
 	
-	
-	echo json_encode($result);
-		
 
 }
 else {
-	$error['error'] = 'No se encontraron resultados';
-	echo json_encode($error);
+	$result['error'] = 'No se encontraron resultados';
 }
 
 
@@ -171,9 +166,13 @@ else {
 $db->disconnect();
 
 } catch (Exception $e){
-	$error['error'] = $e->getMessage();
-	echo json_encode($error);
+	$result['error'] = $e->getMessage();
 }
+
+if(isset($result['error']))	
+	echo json_encode($result);
+else if(isset($result))
+	echo json_encode($result);
 
 
 ?>

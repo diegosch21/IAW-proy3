@@ -1,17 +1,19 @@
 <?php
-
 require_once('../_lib/db.php');
+require_once('../_lib/data.php');
+
+try {
 
 session_start();	
 
 if (!isset($_SESSION['user'])){
-	$error['error'] = 'Sesion no iniciada';
+	$result['error'] = 'Sesion no iniciada';
 }
 else if(!isset($_POST['genero']) || $_POST['genero']==""){
-	$error['error'] = 'Falta atributo genero';
+	$result['error'] = 'Falta atributo genero';
 }	
 else if(!isset($_POST['nombre']) || $_POST['nombre']=="") {
-	$error['error'] = 'Falta atributo nombre';
+	$result['error'] = 'Falta atributo nombre';
 }	
 else{
 	
@@ -22,7 +24,7 @@ else{
 	$art = $db->getRow($artistas);
 	if($art) {
 		//ya existe artista
-		$error['error'] = "Artista existente. ID=$art[0]";
+		$result['error'] = "Artista existente. ID=$art[0]";
 	}
 	else {
 		$artistas = $db->query("SELECT MAX(id_artista) FROM artistas");
@@ -49,23 +51,22 @@ else{
 		$imgs = (isset($_POST['imgs'])) ? $_POST['imgs'] : null;    //recibe un arreglo??? hacer implode(|-|)
 		$link = (isset($_POST['link'])) ? $_POST['link'] : null;  
 		
-		
-		
-		
-		
 		$db->execute("INSERT INTO artistas VALUES(?,?,?,?,?,?,?,0,0)",array($id,$nom,$idGen,$nac,$banda,$imgs,$link));
 		
-		$new = $db->query("SELECT * FROM artistas WHERE id_artista = $id");
-		$result = $db->getRow($new);
-		
+		$result = getArtist($db,$id);
+
 	}
 	
 	
 	$db->disconnect();
 }
 
-if(isset($error['error']))	
-	echo json_encode($error);
+} catch(Exception $e){
+	$result['error'] = $e->getMessage();
+}
+
+if(isset($result['error']))	
+	echo json_encode($result);
 else if(isset($result))
 	echo json_encode($result);
 

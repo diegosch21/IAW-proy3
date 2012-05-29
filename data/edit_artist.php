@@ -1,20 +1,22 @@
 <?php
-
 require_once('../_lib/db.php');
+require_once('../_lib/data.php');
+
+try {
 
 session_start();	
 
 if (!isset($_SESSION['user'])){
-	$error['error'] = 'Sesion no iniciada';
+	$result['error'] = 'Sesion no iniciada';
 }
-else if(!isset($_POST['id']) || $_POST['id']==""){
-	$error['error'] = 'Falta atributo id';
+else if(!isset($_POST['id']) || $_POST['id']=="" || !is_numeric($_POST['id'])){
+	$result['error'] = 'Falta atributo id';
 }	
 else if(!isset($_POST['genero']) || $_POST['genero']==""){
-	$error['error'] = 'Falta atributo genero';
+	$result['error'] = 'Falta atributo genero';
 }	
 else if(!isset($_POST['nombre']) || $_POST['nombre']=="") {
-	$error['error'] = 'Falta atributo nombre';
+	$result['error'] = 'Falta atributo nombre';
 }	
 else{
 	
@@ -26,7 +28,7 @@ else{
 	
 	if($exist[0] == 0) {
 		//no existe artista
-		$error['error'] = "Artista inexistente con ID=$id";
+		$result['error'] = "Artista inexistente con ID=$id";
 	}
 	else {
 		
@@ -35,7 +37,7 @@ else{
 		$art = $db->getRow($artistas);
 		if($art) {
 			//ya existe artista
-			$error['error'] = "Artista existente con ese nombre. ID=$art[0]";
+			$result['error'] = "Artista existente con ese nombre. ID=$art[0]";
 		} 
 		else {
 					
@@ -62,8 +64,7 @@ else{
 					
 			$db->execute("UPDATE artistas SET nombre = ?, id_genero = ?, nacionalidad = ?, banda= ?, imagenes = ?, link = ? WHERE id_artista = ?",array($nom,$idGen,$nac,$banda,$imgs,$link,$id));
 			
-			$new = $db->query("SELECT * FROM artistas WHERE id_artista = $id");
-			$result = $db->getRow($new);
+			$result = getArtist($db,$id);
 		}
 		
 	}
@@ -72,8 +73,12 @@ else{
 	$db->disconnect();
 }
 
-if(isset($error['error']))	
-	echo json_encode($error);
+} catch(Exception $e){
+	$result['error'] = $e->getMessage();
+}
+
+if(isset($result['error']))	
+	echo json_encode($result);
 else if(isset($result))
 	echo json_encode($result);
 
