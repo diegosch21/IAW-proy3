@@ -7,7 +7,8 @@ session_start();
 if (isset($_SESSION['user'])) {
 	
 //obtengo data de $_POST	
-//agrego en la BD
+//borro de la BD
+//quito CDs???
 	
 }
 else {

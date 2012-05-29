@@ -28,8 +28,9 @@ class DB {
 		return $this->db->query($sql);
 	}
 	
-	function exec($sql) {
-		return $this->db->exec($sql);
+	function execute($sql,$params) {
+		$stm = $this->db->prepare($sql);
+		return $stm->execute($params);
 	}
 	
 	function getRow($table) {
