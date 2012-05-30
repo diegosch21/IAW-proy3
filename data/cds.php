@@ -12,6 +12,7 @@ $config = $db->getRow($conf);
 $order = $config['orden']; //nombre, anio, visitas, megusta
 $mode = $config['mode_orden']; //ASC, DESC
 $paginado = $config['paginado']; //cant items x pag	
+$default = $config['busqueda']; //busqueda default: artista, cancion, cd, genero, anio, tag
 
 /* CONFIGURACION POR PARAMETROS */
 if(isset($_GET['page']) && is_numeric($_GET['page'])) {
@@ -22,8 +23,6 @@ if(isset($_GET['page']) && is_numeric($_GET['page'])) {
 $desde = $page*$paginado;
 $hasta = $desde+$paginado;
 
-//order default
-//mode_order default
 
 if(isset($_GET['order'])) {
 	if($_GET['order'] == 'abc') {
@@ -50,15 +49,21 @@ if(isset($_GET['mode'])) {
 	}
 }
 
+if(isset($_GET['buscar'])) { //parametro de busqueda default
+	$_GET[$default] = $_GET['buscar'];	
+}
 
 /*BUSQUEDA*/
 
 if(isset($_GET['ar']) && is_numeric($_GET['ar'])) { //id artista
+	$param = 'ar';
 	$ar = (int)$_GET['ar'];
 	$listaCDs = $db->query("SELECT * FROM CDs WHERE id_artista = $ar ORDER BY $order $mode LIMIT $desde , $paginado");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE id_artista = $ar");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
+	$param = 'ar';
+	$param_value = $ar;
 } 
 else if(isset($_GET['tag'])) {
 	$tag = $_GET['tag'];	
@@ -66,6 +71,8 @@ else if(isset($_GET['tag'])) {
 	$cantidad = $db->query("SELECT COUNT() FROM CDs c NATURAL JOIN cd_tag ct, tags t WHERE t.nombre = '$tag' AND t.id_tag = ct.id_tag");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
+	$param = 'tag';
+	$param_value = $tag;
 }
 else if(isset($_GET['anio']) && is_numeric($_GET['anio'])) {
 	$anio = (int)$_GET['anio'];	
@@ -73,6 +80,8 @@ else if(isset($_GET['anio']) && is_numeric($_GET['anio'])) {
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE anio = $anio");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
+	$param = 'anio';
+	$param_value = $anio;
 }
 else if(isset($_GET['artista'])){
 	$artista = $_GET['artista'];	
@@ -80,6 +89,8 @@ else if(isset($_GET['artista'])){
 	$cantidad = $db->query("SELECT COUNT() FROM CDs c, artistas a WHERE a.nombre LIKE '%$artista%' AND a.id_artista = c.id_artista");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
+	$param = 'artista';
+	$param_value = $artista;
 }
 else if(isset($_GET['genero'])){
 	$gen = $_GET['genero'];	
@@ -87,6 +98,8 @@ else if(isset($_GET['genero'])){
 	$cantidad = $db->query("SELECT COUNT() FROM CDs c, artistas a, generos g WHERE g.nombre LIKE '%$gen%' AND a.id_artista = c.id_artista AND a.id_genero = g.id_genero");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
+	$param = 'genero';
+	$param_value = $gen;
 }
 else if(isset($_GET['cd'])){ //nombre CD
 	$cd = $_GET['cd'];	
@@ -94,6 +107,8 @@ else if(isset($_GET['cd'])){ //nombre CD
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE nombre LIKE '%$cd%'");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
+	$param = 'cd';
+	$param_value = $cd;
 }
 else if(isset($_GET['cancion'])){
 	$cancion = $_GET['cancion'];	
@@ -101,6 +116,8 @@ else if(isset($_GET['cancion'])){
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE canciones LIKE '%$cancion%' ");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
+	$param = 'cancion';
+	$param_value = $cancion;
 }
 else {	
 	//devolver JSON vacio o con error
@@ -111,6 +128,9 @@ if(isset($listaCDs) && $listaCDs && isset($count))
 {
 
 	$result = array();
+	$result['param'] = $param;
+	$result['value'] = $param_value;
+	$result['total'] = $count[0];
 	$result['pag'] = $page+1;
 	if ($page == 0)	
 		$result['prev'] = false;

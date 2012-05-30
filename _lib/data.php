@@ -27,7 +27,7 @@ function getCD($db,$id) {
 		$result['canciones'] = $cd['canciones'];   //hacer explode
 		$result['thumbnail'] = $cd['thumbnail'];
 		$imgs = explode('|-|',$cd['imagenes']);
-		$result['imagenes'] = array();
+		
 		$k = 0;
 		foreach($imgs as $img) {
 			$result['imagenes'][$k] = array();
@@ -40,7 +40,7 @@ function getCD($db,$id) {
 		$result['megusta'] = $cd['megusta'];
 		
 		$tags = $db->query("SELECT t.nombre as nombre FROM tags t NATURAL JOIN cd_tag ct WHERE ct.id_cd = $id");
-		$result['tags'] = array();
+		
 		$j=0;
 		foreach ($tags as $tag) {
 			$result['tags'][$j] = array();
@@ -66,7 +66,7 @@ function getArtist($db,$id) {
 		$result['nacionalidad'] = $infoArtista['nacionalidad'];
 		$result['banda'] = $infoArtista['banda'];
 		$imgs = explode('|-|',$infoArtista['imagenes']);
-		$result['imagenes'] = array();
+		
 		$k = 0;
 		foreach($imgs as $img) {
 			$result['imagenes'][$k] = array();
