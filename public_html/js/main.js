@@ -84,6 +84,7 @@ function loadItem(i) {
 	jQuery("#CDContent").hide();
 	jQuery("#HomeContent").hide();
 	jQuery("#ItemContent").show();
+	jQuery("#bandaContent").show();
 	jQuery("#BusquedaContent").show();
     jQuery.getJSON('data/artist.php?id='+i,function(json) {
 		var output = Mustache.render(jQuery("#template").html(), json)
