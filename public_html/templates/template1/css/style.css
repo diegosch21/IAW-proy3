@@ -52,6 +52,15 @@ color: #6bace6;
 border: 0px;
 -moz-outline-style: none;
 }
+.tag {
+padding-left: 10px;
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size: 12px;
+text-decoration: none;
+color: #6bace6;
+border: 0px;
+-moz-outline-style: none;
+}
 .linkOficial {
 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 font-size: 16px;
@@ -105,6 +114,11 @@ border: 0px;
 	position:relative;
 	z-index:0;
 	width: 180px;
+	
+}
+.derecha
+{
+	float:right;
 	
 }
 
@@ -289,6 +303,16 @@ padding-top:20px;
 padding-bottom:20px;
 -moz-outline-style: none;
 }
+.titulocd{
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size: 20px;
+text-decoration: none;
+color: #2b6ce6;
+border: 0px;
+padding-top:20px;
+padding-bottom:20px;
+-moz-outline-style: none;
+}
 
 .descripcionBanda{
 margin: 10px;
@@ -300,7 +324,7 @@ margin: 10px;
 }
 .infoBanda{
 
-	margin: 20px;
+	margin: 10px;
 	font-family: Arial, Helvetica, sans-serif; 
 	font-size: 14px;
 	display: block;
@@ -330,7 +354,6 @@ border: 0px;
 	text-decoration:none;
 	font-family: Arial, Helvetica, sans-serif; 
 	font-size: 14px;
-	display: block;
 }
 .cd{
 	width: 150px;

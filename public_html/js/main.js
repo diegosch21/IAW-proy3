@@ -94,7 +94,15 @@ function loadItem(i) {
 	});	  
 
 }
-
+function  busquedaTag(tag){
+	jQuery("#CDContent").hide();
+	jQuery("#HomeContent").hide();
+	jQuery("#ItemContent").show();
+	jQuery("#bandaContent").hide();
+	jQuery("#BusquedaContent").show();	
+	lastquery = "tag="+tag;
+	pedirPagina(lastquery);
+}
 
 
 	
@@ -123,5 +131,7 @@ jQuery(document).ready(function($) {
 	});
 
 });  
+
+
 
 
