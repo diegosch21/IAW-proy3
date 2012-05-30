@@ -3,7 +3,7 @@ require_once('../_lib/db.php');
 
 $db = new DB('../db/iaw_proy3');
 
-$table = $db->query('SELECT g.id_genero as id_gen, g.nombre as genero, a.id_artista as id_ar, a.nombre as artista FROM generos g, artistas a WHERE g.id_genero = a.id_genero');
+$table = $db->query('SELECT g.id_genero as id_gen, g.nombre as genero, a.id_artista as id_ar, a.nombre as artista FROM generos g, artistas a WHERE g.id_genero = a.id_genero ORDER BY id_gen ASC');
 
 $result = array();
 $i=-1;
