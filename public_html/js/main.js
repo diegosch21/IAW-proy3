@@ -108,6 +108,20 @@ function  busquedaTag(tag){
 	
 jQuery(document).ready(function($) {
 
+    jQuery("#addArtistSubmin").click(function(){
+		_genero = jQuery("select option:selected").val();
+		if (_genero=="nuevo")
+			_genero = jQuery("#textNuevoGenero").val();
+		$.ajax({
+			type: "POST",
+			url: "data/add_artist.php?",
+			data: { genero: _genero, nombre: jQuery("#element_2").val(),nacion: jQuery("#element_5").val(), banda: jQuery("#element_4").val(),cant_img: 1,img1: jQuery("#element_6").val(),link: jQuery("#element_3").val() }
+			}).done(function( msg ) {
+			alert( "Data Saved: " + msg );
+		});
+		jQuery(location).reload();
+	});
+
 	jQuery("#buttonSearch").click(function(){
 		jQuery("#CDContent").hide();
 		jQuery("#HomeContent").hide();
@@ -116,7 +130,7 @@ jQuery(document).ready(function($) {
 		jQuery("#BusquedaContent").show();	
 		lastquery = ""+$('input:radio[name=tipo]:checked').val()+'='+$('input[type=text][name=busqueda]').val();
 		pedirPagina(lastquery);
-		});
+	});
 	
 	jQuery("input:radio[name=orden]").click(function(){
 		var query = lastquery+'&order='+$('input:radio[name=orden]:checked').val();
