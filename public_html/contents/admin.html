@@ -1,32 +1,29 @@
-
-					<script type="text/javascript">
-var myform3=new formtowizard({
- formid: 'staff_feedbackform',
- validate: ['artist'],
- revealfx: ['slide', 500] //<--no comma after last setting
-})
-</script>
+﻿
 			<form id="staff_feedbackform">
 
 <fieldset class="sectionwrap">
-<legend>Selecciona el artista</legend>
+		<li class="section_break">
+			<h3>Registra un nuevo artista</h3>
+			<p></p>
+		</li>
 		<ul >			
 		<li id="li_7" >
-		<label class="description" for="element_7">Artista </label>
+		<label class="description">Genero</label>
 		<div>
-		<select class="element select medium" id="artist" name="element_7"> 
-			<option value="" selected="selected"></option>
-			<option value="1" >Arjona</option>
-			<option value="2" >Otra opcion</option>
-			<option value="3" >Otra mas</option>
-
+		<select class="element select medium" id="generoList" name="element_7"> 
+			<option value='' selected='selected'></option>"
+			<option value='nuevo' >Nuevo género</option>"
+			<script>
+			   jQuery.getJSON('data/categorias.php?',function(data) {
+					for(i=0;i<data.length;i++){jQuery('#generoList').append("<option value='"+data[i].genero+"' >"+data[i].genero+"</option>");}
+				});	
+			</script>
 		</select>
+		<label class="description">Nuevo Género</label>
+			<input id="textNuevoGenero" name="element_2" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div>
 		</li>		
-		<li class="section_break">
-			<h3>Registra nuevo artista</h3>
-			<p></p>
-		</li>		<li id="li_2" >
+		<li id="li_2" >
 		<label class="description" for="element_2">Nombre </label>
 		<div>
 			<input id="element_2" name="element_2" class="element text medium" type="text" maxlength="255" value=""/> 
@@ -37,15 +34,16 @@ var myform3=new formtowizard({
 			<input id="element_3" name="element_3" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div> 
 		</li>		<li id="li_4" >
-		<label class="description" for="element_4">Descripcion </label>
+		<label class="description" for="element_4">Banda: </label>
 		<div>
-			<textarea id="element_4" name="element_4" class="element textarea medium"></textarea> 
+			<textarea id="element_4" name="element_4"></textarea> 
 		</div> 
-		</li>		<li id="li_5" >
-		<label class="description" for="element_5">Subi una imagen de tu computadora </label>
+		</li>
+		<li id="li_5" >
+		<label class="description" for="element_5">Nacionalidad: </label>
 		<div>
-			<input id="element_5" name="element_5" class="element file" type="file"/> 
-		</div>  
+			<input id="element_5" name="element_5" class="element text medium" type="text" maxlength="255" value=""/> 
+		</div> 
 		</li>		<li id="li_6" >
 		<label class="description" for="element_6">Agrega una imagen insertando su URL </label>
 		<div>
@@ -54,56 +52,18 @@ var myform3=new formtowizard({
 		</li>
 			
 					<li class="buttons">
-			    <input type="hidden" name="form_id" value="418809" />
-			    
-				<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+			    <div  id="addArtistSubmin" title="Agregar">Agregar</div>
 		</li>
 			</ul>
-</fieldset>
-<fieldset class="sectionwrap">
-<legend>Datos del CD</legend>
-	<ul >		
-		<li id="li_7" >
-		<label class="description" for="element_7">Nombre CD </label>
-		<div>
-			<input id="element_7" name="element_7" class="element text medium" type="text" maxlength="255" value=""/> 
-		</div> 
-		</li>		<li id="li_9" >
-		<label class="description" for="element_9">a&ntildeo </label>
-		<div>
-			<input id="element_9" name="element_9" class="element text medium" type="text" maxlength="255" value=""/> 
-		</div> 
-		</li>		<li id="li_8" >
-		<label class="description" for="element_8">Descripcion </label>
-		<div>
-			<textarea id="element_8" name="element_8" class="element textarea medium"></textarea> 
-		</div>
-		
-	</ul>
-</fieldset>
+		<label id="errorAdd"></label>
+		<script>
+		jQuery("#addArtistSubmin").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-circle-check',
+		   }
+		});
+		</script>
 
-<fieldset class="sectionwrap">
-<legend>Agrega imagenes</legend>
-	<ul >	
-		<li id="li_5" >
-		<label class="description" for="element_5">Sub� una imagen de tu computadora </label>
-		<div>
-			<input id="element_5" name="element_5" class="element file" type="file"/> 
-		</div>  
-		</li>		<li id="li_6" >
-		<label class="description" for="element_6">Agrega una imagen insertando su URL </label>
-		<div>
-			<input id="element_6" name="element_6" class="element text medium" type="text" maxlength="255" value=""/> 
-		</div> 
-		</li>
-			
-					<li class="buttons">
-			    <input type="hidden" name="form_id" value="418809" />
-			    
-				<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
-		</li>
-	</ul>
-</fieldset>
 
 </form>
 
