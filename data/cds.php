@@ -1,10 +1,19 @@
 <?php
-$paginado = 5;
-
 require_once('../_lib/db.php');
 
 try {
+	
+$db = new DB('../db/iaw_proy3');
 
+/* CONFIGURACION DEFAULT */
+$conf = $db->query('SELECT * FROM config');   //si hay varios usuarios podria elegir config depende el user (NO IMPLEMENTADO)
+$config = $db->getRow($conf);
+
+$order = $config['orden']; //nombre, anio, visitas, megusta
+$mode = $config['mode_orden']; //ASC, DESC
+$paginado = $config['paginado']; //cant items x pag	
+
+/* CONFIGURACION POR PARAMETROS */
 if(isset($_GET['page']) && is_numeric($_GET['page'])) {
 	$page = (int)$_GET['page'] - 1;	
 } else {
@@ -13,34 +22,25 @@ if(isset($_GET['page']) && is_numeric($_GET['page'])) {
 $desde = $page*$paginado;
 $hasta = $desde+$paginado;
 
+//order default
+//mode_order default
 
 if(isset($_GET['order'])) {
 	if($_GET['order'] == 'abc') {
 		$order = 'nombre';
-		$mode = 'ASC';
 	}
 	else if($_GET['order'] == 'anio'){
 		$order = 'anio';
-		$mode = 'ASC';
 	}
 	else if($_GET['order'] == 'vis'){
 		$order = 'visitas';
-		$mode = 'DESC';
+		$mode = 'DESC'; //se sobreescribe el mode default (no tiene sentido ASC)
 	}
 	else if($_GET['order'] == 'mg'){
 		$order = 'megusta';
-		$mode = 'DESC';
-	}
-	else{  
-		$order = 'anio';
-		$mode = 'DESC';
+		$mode = 'DESC'; //se sobreescribe el mode default (no tiene sentido ASC)
 	}
 }
-else {
-	$order = 'anio';
-	$mode = 'ASC';
-}
-
 if(isset($_GET['mode'])) {
 	if($_GET['mode'] == 'asc') {
 		$mode = 'ASC';
@@ -51,8 +51,7 @@ if(isset($_GET['mode'])) {
 }
 
 
-$db = new DB('../db/iaw_proy3');
-
+/*BUSQUEDA*/
 
 if(isset($_GET['ar']) && is_numeric($_GET['ar'])) { //id artista
 	$ar = (int)$_GET['ar'];
@@ -154,8 +153,6 @@ if(isset($listaCDs) && $listaCDs && isset($count))
 		$i++;
 	}
 	
-	
-
 }
 else {
 	$result['error'] = 'No se encontraron resultados';

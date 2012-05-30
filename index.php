@@ -7,7 +7,6 @@ require_once('_lib/db.php');
 // Creo el descriptor del sito web.
 $desc = new descriptor("conf/conf.xml");
 $db = new DB("db/iaw_proy3");
-//$db = openDB();
 
 $cdcontent = 'public_html/contents/cd.html';
 $maincontent = 'public_html/contents/home.html';
@@ -16,20 +15,25 @@ $busquedacontent = 'public_html/contents/busqueda.html';
 
 session_start();
 if (isset($_SESSION['user'])){
-	if ($_SESSION['user']=='admin'){   //ACA DEBERIA CONTROLARSE EL USUARIO CN LA BD
+	if ($_SESSION['user']=='admin'){   
 		if (!(empty($_GET['edit']))&&$_GET['edit']==true)
 			$maincontent = 'public_html/contents/admin.html';
 		$login = 'public_html/contents/menuAdmin.html';
 	}
-	
+	else {
+		$login = 'public_html/contents/login.html';	
+	}
 }
-else if (isset($_SESSION['login_attempt']) && isset($_SESSION['error'])) {	
+else {
+	$_SESSION['user']='visit';
+	$login = 'public_html/contents/login.html';	
+}
+
+if (isset($_SESSION['login_attempt']) && isset($_SESSION['error'])) {	
 	$login = 'public_html/contents/loginError.php';	
 	unset($_SESSION['login_attempt']);
 }
-else {
-	$login = 'public_html/contents/login.html';	
-}
+
 
 $desc->agregarItem('cdcontent', $cdcontent);
 $desc->agregarItem('busquedacontent', $busquedacontent);

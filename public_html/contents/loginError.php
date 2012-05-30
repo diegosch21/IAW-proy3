@@ -20,7 +20,7 @@
 	<div class="ui-widget" style="padding: 10!important">
 		<div class="ui-state-error ui-corner-all" style="width:100%">
 			<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-			<strong>Error:</strong> <?php echo $_SESSION['error']; ?> </p>
+			<strong>Error:</strong> <?php echo $_SESSION['error'];?> </p>
 		</div>
 	</div>
 </div>

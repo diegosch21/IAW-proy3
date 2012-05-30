@@ -6,13 +6,15 @@ session_start();
 
 if (isset($_POST['user']) && isset($_POST['pass'])) {
 	if (validateUser($_POST['user'], $_POST['pass'])){
-		$_SESSION['user'] = $_POST['user'];
+		$_SESSION['user'] = 'admin';
+		$_SESSION['username'] = $_POST['user'];
 		unset ( $_SESSION['error'] );
 	}		
 	else {
 		$_SESSION['error'] = 'usuario / password invalidos';
-		unset ( $_SESSION['user'] );
+		unset ( $_SESSION['username'] );
 		$_SESSION['login_attempt'] = true;
+		$_SESSION['user'] = 'visit';
 	}
 };
 
@@ -27,10 +29,13 @@ function getError() {
 	return $_SESSION['error'];
 }
 
-function getUserId() {
-	return $_SESSION['user'];
+function getUserName() {
+	return $_SESSION['username'];
 }
 
+function getUserType() {
+	return $_SESSION['user'];
+}
 
 
 function validateUser($user, $pass) {

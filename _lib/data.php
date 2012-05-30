@@ -1,5 +1,5 @@
 <?php
-require_once('../_lib/db.php');
+
 
 function getCD($db,$id) {
 	$result = array();	

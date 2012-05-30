@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>
+		Formulario
+	</title>
+
+</head>
+
+<body id="main_body" >
+
+<form method='post' action='data/config.php'>
+	<ul >			
+		<li>
+			<label for="id">mode_destacados (visitas, megusta, nuevo, random)</label>
+			<input id="id" name="mode_destacados" type="text" maxlength="50" value=""/>
+		</li>
+		<li>
+			<label for="id_ar">mostrar_destacados (true o false)</label>
+			<input id="id_ar" name="mostrar_destacados" type="text" maxlength="50" value=""/>
+		</li>
+		<li>
+			<label for="genero">cant_destacados (numero)</label>
+			<input id="genero" name="cant_destacados" type="text" maxlength="50" value=""/>
+		</li>
+		<li>
+			<label for="nom">order (nombre, anio, visitas, megusta)</label>
+			<input id="nom" name="order" type="text" maxlength="50" value=""/>
+		
+		</li>
+		<li>
+			<label for="nom3">mode_order (ASC,DESC)</label>
+			<input id="nom3" name="mode_order" type="text" maxlength="50" value=""/>
+		
+		</li>
+		<li>
+			<label for="nom2">paginado(numero)</label>
+			<input id="nom2" name="paginado" type="text" maxlength="50" value=""/>
+		
+		</li>
+		
+		<li>
+			<label for="nom4">busqueda default (artista, cancion, cd, genero, anio, tag)</label>
+			<input id="nom4" name="busqueda" type="text" maxlength="50" value=""/>
+		
+		</li>
+	
+		    
+		<input id="submit"  type="submit" name="submit" value="Submit" />
+
+
+</form>
+
+</body>
+
+
+</html>

@@ -1,18 +1,11 @@
-
-DROP TABLE IF EXISTS 'CDs';
 CREATE TABLE 'CDs' ('id_cd' INTEGER PRIMARY KEY  NOT NULL ,'id_artista' INTEGER NOT NULL,'nombre' TEXT NOT NULL,'anio' INTEGER,'canciones' TEXT,'thumbnail' TEXT, 'imagenes' TEXT,'link' TEXT, 'visitas' INTEGER, 'megusta' INTEGER);
-DROP TABLE IF EXISTS 'artistas';
 CREATE TABLE 'artistas' ('id_artista' INTEGER PRIMARY KEY  NOT NULL , 'nombre' TEXT NOT NULL , 'id_genero' INTEGER NOT NULL , 'nacionalidad' TEXT, 'banda' TEXT, 'imagenes' TEXT, 'link' TEXT, 'visitas' INTEGER, 'megusta' INTEGER);
-DROP TABLE IF EXISTS 'generos';
 CREATE TABLE 'generos' ('id_genero' INTEGER PRIMARY KEY  NOT NULL , 'nombre' TEXT NOT NULL );
-DROP TABLE IF EXISTS 'tags';
 CREATE TABLE 'tags' ('id_tag' INTEGER PRIMARY KEY  NOT NULL , 'nombre' TEXT NOT NULL );
-DROP TABLE IF EXISTS 'artista_tag';
 CREATE TABLE 'artista_tag' ('id_artista' INTEGER NOT NULL , 'id_tag' INTEGER NOT NULL );
-DROP TABLE IF EXISTS 'cd_tag';
 CREATE TABLE 'cd_tag' ('id_cd' INTEGER NOT NULL , 'id_tag' INTEGER NOT NULL );
-DROP TABLE IF EXISTS 'usuarios';
 CREATE TABLE 'usuarios' ('id_user' INTEGER PRIMARY KEY  NOT NULL , 'user' TEXT, 'pass' TEXT);
+CREATE TABLE 'config' ('user' TEXT NOT NULL, 'mode_destacados' TEXT, 'mostrar_destacados' INTEGER, 'cant_destacados' INTEGER, 'orden' TEXT, 'mode_orden' TEXT, 'paginado' INTEGER, 'busqueda' TEXT);
 
 CREATE TRIGGER artista_delete
 BEFORE DELETE ON artistas FOR EACH ROW 
@@ -24,6 +17,12 @@ CREATE TRIGGER CD_delete
 BEFORE DELETE ON CDs FOR EACH ROW 
 BEGIN
 	DELETE FROM cd_tag WHERE id_cd = OLD.id_cd;
+END; 
+
+CREATE TRIGGER config_default
+AFTER INSERT ON usuarios FOR EACH ROW 
+BEGIN
+	INSERT INTO 'config' VALUES(NEW.user, 'visitas', 1, 5, 'anio', 'ASC',6,'cd');
 END; 
 
 INSERT INTO 'usuarios' VALUES(1,'admin','21232f297a57a5a743894a0e4a801fc3');

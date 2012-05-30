@@ -7,8 +7,8 @@ try{
 
 session_start();	
 
-if (!isset($_SESSION['user'])){
-	$error['error'] = 'Sesion no iniciada';
+if (!isset($_SESSION['user'])|| $_SESSION['user']!= 'admin'){
+	$error['error'] = 'Sesion admin no iniciada';
 }
 else if(!isset($_POST['id_ar']) || $_POST['id_ar']=="" || !is_numeric($_POST['id_ar'])){
 	$error['error'] = 'Falta atributo id_ar';

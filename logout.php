@@ -1,7 +1,9 @@
 <?php
 
 session_start();
-session_destroy();
+$_SESSION['user'] = 'visit';
+unset ( $_SESSION['username'] );
+
 header("Location: index.php");
 exit;
 
