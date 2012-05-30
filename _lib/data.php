@@ -45,11 +45,8 @@ function getCD($db,$id) {
 		foreach ($tags as $tag) {
 			$result['tags'][$j] = array();
 			$result['tags'][$j++]['tag'] = $tag['nombre'];
-		}
-		
+		}	
 	}
-	
-	
 	return $result;	
 
 }
@@ -83,11 +80,38 @@ function getArtist($db,$id) {
 	}
 	
 	return $result;
-			
-		
-	
 }
 
+function delCD($db,$id) {
+		
+		
+	$result['delete'] = true;
+	return $result;
+}
+
+function addTags($db,$tags) {
+	$id_tag = array();
+	$i=0;
+ 	foreach($tags as $tag) {
+ 		if ($tag!="") {
+	 		//verifico si ya existe
+	 		$table = $db->query("SELECT id_tag FROM tags t WHERE nombre LIKE '$tag'");
+			$row = $db->getRow($table);
+			if ($row) { //ya existe tag
+				$id_tag[$i] = $row[0];
+			}
+			else { //creo tag
+				$table = $db->query("SELECT MAX(id_tag) FROM tags");
+				$row = $db->getRow($table);
+				$id_tag[$i] = $row[0]+1;	
+				$db->execute("INSERT INTO tags VALUES(?,?)",array($id_tag[$i],$tag));
+			}
+			$i++;
+		}
+	}		
+ 	return $id_tag;		
+				
+}
 
 
 ?>

@@ -18,6 +18,8 @@ jQuery(document).ready(function($) {
 			html+='</div></div>';
 		}
 		$('#menuCategorias').html(html).accordion({ header: "h3" });
+		
+		
 
 	});
 

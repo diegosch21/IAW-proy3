@@ -30,8 +30,8 @@ class DB {
 	
 	function execute($sql,$params) {
 		$stm = $this->db->prepare($sql);
-		
-		return $stm->execute($params);
+		$stm->execute($params);
+		return $stm->rowCount();
 	}
 	
 	function getRow($table) {

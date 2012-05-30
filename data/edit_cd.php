@@ -45,12 +45,27 @@ else{
 			$anio = (isset($_POST['anio']) && is_numeric($_POST['anio'])) ? $_POST['anio'] : null;
 			$canc = (isset($_POST['canc'])) ? $_POST['canc'] : null;   //recibe arregl? hacer implode
 			$thumb = (isset($_POST['thumb'])) ? $_POST['thumb'] : null; 
-			$imgs = (isset($_POST['imgs'])) ? $_POST['imgs'] : null;    //recibe un arreglo??? hacer implode(|-|)
+			$cant_img = (isset($_POST['cant_img'])) ? $_POST['cant_img'] : 0;
+			$img = array();
+			for ($i=1;$i<=$cant_img;$i++) {
+				$img[$i-1] = (isset($_POST['img'.$i])) ? $_POST['img'.$i] : "";
+			}
+			$imgs = implode("|-|",$img);
 			$link = (isset($_POST['link'])) ? $_POST['link'] : null;  		
 			
 			$db->execute("UPDATE CDs SET id_artista = ?, nombre = ?, anio = ?, canciones= ?,thumbnail = ?, imagenes = ?, link = ? WHERE id_cd = ?",array($idAr,$nom,$anio,$canc,$thumb,$imgs,$link,$id));
 			
-			//RECIBIR y actualizar TAGS (varias filas de cd-tag) (verificar si son tags q ya existen)
+			$cant_tag = (isset($_POST['cant_tag'])) ? $_POST['cant_tag'] : 0;
+			$tags = array();
+			for ($i=1;$i<=$cant_tag;$i++) {
+				$tags[$i-1] = (isset($_POST['tag'.$i])) ? $_POST['tag'.$i] : "";
+			}
+			//Inserta TAGS (verifica si son tags q ya existen)
+			$id_tags = addTags($db,$tags);
+			$db->execute("DELETE FROM cd_tag WHERE id_cd = ?",array($id));
+			foreach($id_tags as $idTag) {
+				$db->execute("INSERT INTO cd_tag VALUES(?,?)",array($id,$idTag));
+			}
 			
 			$result = getCD($db,$id);
 		}

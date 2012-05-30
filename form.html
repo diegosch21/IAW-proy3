@@ -11,7 +11,7 @@
 
 <body id="main_body" >
 
-<form method='post' action='data/edit_cd.php'>
+<form method='post' action='data/add_cd.php'>
 	<ul >			
 		<li>
 			<label for="id">id </label>
@@ -22,8 +22,45 @@
 			<input id="id_ar" name="id_ar" type="text" maxlength="50" value=""/>
 		</li>
 		<li>
-			<label for="nom">cd(nombre) </label>
+			<label for="genero">genero</label>
+			<input id="genero" name="genero" type="text" maxlength="50" value=""/>
+		</li>
+		<li>
+			<label for="nom">nombre </label>
 			<input id="nom" name="nombre" type="text" maxlength="50" value=""/>
+		
+		</li>
+		<input hidden name="cant_img" value="3"/>
+		<li>
+			<label for="img1">imagen 1 </label>
+			<input id="img1" name="img1" type="text" maxlength="50" value=""/>
+		
+		</li>
+		<li>
+			<label for="img">imagen 2 </label>
+			<input id="img2" name="img2" type="text" maxlength="50" value=""/>
+		
+		</li>
+		<li>
+			<label for="img">imagen 3 </label>
+			<input id="img3" name="img3" type="text" maxlength="50" value=""/>
+		
+		</li>
+		
+		<input hidden name="cant_tag" value="3"/>
+		<li>
+			<label for="img1">tag 1 </label>
+			<input id="img1" name="tag1" type="text" maxlength="50" value=""/>
+		
+		</li>
+		<li>
+			<label for="img">tag 2 </label>
+			<input id="img2" name="tag2" type="text" maxlength="50" value=""/>
+		
+		</li>
+		<li>
+			<label for="img">tag 3 </label>
+			<input id="img3" name="tag3" type="text" maxlength="50" value=""/>
 		
 		</li>
 		    

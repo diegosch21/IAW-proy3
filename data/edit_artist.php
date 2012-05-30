@@ -57,11 +57,16 @@ else{
 			
 			$nac = (isset($_POST['nacion'])) ? $_POST['nacion'] : null;
 			$banda = (isset($_POST['banda'])) ? $_POST['banda'] : null;
-			$imgs = (isset($_POST['imgs'])) ? $_POST['imgs'] : null;    //recibe un arreglo??? hacer implode(|-|)
+			
+			$cant_img = (isset($_POST['cant_img'])) ? $_POST['cant_img'] : 0;
+			$img = array();
+			for ($i=1;$i<=$cant_img;$i++) {
+				$img[$i-1] = (isset($_POST['img'.$i])) ? $_POST['img'.$i] : "";
+			}
+			$imgs = implode("|-|",$img);
+			
 			$link = (isset($_POST['link'])) ? $_POST['link'] : null;  
 			
-			
-					
 			$db->execute("UPDATE artistas SET nombre = ?, id_genero = ?, nacionalidad = ?, banda= ?, imagenes = ?, link = ? WHERE id_artista = ?",array($nom,$idGen,$nac,$banda,$imgs,$link,$id));
 			
 			$result = getArtist($db,$id);

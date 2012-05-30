@@ -14,6 +14,18 @@ CREATE TABLE 'cd_tag' ('id_cd' INTEGER NOT NULL , 'id_tag' INTEGER NOT NULL );
 DROP TABLE IF EXISTS 'usuarios';
 CREATE TABLE 'usuarios' ('id_user' INTEGER PRIMARY KEY  NOT NULL , 'user' TEXT, 'pass' TEXT);
 
+CREATE TRIGGER artista_delete
+BEFORE DELETE ON artistas FOR EACH ROW 
+BEGIN
+	DELETE FROM artista_tag WHERE id_artista = OLD.id_artista;
+END; 
+
+CREATE TRIGGER CD_delete
+BEFORE DELETE ON CDs FOR EACH ROW 
+BEGIN
+	DELETE FROM cd_tag WHERE id_cd = OLD.id_cd;
+END; 
+
 INSERT INTO 'usuarios' VALUES(1,'admin','21232f297a57a5a743894a0e4a801fc3');
 
 INSERT INTO 'generos' VALUES(1,'Rock nacional');
