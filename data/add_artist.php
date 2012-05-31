@@ -51,7 +51,24 @@ else{
 		$cant_img = (isset($_POST['cant_img'])) ? $_POST['cant_img'] : 0;
 		$img = array();
 		for ($i=1;$i<=$cant_img;$i++) {
-			$img[$i-1] = (isset($_POST['img'.$i])) ? $_POST['img'.$i] : "";
+			if(isset($_POST['img'.$i]))
+				$img[$i-1] = $_POST['img'.$i];	
+			elseif(isset($_FILES['img'.$i])) {
+				$folder = 'img/gen'.$idGen.'/art'.$id;
+				createFolder($folder);
+				$path = saveFile($_FILES['img'.$i],$folder);
+				if($path == 'error') {
+				 	$result['upload'.$i] = false;
+			 		$img[$i-1]="";
+			 	}
+				else {
+					$path = 'data/'.$path; 
+				 	$result['upload'.$i] = $path;
+					$img[$i-1]=$path;
+				}
+			}
+			else 
+				$img[$i-1] = "";
 		}
 		$imgs = implode("|-|",$img);
 		
@@ -59,7 +76,7 @@ else{
 		
 		$db->execute("INSERT INTO artistas VALUES(?,?,?,?,?,?,?,0,0)",array($id,$nom,$idGen,$nac,$banda,$imgs,$link));
 		
-		$result = getArtist($db,$id);
+		$result['artista'] = getArtist($db,$id);
 
 	}
 	

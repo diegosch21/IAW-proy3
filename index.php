@@ -12,6 +12,9 @@ $cdcontent = 'public_html/contents/cd.html';
 $maincontent = 'public_html/contents/home.html';
 $itemcontent = 'public_html/contents/item.html';
 $busquedacontent = 'public_html/contents/busqueda.html';
+$verURL = 'public_html/contents/verURL.php';
+
+
 
 session_start();
 if (isset($_SESSION['user'])){
@@ -40,6 +43,8 @@ $desc->agregarItem('busquedacontent', $busquedacontent);
 $desc->agregarItem('itemcontent', $itemcontent);
 $desc->agregarItem('maincontent', $maincontent);
 $desc->agregarItem('login', $login);
+$desc->agregarItem('verURL', $verURL);
+
 
 // Creo el parser.
 $parser = new templateParser($desc->getTemplate());

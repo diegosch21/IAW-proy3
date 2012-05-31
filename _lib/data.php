@@ -82,12 +82,6 @@ function getArtist($db,$id) {
 	return $result;
 }
 
-function delCD($db,$id) {
-		
-		
-	$result['delete'] = true;
-	return $result;
-}
 
 function addTags($db,$tags) {
 	$id_tag = array();
@@ -111,6 +105,38 @@ function addTags($db,$tags) {
 	}		
  	return $id_tag;		
 				
+}
+
+function createFolder($path) {
+	$folders = explode('/',$path);	
+	$path='';
+	foreach ($folders as $folder) {
+		$path.=$folder;
+		if(!is_dir($path)) 
+			mkdir($path, 0777);  
+		$path.='/';
+	}
+	
+	 
+}
+
+
+function saveFile($file,$folder) {
+	if ($file['size'] < 1000000 && ( stripos($file['type'],'jpeg') || stripos($file['type'],'gif') || stripos($file['type'],'png') ) ) {
+		$temppath = $file['tmp_name'];
+ 		$filename = $file['name'];  
+		$path = $folder.'/'.$filename;
+		move_uploaded_file($temppath,$path);
+		return $path;
+	}
+	else {
+		return 'error';
+	}
+		
+	
+	
+	
+	
 }
 
 

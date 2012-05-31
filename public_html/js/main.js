@@ -3,11 +3,22 @@
 
 var info;
 var lastquery;
-var mode = "asd";
+var mode = "asc";
 var order = "anio";
 
-function pedirPagina(query){
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+
+function pedirPagina(query,state){
 	url= 'data/cds.php?'+query+'&page=1';
+	if(state)
+		window.history.replaceState(null, "Busqueda", "index.php?busqueda&"+query);
    jQuery.getJSON(url,function(data) {
 		info = data;
 		var output = Mustache.render(jQuery("#templateB").html(), data)
@@ -30,24 +41,32 @@ function pedirPagina(query){
 									  }
 		});
 	});
+  
 }
-function verCD(cd){
 
-	url= 'data/cd.php?id='+cd;
-   jQuery.getJSON(url,function(data) {	
+
+
+function verCD(cd){
+	query = 'id='+cd;
+	url= 'data/cd.php?'+query;
+	window.history.replaceState(null, "CD id="+cd, "index.php?showCD="+cd);
+	jQuery.getJSON(url,function(data) {	
 		
 		var output = Mustache.render(jQuery("#templateCD").html(), data);
 		jQuery("#cdTarget").html(output);	
+		
 	});
 	
 	jQuery("#CDContent").show();
 	jQuery("#ItemContent").hide();
+	jQuery("#HomeContent").hide()
+	
 	
 }
 
 function cambiar(query, pagina){
 	url= 'data/cds.php?'+query+'&page='+pagina;
-   jQuery.getJSON(url,function(data) {
+	jQuery.getJSON(url,function(data) {
 		info = data;
 		var output = Mustache.render(jQuery("#templateB").html(), data)
 		jQuery("#templateBusqueda").html(output);
@@ -86,11 +105,13 @@ function loadItem(i) {
 	jQuery("#ItemContent").show();
 	jQuery("#bandaContent").show();
 	jQuery("#BusquedaContent").show();
+	window.history.replaceState(null, "Artista", "index.php?showArtist="+i);
     jQuery.getJSON('data/artist.php?id='+i,function(json) {
 		var output = Mustache.render(jQuery("#template").html(), json)
 		jQuery("#templateTarget").html(output);
 		lastquery = "ar="+json.id;
-		pedirPagina(lastquery);
+		pedirPagina(lastquery,false);
+		
 	});	  
 
 }
@@ -101,14 +122,14 @@ function  busquedaTag(tag){
 	jQuery("#bandaContent").hide();
 	jQuery("#BusquedaContent").show();	
 	lastquery = "tag="+tag;
-	pedirPagina(lastquery);
+	pedirPagina(lastquery,true);
 }
 
 
 	
 jQuery(document).ready(function($) {
 
-    jQuery("#addArtistSubmin").click(function(){
+	jQuery("#addArtistSubmin").click(function(){
 		_genero = jQuery("select option:selected").val();
 		if (_genero=="nuevo")
 			_genero = jQuery("#textNuevoGenero").val();
@@ -129,20 +150,28 @@ jQuery(document).ready(function($) {
 		jQuery("#bandaContent").hide();
 		jQuery("#BusquedaContent").show();	
 		lastquery = ""+$('input:radio[name=tipo]:checked').val()+'='+$('input[type=text][name=busqueda]').val();
-		pedirPagina(lastquery);
+		pedirPagina(lastquery,true);
 	});
 	
 	jQuery("input:radio[name=orden]").click(function(){
 		var query = lastquery+'&order='+$('input:radio[name=orden]:checked').val();
 		order = $('input:radio[name=orden]:checked').val();
-		pedirPagina(query+"&mode="+mode);
+		pedirPagina(query+"&mode="+mode,false);
 	});
 		
 	jQuery("input:radio[name=mode]").click(function(){
 		var query = lastquery+'&mode='+$('input:radio[name=mode]:checked').val();
 		mode = $('input:radio[name=mode]:checked').val();
-		pedirPagina(query+"&order="+order);
+		pedirPagina(query+"&order="+order,false);
 	});
+	
+	
+	if(getUrlVars()['showCD']) {
+		verCD(getUrlVars()['showCD']);
+	}
+	else if (getUrlVars()['showArtist']) {
+		loadItem(getUrlVars()['showArtist']);
+	}
 
 });  
 

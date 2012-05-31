@@ -11,7 +11,7 @@
 
 <body id="main_body" >
 
-<form method='post' action='data/add_artist.php'>
+<form method='post' enctype="multipart/form-data" action='data/add_cd.php'>
 	<ul >			
 		<li>
 			<label for="id">id </label>
@@ -38,7 +38,7 @@
 		</li>
 		<li>
 			<label for="img">imagen 2 </label>
-			<input id="img2" name="img2" type="text" maxlength="50" value=""/>
+			<input type="file" name="img2">
 		
 		</li>
 		<li>

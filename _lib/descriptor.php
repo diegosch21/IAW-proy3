@@ -28,6 +28,7 @@ class descriptor
 	  $this->agregarItem(trim('delete'), trim($sx->delete));
 	  $this->agregarItem(trim('config'), trim($sx->config));
 	  $this->agregarItem(trim('backup'), trim($sx->backup));
+	  
 	}
 	// FunciÃ³n que agrega un nuevo item al arreglo de tags.
 	function agregarItem($campo, $valor)

@@ -1,7 +1,5 @@
-
-jQuery(document).ready(function($) {
-    
-	$.getJSON('data/categorias.php',function(json) {
+function loadCategorias() {
+	jQuery.getJSON('data/categorias.php',function(json) {
 		var html="";
 		for (i=0;i<json.length;i++) {
 			html+='<div><h3><a href="#" class="TituloGenero">';
@@ -17,10 +15,11 @@ jQuery(document).ready(function($) {
 			
 			html+='</div></div>';
 		}
-		$('#menuCategorias').html(html).accordion({ header: "h3" });
-		
-		
-
+		jQuery('#menuCategorias').html(html).accordion({ header: "h3" });
 	});
+}
 
+jQuery(document).ready(function($) {
+
+    loadCategorias();
 });

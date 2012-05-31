@@ -1,16 +1,17 @@
-﻿<div id="cdTarget" ></div>
+<div id="cdTarget" ></div>
 
 <script type="text/html" id='templateCD'>
 	
-	<iframe src="http://www.facebook.com/plugins/like.php?href=www.larockolaiaw.com/{{artista}}/{{nombre}}";layout=standard&amp;show_faces=false&amp;width=330&amp;action=like&amp;colorscheme=light&amp;height=60" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:330px; height:60px;" allowTransparency="true"></iframe>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Flocalhost%2FIAW_proy3%2Findex.php%3FshowCD%3D{{id}}&amp;send=false&amp;layout=standard&amp;width=330&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=verdana&amp;height=60&amp;appId=299023770189392" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:330px; height:60px;" allowTransparency="true"></iframe>
+	
 	<div class="derecha" id="buttonBack" title="Volver">Volver</div>
 	<div class="derecha" id="buttonLink"><a href="{{link}}" title="Link">Link al CD</a></div>
 
 	<div>
 		<a href="#" class="linkTitulo">{{artista}}</a>
 		<div class="titulocd">{{nombre}}</div>
-		<div><span class="subtituloBanda">Género: </span><span class="infoBanda">{{genero}}</span></div>
-		<div><span class="subtituloBanda">Año: </span><span class="infoBanda">{{anio}}</span></div>
+		<div><span class="subtituloBanda">Ge&eacute;nero: </span><span class="infoBanda">{{genero}}</span></div>
+		<div><span class="subtituloBanda">A&ntilde;o: </span><span class="infoBanda">{{anio}}</span></div>
 		<div><span class="subtituloBanda">Lista de canciones: </span></div>
 		<div class="infoBanda">{{{canciones}}}</div>
 		{{#listatags}}
@@ -19,13 +20,13 @@
 				<span onclick="busquedaTag({{.}})" class="tag"> {{.}} </span>	
 			{{/tags}}
 		{{/listatags}}
-		<div><span class="subtituloBanda">Imágenes:</span></div>
+		<div><span class="subtituloBanda">Im&aacute;genes:</span></div>
         {{#imagenes}}		
 			<a href="{{url}}" rel="ChillBoxGroup" ><img width="100" src="{{url}}" alt="{{url}}" /></a>
 		{{/imagenes}}
 
     </div>
-	<iframe src="http://www.facebook.com/plugins/comments.php?href=www.larockolaiaw.com/{{artista}}/{{nombre}}" frameborder="0" allowtransparency="allowtransparency" scrolling="no" style="border-bottom: medium none; border-left: medium none; width: 500px; height: 500px; border-top: medium none; border-right: medium none"></iframe>
+	<iframe src="http://www.facebook.com/plugins/comments.php?href=http%3A%2F%2Flocalhost%2FIAW_proy3%2Findex.php%3FshowCD%3D{{id}}" frameborder="0" allowtransparency="allowtransparency" scrolling="no" style="border-bottom: medium none; border-left: medium none; width: 500px; height: 500px; border-top: medium none; border-right: medium none"></iframe>
 	
 	<script>
 		jQuery("#buttonBack").button({

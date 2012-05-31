@@ -21,15 +21,15 @@ else{
 	$db = new DB('../db/iaw_proy3');
 	
 	$idAr = $_POST['id_ar'];
-	$artistas = $db->query("SELECT nombre FROM artistas WHERE id_artista = $idAr");
+	$artistas = $db->query("SELECT nombre, id_genero FROM artistas WHERE id_artista = $idAr");
 	$art = $db->getRow($artistas);
 	if (!$art) {
 		//no existe artista
 		$error['error'] = "Artista inexistente con ID=$idAr";
 	}
 	else {
-		$artista = $art[0];
-		
+		$artista = $art['nombre'];
+		$idGen = $art['id_genero'];
 		$nom = $_POST['nombre'];
 		$listacds = $db->query("SELECT MAX(id_cd) FROM CDs");
 		$cd = $db->getRow($listacds);
@@ -41,7 +41,24 @@ else{
 		$cant_img = (isset($_POST['cant_img'])) ? $_POST['cant_img'] : 0;
 		$img = array();
 		for ($i=1;$i<=$cant_img;$i++) {
-			$img[$i-1] = (isset($_POST['img'.$i])) ? $_POST['img'.$i] : "";
+			if(isset($_POST['img'.$i]))
+				$img[$i-1] = $_POST['img'.$i];	
+			elseif(isset($_FILES['img'.$i])) {
+				$folder = 'img/gen'.$idGen.'/art'.$idAr.'/cd'.$id;
+				createFolder($folder);
+				$path = saveFile($_FILES['img'.$i],$folder);
+				if($path == 'error') {
+				 	$result['upload'.$i] = false;
+			 		$img[$i-1]="";
+			 	}
+				else {
+					$path = 'data/'.$path; 
+				 	$result['upload'.$i] = $path;
+					$img[$i-1]=$path;
+				}
+			}
+			else 
+				$img[$i-1] = "";
 		}
 		$imgs = implode("|-|",$img);
 		$link = (isset($_POST['link'])) ? $_POST['link'] : null;  		
@@ -60,7 +77,7 @@ else{
 			$db->execute("INSERT INTO cd_tag VALUES(?,?)",array($id,$idTag));
 		}
 		
-		$result = getCD($db,$id);
+		$result['cd'] = getCD($db,$id);
 		
 
 	}

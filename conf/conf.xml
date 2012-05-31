@@ -16,4 +16,5 @@
 	<delete>public_html/contents/delete.html</delete>
 	<config>public_html/contents/config.html</config>
 	<backup>public_html/contents/backup.html</backup>
+	<verURL>public_html/contents/verURL.php</verURL>
 </conf>
