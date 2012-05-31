@@ -145,12 +145,17 @@ border: 0px;
 }
 .avanzadas
 {
+display:none;
 	margin-left: 30px;
-	display:block;
 	text-align: left;
 margin-bottom:10px;
 
 
+}
+.opBasicas
+{
+	display:none;
+	text-align: center;
 }
 
 .search
@@ -214,17 +219,22 @@ color: black;
 display: block;
 font-weight: normal;
 }
+.text {
+display:block;
+width:200px;
+}
 
 .linkGenero:hover {color: #6bace6;font-weight: bold;}
 
 
 
 #example {
+	
 	position: relative;
 }
 
 #example .stage {
-	height: 220px;
+	height: 370px;
 	margin: 40px 0 0 0;
 }
 

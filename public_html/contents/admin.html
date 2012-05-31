@@ -1,7 +1,5 @@
 ﻿
-			<form id="staff_feedbackform">
-
-<fieldset class="sectionwrap">
+		<form id="staff_feedbackform">
 		<li class="section_break">
 			<h3>Registra un nuevo artista</h3>
 			<p></p>
@@ -56,10 +54,109 @@
 		</li>
 			</ul>
 		<label id="errorAdd"></label>
-		<script>
+		
+		
+		
+		
+		<li class="section_break">
+			<h3>Editar/Borrar un artista</h3>
+			<p></p>
+		</li>
+		<ul >			
+		<li id="li_8" >
+		<label class="description">Genero</label>
+		<div>
+		<select class="element select medium" id="generoListEdir" name="element_7_edit"> 
+			<option value='' selected='selected'></option>"
+		</select>
+		</div> 
+		</li>
+		<li id="li_9" style="display:none"  >
+		<label class="description" for="element_6">Artista </label>
+		<div>
+		<select class="element select medium" id="artistListEdir" name="element_8_edit"> 
+			<option value='' selected='selected'></option>
+		</select>
+				</div>
+		</li>
+		<li id="li_10" style="display:none"  >
+		<label class="description" for="element_6">Editar </label>
+		<div>
+
+			<label class="description" for="element_101">Nombre </label>
+			<div>
+				<input id="element_101" name="element_101" class="element text medium" type="text" maxlength="255" value=""/> 
+			</div> 
+			<label class="description" for="element_102">Genero </label>
+			<div>
+				<input id="element_102" name="element_102" class="element text medium" type="text" maxlength="255" value=""/> 
+			</div> 
+			<label class="description" for="element_103">Nacionalidad </label>
+			<div>
+				<input id="element_103" name="element_103" class="element text medium" type="text" maxlength="255" value=""/> 
+			</div> 
+			<label class="description" for="element_104">Integrantes </label>
+			<div>
+				<textarea id="element_104" class="element text medium" name="element_104"></textarea> 
+			</div> 
+			<label class="description" for="element_105">Website </label>
+			<div>
+				<input id="element_105" name="element_105" class="element text medium" type="text" maxlength="255" value=""/> 
+			</div> 
+		</div>
+				<div style="padding-bottom:50px;">
+			    <div  id="editArtistSubmit" title="Editar">Editar</div>
+				<div  id="deleteArtistSubmit" title="Borrar">Borrar</div>
+				</div>
+
+		</li>
+		
+			
+
+			</ul>
+		<label id="errorAdd"></label>
+					<script>
+			   jQuery.getJSON('data/categorias.php?',function(data) {
+					for(i=0;i<data.length;i++){jQuery('#generoListEdir').append("<option value='"+data[i].genero+"' >"+data[i].genero+"</option>");}
+				});	
+				jQuery('[name=element_7_edit]').change(function () {
+					jQuery('#artistListEdir').html("<option value='' selected='selected'></option>");
+					jQuery('#li_9').show("slow");
+					jQuery.getJSON('data/categorias.php?',function(data) {
+						for(i=0;i<data.length;i++){
+							if(data[i].genero==jQuery("[name=element_7_edit]select option:selected").val()){
+								for(j=0;i<data[i].artistas.length;j++)
+									jQuery('#artistListEdir').append("<option value='"+data[i].artistas[j].id+"' >"+data[i].artistas[j].artista+"</option>");
+							}
+						
+						}
+					});
+				});
+				jQuery('[name=element_8_edit]').change(function () {
+					//jQuery('#artistListEdir').html("<option value='' selected='selected'></option>");
+					jQuery('#li_10').show("slow");
+					jQuery.getJSON('data/artist.php?id='+jQuery("[name=element_8_edit]select option:selected").val(),function(data) {	
+						jQuery('#element_101').val(data.artista);
+						jQuery('#element_102').val(data.genero);
+						jQuery('#element_103').val(data.nacionalidad);
+						jQuery('#element_104').val(data.banda);
+						jQuery('#element_105').val(data.link);
+					});
+				});
+
 		jQuery("#addArtistSubmin").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-circle-check',
+		   }
+		});
+		jQuery("#editArtistSubmit").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-pencil',
+		   }
+		});
+		jQuery("#deleteArtistSubmit").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-trash',
 		   }
 		});
 		</script>

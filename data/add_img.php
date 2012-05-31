@@ -58,7 +58,7 @@ else{
 		}
 			
 	} elseif($class == 'cd') {
-		$cds = $db->query("SELECT id_artista, imagenes FROM CDs WHERE id_cd = $id");
+		$cds = $db->query("SELECT id_artista, imagenes, thumbnail FROM CDs WHERE id_cd = $id");
 		$cd = $db->getRow($cds);
 	
 		if(!$cd) {
@@ -66,25 +66,36 @@ else{
 			$result['error'] = "CD inexistente con ID=$id";
 		}
 		else {
+			$result['id'] = $id;
+			$result['class'] = $class;	
 			$idArt = $cd['id_artista'];
 			$imgs = $cd['imagenes'];
-			if ($imgs =="") {
+			$thumb = (isset($_POST['thumb']) && $_POST['thumb']);
+			
+			if ($thumb) {
+				$col = 'thumbnail';
+				$result['thumbnail'] = true;
+			}
+			else {
+				$col = 'imagenes';
+			}
+			$imgs = $cd[$col];
+			if ($imgs =="" || $thumb) {
 				$imgs = $url;
 			}
 			else {
 				$imgs .= '|-|'.$url;
 			}
 			
-			$res = $db->execute("UPDATE CDs SET  imagenes = ? WHERE id_cd = ?",array($imgs,$id));
+			$res = $db->execute("UPDATE CDs SET  $col = ? WHERE id_cd = ?",array($imgs,$id));
 			
-			$result['id'] = $id;
-			$resul['class'] = $class;
+
 			if($res > 0)
 				$result['added'] = true;
 			else {
 				$result['added'] = false;
 			}
-			$result['listimgs'] = $imgs;
+			$result[$col] = $imgs;
 		}
 				
 	}

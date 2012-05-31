@@ -37,7 +37,7 @@ else{
 		
 		$anio = (isset($_POST['anio']) && is_numeric($_POST['anio'])) ? $_POST['anio'] : null;
 		$canc = (isset($_POST['canc'])) ? $_POST['canc'] : null;   //recibe arregl? hacer implode
-		$thumb = (isset($_POST['thumb'])) ? $_POST['thumb'] : null; 
+		$thumb = ""; 
 		
 		$imgs = "";
 		$link = (isset($_POST['link'])) ? $_POST['link'] : null;  		
