@@ -125,10 +125,30 @@ function  busquedaTag(tag){
 	pedirPagina(lastquery,true);
 }
 
-
 	
 jQuery(document).ready(function($) {
+  jQuery.getJSON('data/destacados.php',function(json) {
+		for(i=0;i<json.CDs.length;i++){
+			jQuery(".stage").append("<div class='item'><img width='300px' height='300px' src='"+json.CDs[i].imagen.url+"' alt='destacado'/><div class='text'><h3>"+json.CDs[i].artista+"</h3><h4>"+json.CDs[i].nombre+"</h4><p>"+json.CDs[i].genero+"</p></div></div>");
+			jQuery(".thumbnails").append("<li><a rel='quickbox' href='#'><img width='90px' height='90px' src='"+json.CDs[i].thumbnail+"'/></a></li>");
+		}
+		  new Carousel('example');
+		
+	});	
 
+	jQuery(".opAvanzadas").click(function(){
+		jQuery(".opAvanzadas").hide("hide");
+		jQuery(".avanzadas").show("slow");
+		jQuery(".opBasicas").show("slow");
+		
+	});
+	jQuery(".opBasicas").click(function(){
+		jQuery(".opAvanzadas").show("slow");
+		jQuery(".avanzadas").hide("hide");
+		jQuery(".opBasicas").hide("hide");
+		$('input:radio[name=tipo]').removeAttr("checked");
+
+	});
 	jQuery("#addArtistSubmin").click(function(){
 		_genero = jQuery("select option:selected").val();
 		if (_genero=="nuevo")
@@ -144,12 +164,16 @@ jQuery(document).ready(function($) {
 	});
 
 	jQuery("#buttonSearch").click(function(){
+
 		jQuery("#CDContent").hide();
 		jQuery("#HomeContent").hide();
 		jQuery("#ItemContent").show();
 		jQuery("#bandaContent").hide();
 		jQuery("#BusquedaContent").show();	
-		lastquery = ""+$('input:radio[name=tipo]:checked').val()+'='+$('input[type=text][name=busqueda]').val();
+		if ($('input:radio[name=tipo]').is(':checked'))
+			lastquery = ""+$('input:radio[name=tipo]:checked').val()+'='+$('input[type=text][name=busqueda]').val();
+		else
+			lastquery = "buscar="+$('input[type=text][name=busqueda]').val();
 		pedirPagina(lastquery,true);
 	});
 	
