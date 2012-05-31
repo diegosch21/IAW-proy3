@@ -33,7 +33,7 @@ else{
 	else {
 		
 		$nom = $_POST['nombre'];
-		$artistas = $db->query("SELECT id_artista FROM artistas WHERE nombre LIKE '$nom'");
+		$artistas = $db->query("SELECT id_artista FROM artistas WHERE nombre LIKE '$nom' AND id_artista <> $id");
 		$art = $db->getRow($artistas);
 		if($art) {
 			//ya existe artista

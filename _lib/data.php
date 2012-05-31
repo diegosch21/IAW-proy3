@@ -43,8 +43,7 @@ function getCD($db,$id) {
 		
 		$j=0;
 		foreach ($tags as $tag) {
-			$result['tags'][$j] = array();
-			$result['tags'][$j++]['tag'] = $tag['nombre'];
+			$result['listatags']['tags'][$j++] = $tag['nombre'];
 		}	
 	}
 	return $result;	
@@ -54,7 +53,7 @@ function getCD($db,$id) {
 
 function getArtist($db,$id) {
 	$result = array();
-	$artista = $db->query("SELECT a.id_artista as id, a.nombre as artista, g.nombre as genero, a.nacionalidad as nacionalidad, a.banda as banda, a.imagenes as imagenes, a.link as link, a.visitas as visitas, a.megusta as megusta FROM artistas a, generos g WHERE a.id_artista = $id");
+	$artista = $db->query("SELECT a.id_artista as id, a.nombre as artista, g.nombre as genero, a.nacionalidad as nacionalidad, a.banda as banda, a.imagenes as imagenes, a.link as link, a.visitas as visitas, a.megusta as megusta FROM artistas a, generos g WHERE a.id_artista = $id AND a.id_genero = g.id_genero");
 	$infoArtista = $db->getRow($artista);
 	if (!($infoArtista))	{
 		$result['error'] = "No existe artista con id=$id";	
