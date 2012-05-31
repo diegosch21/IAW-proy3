@@ -12,7 +12,7 @@ $config = $db->getRow($conf);
 $order = $config['orden']; //nombre, anio, visitas, megusta
 $mode = $config['mode_orden']; //ASC, DESC
 $paginado = $config['paginado']; //cant items x pag	
-$default = $config['busqueda']; //busqueda default: artista, cancion, cd, genero, anio, tag
+
 
 /* CONFIGURACION POR PARAMETROS */
 if(isset($_GET['page']) && is_numeric($_GET['page'])) {
@@ -39,6 +39,11 @@ if(isset($_GET['order'])) {
 		$order = 'megusta';
 		$mode = 'DESC'; //se sobreescribe el mode default (no tiene sentido ASC)
 	}
+	else if($_GET['order'] == 'id'){
+		$order = 'id_cd';
+		$mode = 'ASC'; //se sobreescribe el mode default (no tiene sentido ASC)
+	}
+
 }
 if(isset($_GET['mode'])) {
 	if($_GET['mode'] == 'asc') {
@@ -49,14 +54,18 @@ if(isset($_GET['mode'])) {
 	}
 }
 
-if(isset($_GET['buscar'])) { //parametro de busqueda default
-	$_GET[$default] = $_GET['buscar'];	
-}
 
 /*BUSQUEDA*/
-
-if(isset($_GET['ar']) && is_numeric($_GET['ar'])) { //id artista
-	$param = 'ar';
+if(isset($_GET['buscar'])) {
+	$val = $_GET['buscar'];
+	$listaCDs = $db->query("SELECT DISTINCT c.* FROM artistas a, generos g, CDs c, cd_tag ct, tags t WHERE (c.id_cd = ct.id_cd AND ct.id_tag = t.id_tag AND t.nombre = '$val') OR  (a.id_artista = c.id_artista AND  a.nombre LIKE '%$val%') OR (a.id_genero = g.id_genero AND g.nombre LIKE '%$val%') OR c.nombre LIKE '%$val%' OR c.anio ='$val' OR c.canciones LIKE '%$val%'  ORDER BY c.$order $mode LIMIT $desde , $paginado");
+	$cantidad = $db->query("SELECT COUNT(DISTINCT c.id_cd) FROM artistas a, generos g, CDs c, cd_tag ct, tags t WHERE (c.id_cd = ct.id_cd AND ct.id_tag = t.id_tag AND t.nombre = '$val') OR  (a.id_artista = c.id_artista AND  a.nombre LIKE '%$val%') OR (a.id_genero = g.id_genero AND g.nombre LIKE '%$val%') OR c.nombre LIKE '%$val%' OR c.anio ='$val' OR c.canciones LIKE '%$val%'");
+	if ($cantidad)
+		$count = $db->getRow($cantidad);
+	$param = 'generic';
+	$param_value = $val;	
+}
+else if(isset($_GET['ar']) && is_numeric($_GET['ar'])) { //id artista
 	$ar = (int)$_GET['ar'];
 	$listaCDs = $db->query("SELECT * FROM CDs WHERE id_artista = $ar ORDER BY $order $mode LIMIT $desde , $paginado");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs WHERE id_artista = $ar");
@@ -67,7 +76,7 @@ if(isset($_GET['ar']) && is_numeric($_GET['ar'])) { //id artista
 } 
 else if(isset($_GET['tag'])) {
 	$tag = $_GET['tag'];	
-	$listaCDs = $db->query("SELECT c.* FROM CDs c NATURAL JOIN cd_tag ct, tags t WHERE t.nombre = '$tag' AND t.id_tag = ct.id_tag ORDER BY $order $mode LIMIT $desde , $paginado");
+	$listaCDs = $db->query("SELECT c.* FROM CDs c NATURAL JOIN cd_tag ct, tags t WHERE t.nombre = '$tag' AND t.id_tag = ct.id_tag ORDER BY c.$order $mode LIMIT $desde , $paginado");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs c NATURAL JOIN cd_tag ct, tags t WHERE t.nombre = '$tag' AND t.id_tag = ct.id_tag");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
@@ -85,7 +94,7 @@ else if(isset($_GET['anio']) && is_numeric($_GET['anio'])) {
 }
 else if(isset($_GET['artista'])){
 	$artista = $_GET['artista'];	
-	$listaCDs = $db->query("SELECT c.* FROM CDs c, artistas a WHERE a.nombre LIKE '%$artista%' AND a.id_artista = c.id_artista ORDER BY $order $mode LIMIT $desde , $paginado");
+	$listaCDs = $db->query("SELECT c.* FROM CDs c, artistas a WHERE a.nombre LIKE '%$artista%' AND a.id_artista = c.id_artista ORDER BY c.$order $mode LIMIT $desde , $paginado");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs c, artistas a WHERE a.nombre LIKE '%$artista%' AND a.id_artista = c.id_artista");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
@@ -94,7 +103,7 @@ else if(isset($_GET['artista'])){
 }
 else if(isset($_GET['genero'])){
 	$gen = $_GET['genero'];	
-	$listaCDs = $db->query("SELECT c.* FROM CDs c, artistas a, generos g WHERE g.nombre LIKE '%$gen%' AND a.id_artista = c.id_artista AND a.id_genero = g.id_genero ORDER BY $order $mode LIMIT $desde , $paginado");
+	$listaCDs = $db->query("SELECT c.* FROM CDs c, artistas a, generos g WHERE g.nombre LIKE '%$gen%' AND a.id_artista = c.id_artista AND a.id_genero = g.id_genero ORDER BY c.$order $mode LIMIT $desde , $paginado");
 	$cantidad = $db->query("SELECT COUNT() FROM CDs c, artistas a, generos g WHERE g.nombre LIKE '%$gen%' AND a.id_artista = c.id_artista AND a.id_genero = g.id_genero");
 	if ($cantidad)
 		$count = $db->getRow($cantidad);
