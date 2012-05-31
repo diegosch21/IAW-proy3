@@ -160,7 +160,29 @@ jQuery(document).ready(function($) {
 			}).done(function( msg ) {
 			alert( "Data Saved: " + msg );
 		});
-		jQuery(location).reload();
+		location.reload();
+	});
+	
+	jQuery("#editArtistSubmit").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "data/edit_artist.php",
+			data: { id:jQuery("[name=element_8_edit]select option:selected").val(), genero: jQuery("#element_102").val(), nombre: jQuery("#element_101").val(),nacion: jQuery("#element_103").val(), banda: jQuery("#element_104").val(),link: jQuery("#element_105").val() }
+			}).done(function( msg ) {
+			alert( "Data Saved: " + msg );
+		});
+		//location.reload();
+	});
+	
+	jQuery("#deleteArtistSubmit").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "data/delete_artist.php?",
+			data: { id: jQuery("[name=element_8_edit]select option:selected").val() }
+			}).done(function( msg ) {
+			alert( "Data Saved: " + msg );
+		});
+		location.reload();
 	});
 
 	jQuery("#buttonSearch").click(function(){
