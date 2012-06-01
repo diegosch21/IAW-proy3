@@ -11,7 +11,7 @@
 
 <body id="main_body" >
 
-<form method='post' enctype="multipart/form-data" action='data/add_cd.php'>
+<form method='post' enctype="multipart/form-data" action='data/add_img.php'>
 	<ul >			
 		<li>
 			<label for="id">id </label>
@@ -30,22 +30,9 @@
 			<input id="nom" name="nombre" type="text" maxlength="50" value=""/>
 		
 		</li>
-		<input hidden name="cant_img" value="3"/>
-		<li>
-			<label for="img1">imagen 1 </label>
-			<input id="img1" name="img1" type="text" maxlength="50" value=""/>
+
 		
-		</li>
-		<li>
-			<label for="img">imagen 2 </label>
-			<input type="file" name="img2">
 		
-		</li>
-		<li>
-			<label for="img">imagen 3 </label>
-			<input id="img3" name="img3" type="text" maxlength="50" value=""/>
-		
-		</li>
 		
 		<input hidden name="cant_tag" value="3"/>
 		<li>
@@ -61,6 +48,24 @@
 		<li>
 			<label for="img">tag 3 </label>
 			<input id="img3" name="tag3" type="text" maxlength="50" value=""/>
+		
+		</li>
+		
+		<br/><br/>
+
+			
+			<input hidden  name="class"  value="cd"/>
+			<input hidden  name="thumb"  value=true/>
+		
+		
+		<li>
+			<label for="img1">imagen </label>
+			<input id="img1" name="url" type="text" maxlength="50" value=""/>
+		
+		</li>
+		<li>
+			<label for="img">imagen </label>
+			<input type="file" name="file">
 		
 		</li>
 		    

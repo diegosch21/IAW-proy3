@@ -37,30 +37,9 @@ else{
 		
 		$anio = (isset($_POST['anio']) && is_numeric($_POST['anio'])) ? $_POST['anio'] : null;
 		$canc = (isset($_POST['canc'])) ? $_POST['canc'] : null;   //recibe arregl? hacer implode
-		$thumb = (isset($_POST['thumb'])) ? $_POST['thumb'] : null; 
-		$cant_img = (isset($_POST['cant_img'])) ? $_POST['cant_img'] : 0;
-		$img = array();
-		for ($i=1;$i<=$cant_img;$i++) {
-			if(isset($_POST['img'.$i]))
-				$img[$i-1] = $_POST['img'.$i];	
-			elseif(isset($_FILES['img'.$i])) {
-				$folder = 'img/gen'.$idGen.'/art'.$idAr.'/cd'.$id;
-				createFolder($folder);
-				$path = saveFile($_FILES['img'.$i],$folder);
-				if($path == 'error') {
-				 	$result['upload'.$i] = false;
-			 		$img[$i-1]="";
-			 	}
-				else {
-					$path = 'data/'.$path; 
-				 	$result['upload'.$i] = $path;
-					$img[$i-1]=$path;
-				}
-			}
-			else 
-				$img[$i-1] = "";
-		}
-		$imgs = implode("|-|",$img);
+		$thumb = ""; 
+		
+		$imgs = "";
 		$link = (isset($_POST['link'])) ? $_POST['link'] : null;  		
 		
 		$db->execute("INSERT INTO CDs VALUES(?,?,?,?,?,?,?,?,0,0)",array($id,$idAr,$nom,$anio,$canc,$thumb,$imgs,$link));
