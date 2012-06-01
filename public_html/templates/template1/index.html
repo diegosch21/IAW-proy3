@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="public_html/js/lib/mootools-core-1.4.5-full-compat-yc.js"></script>
 	<script type="text/javascript" src="public_html/js/lib/mootools-more-1.4.0.1.js"></script>
 	<script type="text/javascript" src="public_html/js/lib/Carousel.js"></script>
+	<script type="text/javascript" src="public_html/js/lib/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="public_html/js/lib/chillbox-packed.js"></script>
 	<script src="public_html/js/lib/jquery.paginate.js" type="text/javascript"></script>
 	
@@ -24,6 +25,7 @@
 	<meta property="og:type" content="musician" />
 
 	<meta property="fb:admins" content="1018209073" />
+	
 
 
 
@@ -31,8 +33,14 @@
 	{verURL}
 </head>
 <body>
-
-  <div id="fb-root"></div>  
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=299023770189392";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 
 		
 		<div class="Sheet">
@@ -43,36 +51,37 @@
 					{categorias}					               
 				
 				</div>
-				
-				<div class="HomeContent" id="HomeContent">			
-					{maincontent}            
-				</div>
-				<div class="ItemContent" id="ItemContent">	
-					<div class="bandaContent" id="bandaContent">
-						{itemcontent}  
+				<div class="MainContent">
+					<div class="HomeContent" id="HomeContent">			
+						{maincontent}            
 					</div>
-					<div  id="OpcionesBusqueda">
-						<div>
-						<h4>Ordenar por:</h4>
-						<input type="radio" name="orden" value="abc"/> abc
-						<input type="radio" name="orden" value="anio"/> año   
-						<input type="radio" name="orden" value="vis"/> visitas  
-						<input type="radio" name="orden" value="mg"/> me gusta 		
+					<div class="ItemContent" id="ItemContent">	
+						<div class="bandaContent" id="bandaContent">
+							{itemcontent}  
 						</div>
-						<div>
-						<h4>Modo:</h4>
-						<input type="radio" name="mode" value="asc"/> ascendente
-						<input type="radio" name="mode" value="desc"/> descendente 	
+						<div  id="OpcionesBusqueda">
+							<div>
+								<h4>Ordenar por:</h4>
+								<input type="radio" name="orden" value="abc"/> abc
+								<input type="radio" name="orden" value="anio"/> año   
+								<input type="radio" name="orden" value="vis"/> visitas  
+								<input type="radio" name="orden" value="mg"/> me gusta 		
+							</div>
+							<div>
+								<h4>Modo:</h4>
+								<input type="radio" name="mode" value="asc"/> ascendente
+								<input type="radio" name="mode" value="desc"/> descendente 	
+							</div>
 						</div>
-					</div>
-					<div class="BusquedaContent" id="BusquedaContent">				
-						{busquedacontent}            
-					</div>
+						<div class="BusquedaContent" id="BusquedaContent">				
+							{busquedacontent}            
+						</div>
 					</div>
 					<div class="CDContent" id="CDContent">
 			
 						{cdcontent}            
 					</div>
+				
 				</div>
 				<div class="right">
 					<div class="login">			

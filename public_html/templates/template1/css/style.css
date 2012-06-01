@@ -1,3 +1,9 @@
+.MainContent {
+	float:left;
+	position:relative;
+	width: 560px;
+}
+
 
 .Sheet
 {
@@ -53,6 +59,16 @@ border: 0px;
 -moz-outline-style: none;
 }
 .tag {
+padding-left: 10px;
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+font-size: 12px;
+text-decoration: none;
+color: #6bace6;
+border: 0px;
+-moz-outline-style: none;
+cursor:pointer;
+}
+.tag2 {
 padding-left: 10px;
 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 font-size: 12px;
@@ -367,7 +383,7 @@ border: 0px;
 }
 .cd{
 	width: 150px;
-		height: 200px!important!;
+		height: 200px!important;
 }
 
 .jPaginate{
@@ -490,7 +506,7 @@ margin-left:10px;
 margin-bottom:10px;
 	float:left;
 	width: 160px;
-	height: 180px!important!;
+	height: 180px!important;
 	top: 100px;
 	right: 0px;
 	z-index: 1000;
@@ -565,4 +581,10 @@ margin-bottom:2px;
 	font-weight: normal;
 	color:#000000;
 
+}
+.formReturn{
+	float:right;
+	padding-right:30px;
+	padding-top:30px;
+	padding-bottom:50px;
 }
