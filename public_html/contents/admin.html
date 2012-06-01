@@ -1,9 +1,22 @@
-﻿
+﻿<div class="ui-state-error ui-corner-all" style="padding: 5px, 5px, 5px, 5px; display:none;" id="cartelError">
+
+				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+				<div id="mensajeError"></div>
+		</div>
+<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em; display:none;" id="cartelAviso">
+
+				<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+<div id="mensajeAviso"></div>
+
+
+			</div>
+
+<h2>Página de configuración</h2>
 		<form id="staff_feedbackform">
-		<li class="section_break">
+		<li class="section_break" id="break0">
 			
 			<div  id="desplegarArtistSubmin" title="Registra un nuevo artista"><h3>Registra un nuevo artista</h3></div>
-			<p></p>
+
 		</li>
 		<ul >			
 		<li id="li_7" style="display:none">
@@ -130,12 +143,12 @@
 
 		</li>		
 		
-		<li class="section_break">
+		<li class="section_break" id="break1">
 			<h3>Agregar un CD</h3>
 			<p></p>
 		</li>
 		<ul >			
-		<li id="li_13" >
+		<li id="li_13" style="display:none">
 		<label class="description">Género</label>
 		<div>
 		<select class="element select medium" id="generoListAddcd" name="element_11_edit"> 
@@ -178,12 +191,12 @@
 		
 		
 		
-		<li class="section_break">
+		<li class="section_break" id="break2">
 			<h3>Editar/Borrar un CD</h3>
 			<p></p>
 		</li>
 		<ul >			
-		<li id="li_16" >
+		<li id="li_16" style="display:none">
 		<label class="description">Género</label>
 		<div>
 		<select class="element select medium" id="generoListEditcd" name="element_13_edit"> 
@@ -233,7 +246,8 @@
 		</li>
 		</ul>
 		<div class="formReturn">
-			<div  id="volverAlHome" title="Volver">Volver al home</div>
+
+			<div><a href="index.php" id="volverAlHome">Volver al home</a></div>
 		</div>
 
 </form>
@@ -394,30 +408,8 @@
 		      primary: 'ui-icon ui-icon-circle-check',
 		   }
 		});
-		jQuery("#desplegarArtistSubmin").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-triangle-1-s',
-		   }
-		});
-		jQuery("#desplegarArtistSubmin").click(function(){
 
-			if(jQuery("#li_7").css("display")=="none"){
-				jQuery("#li_7").show("slow");
-				jQuery("#desplegarArtistSubmin").button({
-			   icons: {
-				  primary: 'ui-icon ui-icon-triangle-1-n',
-			   }
-				});
-			}
-			 else{
-				jQuery("#li_7").hide("slow");
-				jQuery("#desplegarArtistSubmin").button({
-			   icons: {
-				  primary: 'ui-icon ui-icon-triangle-1-s',
-			   }
-				});
-			}
-		});
+
 		jQuery("#break").click(function(){
 
 			if(jQuery("#li_8").css("display")=="none"){
@@ -426,9 +418,47 @@
 			}
 			 else{
 				jQuery("#li_8").hide("slow");
+				jQuery("#li_9").hide("slow");
+				jQuery("#li_10").hide("slow");
 			}
 		});
-		
+		jQuery("#break0").click(function(){
+
+			if(jQuery("#li_7").css("display")=="none"){
+				jQuery("#li_7").show("slow");
+
+			}
+			 else{
+				jQuery("#li_7").hide("slow");
+				jQuery("#divDatos").hide("slow");
+			}
+		});
+		jQuery("#break1").click(function(){
+
+			if(jQuery("#li_13").css("display")=="none"){
+				jQuery("#li_13").show("slow");
+
+			}
+			 else{
+				jQuery("#li_13").hide("slow");
+				jQuery("#li_14").hide("slow");
+				jQuery("#li_15").hide("slow");
+
+			}
+		});
+		jQuery("#break2").click(function(){
+
+			if(jQuery("#li_16").css("display")=="none"){
+				jQuery("#li_16").show("slow");
+
+			}
+			 else{
+				jQuery("#li_16").hide("slow");
+				jQuery("#li_17").hide("slow");
+				jQuery("#li_18").hide("slow");
+				jQuery("#li_19").hide("slow");
+			}
+		});
 		jQuery("#imageArtistSubmit").click(function(){
 			jQuery('#li_10').hide("slow");
 			jQuery('#li_111').show("slow");

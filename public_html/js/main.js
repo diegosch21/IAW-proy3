@@ -177,9 +177,18 @@ jQuery(document).ready(function($) {
 			url: "data/add_artist.php",
 			data: { genero: _genero, nombre: jQuery("#element_2").val(),nacion: jQuery("#element_5").val(), banda: jQuery("#element_4").val(),link: jQuery("#element_3").val() }
 			}).done(function( msg ) {
-			alert( "Data Saved: " + msg );
+			dato=(eval('(' + msg + ')'));
+			if (dato.error!=undefined){
+				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
+				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
+				}
+			else{
+				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El artista <strong>"+dato.artista.artista+"</strong> fue creado correctamente</p>");
+				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
+			}
+			
 		});
-		location.reload();
+	//	location.reload();
 	});
 	
 	jQuery("#editArtistSubmit").click(function(){
@@ -188,9 +197,17 @@ jQuery(document).ready(function($) {
 			url: "data/edit_artist.php",
 			data: { id:jQuery("[name=element_8_edit]select option:selected").val(), genero: jQuery("#element_102").val(), nombre: jQuery("#element_101").val(),nacion: jQuery("#element_103").val(), banda: jQuery("#element_104").val(),link: jQuery("#element_105").val() }
 			}).done(function( msg ) {
-			alert( "Data Saved: " + msg );
+			dato=(eval('(' + msg + ')'));
+			if (dato.error!=undefined){
+				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
+				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
+				}
+			else{
+				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El artista <strong>"+dato.artista+"</strong> fue editado correctamente</p>");
+				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
+			}
 		});
-		location.reload();
+	//	location.reload();
 	});
 	jQuery("#editCDSubmit").click(function(){
 		$.ajax({
@@ -198,9 +215,17 @@ jQuery(document).ready(function($) {
 			url: "data/edit_cd.php",
 			data: { id:jQuery("[name=element_15_edit]select option:selected").val(),id_ar:jQuery("[name=element_14_edit]select option:selected").val(), genero: jQuery("[name=element_13_edit]select option:selected").val(), nombre: jQuery("#element_301").val(),anio: jQuery("#element_303").val(), canc: jQuery("#element_404").val(),link: jQuery("#element_405").val() }
 			}).done(function( msg ) {
-			alert( "Data Saved: " + msg );
+			dato=(eval('(' + msg + ')'));
+			if (dato.error!=undefined){
+				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
+				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
+				}
+			else{
+				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El CD <strong>"+dato.nombre+"</strong> de "+dato.artista+" fue editado correctamente</p>");
+				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
+			}
 		});
-		location.reload();
+	//	location.reload();
 	});
 	jQuery("#addCDSubmit").click(function(){
 		$.ajax({
@@ -208,9 +233,18 @@ jQuery(document).ready(function($) {
 			url: "data/add_cd.php",
 			data: { id_ar: jQuery("[name=element_12_edit]select option:selected").val(), nombre: jQuery("#element_200").val(), anio: jQuery("#element_201").val(), canc: jQuery("#element_204").val(), link: jQuery("#element_205").val()  }
 			}).done(function( msg ) {
-			alert( "Data Saved: " + msg );
+			dato=(eval('(' + msg + ')'));
+			if (dato.error!=undefined){
+				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
+				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
+				}
+			else{
+			alert(msg);
+				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El CD <strong>"+dato.cd.nombre+"</strong> de "+dato.cd.artista+" fue creado correctamente</p>");
+				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
+			}
 		});
-		location.reload();
+	//	location.reload();
 	});
 	
 	jQuery("#deleteArtistSubmit").click(function(){
@@ -221,7 +255,7 @@ jQuery(document).ready(function($) {
 			}).done(function( msg ) {
 			alert( "Data Saved: " + msg );
 		});
-		location.reload();
+	//	location.reload();
 	});
 	jQuery("#deleteCDSubmit").click(function(){
 		$.ajax({
@@ -231,7 +265,7 @@ jQuery(document).ready(function($) {
 			}).done(function( msg ) {
 			alert( "Data Saved: " + msg );
 		});
-		location.reload();
+	//	location.reload();
 	});
 
 	jQuery("#buttonSearch").click(function(){
@@ -318,6 +352,9 @@ jQuery(document).ready(function($) {
 			alert( "Data Saved: " + msg );
 		});
 		location.reload();
+	});
+	jQuery("#volverAlHome").click(function(){
+		
 	});
 
 });  
