@@ -117,13 +117,13 @@ function loadItem(i) {
 
 }
 function  busquedaTag(tag){
-	jQuery("#CDContent").hide("slow");
-	jQuery("#HomeContent").hide("slow");
-	jQuery("#ItemContent").show("slow");
-	jQuery("#bandaContent").hide("slow");
-	jQuery("#BusquedaContent").show("slow");	
-	lastquery = "tag="+tag;
-	pedirPagina(lastquery,true);
+		jQuery("#ItemContent").show("slow");
+		jQuery("#CDContent").hide("slow");
+		jQuery("#HomeContent").hide("slow");
+		jQuery("#bandaContent").hide("slow");
+		jQuery("#BusquedaContent").hide("slow");
+			lastquery = "tag="+tag;
+		pedirPagina(lastquery,true);
 }
 
 	
@@ -252,9 +252,57 @@ jQuery(document).ready(function($) {
 	else if (getUrlVars()['showArtist']) {
 		loadItem(getUrlVars()['showArtist']);
 	}
+	
+	
+	jQuery("#imageArtistSubmitupload").click(function(){
+
+		$.ajaxFileUpload
+		(
+			{
+				url:'data/upload_img.php',
+				secureuri:false,
+				fileElementId:'fileToUpload',
+				data: { file:jQuery("#fileToUpload").val(), class: 'artista', id:jQuery("[name=element_8_edit]select option:selected").val() },
+				dataType: 'file',
+				beforeSend:function()
+				{
+					$("#loading").show();
+				},
+				complete:function()
+				{
+					$("#loading").hide();
+				},				
+				success: function (data, status)
+				{
+					if(typeof(data.error) != 'undefined')
+					{
+						if(data.error != '')
+						{
+							alert(data.error);
+						}else
+						{
+							alert(data.msg);
+						}
+					}
+				},
+				error: function (data, status, e)
+				{
+					alert(e);
+				}
+			}
+		)
+	});
+	
+	jQuery("#imageArtistSubmitURL").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "data/add_img.php",
+			data: { class: 'artista', id:jQuery("[name=element_8_edit]select option:selected").val(), url:jQuery("#element_112").val() }
+			}).done(function( msg ) {
+			alert( "Data Saved: " + msg );
+		});
+		location.reload();
+	});
 
 });  
-
-
-
 

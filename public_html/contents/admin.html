@@ -95,10 +95,37 @@
 			<div>
 				<input id="element_105" name="element_105" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
+			<label class="description" for="element_105">Imágenes cargadas: </label></p>
+			<div id="imagenescargadas">
+				
+			</div> 
 		</div>
 				<div style="padding-bottom:50px;">
-			    <div  id="editArtistSubmit" title="Editar">Editar</div>
+				<div  id="editArtistSubmit" title="Editar">Editar</div>
+				<div  id="imageArtistSubmit" title="Agregar imagen">Agregar imagen</div>
 				<div  id="deleteArtistSubmit" title="Borrar">Borrar</div>
+				</div>
+
+		</li>
+		<li id="li_111" style="display:none"  >
+		<label class="description" for="element_112">Puede hacer el upload de una imagen o ingresar un URL</label></p>
+		<div>
+
+			<label class="description" for="element_112">Subir imagen desde URL</label>
+			<div>
+				<input id="element_112" name="element_112" class="element text medium" type="text" maxlength="255" value=""/> 
+				<div  id="imageArtistSubmitURL" title="Editar">Subir URL</div>
+			</div> 
+			<label class="description" for="element_113">Subir imagen desde tu computadora</label>
+			<div>
+			<input id="fileToUpload" type="file" size="45" name="fileToUpload" class="input">
+				<input id="element_113" name="element_113" class="element text medium"  type="file"/> 
+				<div  id="imageArtistSubmitupload" title="Editar">Subir imagen</div>
+			</div> 
+
+		</div>
+				<div style="padding-bottom:50px;">
+				<div  id="imageArtistSubmitlisto" title="Listo">Listo</div>
 				</div>
 
 		</li>		
@@ -252,6 +279,9 @@
 						jQuery('#element_103').val(data.nacionalidad);
 						jQuery('#element_104').val(data.banda);
 						jQuery('#element_105').val(data.link);
+						for(i=0;i<data.imagenes.length;i++){
+							jQuery('#imagenescargadas').append("<div class='tag2'>"+data.imagenes[i].url+"<div>");
+						}
 					});
 				});
 				jQuery('[name=element_11_edit]').change(function () {
@@ -314,14 +344,34 @@
 		      primary: 'ui-icon ui-icon-circle-plus',
 		   }
 		});
+		jQuery("#imageArtistSubmitlisto").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-check',
+		   }
+		});
+		jQuery("#imageArtistSubmitupload").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-document',
+		   }
+		});
+		jQuery("#imageArtistSubmitURL").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-image',
+		   }
+		});
 		jQuery("#editArtistSubmit").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-pencil',
 		   }
-		});
+		});		
 		jQuery("#deleteArtistSubmit").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-trash',
+		   }
+		});
+		jQuery("#imageArtistSubmit").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-image',
 		   }
 		});
 		jQuery("#addCDSubmit").button({
@@ -377,6 +427,17 @@
 			 else{
 				jQuery("#li_8").hide("slow");
 			}
+		});
+		
+		jQuery("#imageArtistSubmit").click(function(){
+			jQuery('#li_10').hide("slow");
+			jQuery('#li_111').show("slow");
+		
+		});
+		jQuery("#imageArtistSubmitlisto").click(function(){
+			jQuery('#li_10').show("slow");
+			jQuery('#li_111').hide("slow");
+		
 		});
 		
 		</script>
