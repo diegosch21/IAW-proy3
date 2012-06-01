@@ -114,7 +114,7 @@ function loadItem(i) {
 	jQuery("#BusquedaContent").show("slow");
 	s = "?showArtist="+i;
 	if (location.search != s)
-		window.history.pushState("index.php"+s, "Artista", "index.php");
+		window.history.pushState("index.php"+s, "Artista", "index.php"+s);
     jQuery.getJSON('data/artist.php?id='+i,function(json) {
 		var output = Mustache.render(jQuery("#template").html(), json)
 		jQuery("#templateTarget").html(output);

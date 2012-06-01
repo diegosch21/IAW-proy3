@@ -1,13 +1,23 @@
 <?php
-if(isset($_GET['showCD']) && isset($_GET['id'])){
-	$id = $_GET['id'];	
-	echo "<meta property='og:title' content='Titulo CD ID$id' />";
-	echo "<meta property='og:image' content='http://4.bp.blogspot.com/_wiujx1SRUxE/SdolnuNJ5PI/AAAAAAAABVQ/qgErOb1F2ZQ/s320/Tapa+Encias+Sangrantes.jpg' />";
-	echo "<meta property='og:url' content='http://localhost/IAW_proy3/index.php?showCD&amp;id=$id' />";
-	 
-	
-	
+try {
+
+if(isset($_GET['showCD'])){
+	require_once('/_lib/db.php');
+	$db = new DB('db/iaw_proy3');
+	$id = $_GET['showCD'];	
+	$infoCD = $db->query("SELECT nombre, thumbnail FROM CDs WHERE id_cd = $id");
+	$cd = $db->getRow($infoCD);
+	if ($cd)	{
+		
+		echo "<meta property='og:title' content='La Rockola CD: ".$cd['nombre']."' />";
+		echo "<meta property='og:image' content='".$cd['thumbnail']."' />";
+		echo "<meta property='og:url' content='http://www.larockolacds.nixiweb.com/index.php?showCD&amp;id=".$id."' />";
+	}
+
 }
 
+} catch(Exception $e){
+	//echo $e->getMessage();
+}
 
 ?>
