@@ -40,6 +40,7 @@ function pedirPagina(query,state){
 										cambiar(query,page);
 									  }
 		});
+		jQuery("#BusquedaContent").show("slow");	
 	});
   
 }
@@ -57,9 +58,9 @@ function verCD(cd){
 		
 	});
 	
-	jQuery("#CDContent").show();
-	jQuery("#ItemContent").hide();
-	jQuery("#HomeContent").hide()
+	jQuery("#CDContent").show("slow");
+	jQuery("#ItemContent").hide("slow");
+	jQuery("#HomeContent").hide("slow")
 	
 	
 }
@@ -100,11 +101,11 @@ function vacio(q) {
 
 
 function loadItem(i) {  
-	jQuery("#CDContent").hide();
-	jQuery("#HomeContent").hide();
-	jQuery("#ItemContent").show();
-	jQuery("#bandaContent").show();
-	jQuery("#BusquedaContent").show();
+	jQuery("#CDContent").hide("slow");
+	jQuery("#HomeContent").hide("slow");
+	jQuery("#ItemContent").show("slow");
+	jQuery("#bandaContent").show("slow");
+	jQuery("#BusquedaContent").show("slow");
 	window.history.replaceState(null, "Artista", "index.php?showArtist="+i);
     jQuery.getJSON('data/artist.php?id='+i,function(json) {
 		var output = Mustache.render(jQuery("#template").html(), json)
@@ -116,11 +117,11 @@ function loadItem(i) {
 
 }
 function  busquedaTag(tag){
-	jQuery("#CDContent").hide();
-	jQuery("#HomeContent").hide();
-	jQuery("#ItemContent").show();
-	jQuery("#bandaContent").hide();
-	jQuery("#BusquedaContent").show();	
+	jQuery("#CDContent").hide("slow");
+	jQuery("#HomeContent").hide("slow");
+	jQuery("#ItemContent").show("slow");
+	jQuery("#bandaContent").hide("slow");
+	jQuery("#BusquedaContent").show("slow");	
 	lastquery = "tag="+tag;
 	pedirPagina(lastquery,true);
 }
@@ -137,26 +138,28 @@ jQuery(document).ready(function($) {
 	});	
 
 	jQuery(".opAvanzadas").click(function(){
-		jQuery(".opAvanzadas").hide("hide");
+		jQuery(".opAvanzadas").hide("slow");
 		jQuery(".avanzadas").show("slow");
 		jQuery(".opBasicas").show("slow");
 		
 	});
 	jQuery(".opBasicas").click(function(){
 		jQuery(".opAvanzadas").show("slow");
-		jQuery(".avanzadas").hide("hide");
-		jQuery(".opBasicas").hide("hide");
+		jQuery(".avanzadas").hide("slow");
+		jQuery(".opBasicas").hide("slow");
 		$('input:radio[name=tipo]').removeAttr("checked");
 
 	});
 	jQuery("#addArtistSubmin").click(function(){
-		_genero = jQuery("select option:selected").val();
-		if (_genero=="nuevo")
+
+		if (jQuery("[name=element_7]select option:selected").val()=="nuevo")
 			_genero = jQuery("#textNuevoGenero").val();
+		else
+			_genero = jQuery("[name=element_7]select option:selected").val();
 		$.ajax({
 			type: "POST",
-			url: "data/add_artist.php?",
-			data: { genero: _genero, nombre: jQuery("#element_2").val(),nacion: jQuery("#element_5").val(), banda: jQuery("#element_4").val(),cant_img: 1,img1: jQuery("#element_6").val(),link: jQuery("#element_3").val() }
+			url: "data/add_artist.php",
+			data: { genero: _genero, nombre: jQuery("#element_2").val(),nacion: jQuery("#element_5").val(), banda: jQuery("#element_4").val(),link: jQuery("#element_3").val() }
 			}).done(function( msg ) {
 			alert( "Data Saved: " + msg );
 		});
@@ -171,14 +174,44 @@ jQuery(document).ready(function($) {
 			}).done(function( msg ) {
 			alert( "Data Saved: " + msg );
 		});
-		//location.reload();
+		location.reload();
+	});
+	jQuery("#editCDSubmit").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "data/edit_cd.php",
+			data: { id:jQuery("[name=element_15_edit]select option:selected").val(),id_ar:jQuery("[name=element_14_edit]select option:selected").val(), genero: jQuery("[name=element_13_edit]select option:selected").val(), nombre: jQuery("#element_301").val(),anio: jQuery("#element_303").val(), canc: jQuery("#element_404").val(),link: jQuery("#element_405").val() }
+			}).done(function( msg ) {
+			alert( "Data Saved: " + msg );
+		});
+		location.reload();
+	});
+	jQuery("#addCDSubmit").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "data/add_cd.php",
+			data: { id_ar: jQuery("[name=element_12_edit]select option:selected").val(), nombre: jQuery("#element_200").val(), anio: jQuery("#element_201").val(), canc: jQuery("#element_204").val(), link: jQuery("#element_205").val()  }
+			}).done(function( msg ) {
+			alert( "Data Saved: " + msg );
+		});
+		location.reload();
 	});
 	
 	jQuery("#deleteArtistSubmit").click(function(){
 		$.ajax({
 			type: "POST",
-			url: "data/delete_artist.php?",
+			url: "data/delete_artist.php",
 			data: { id: jQuery("[name=element_8_edit]select option:selected").val() }
+			}).done(function( msg ) {
+			alert( "Data Saved: " + msg );
+		});
+		location.reload();
+	});
+	jQuery("#deleteCDSubmit").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "data/delete_cd.php",
+			data: { id: jQuery("[name=element_15_edit]select option:selected").val() }
 			}).done(function( msg ) {
 			alert( "Data Saved: " + msg );
 		});
@@ -186,17 +219,18 @@ jQuery(document).ready(function($) {
 	});
 
 	jQuery("#buttonSearch").click(function(){
-
-		jQuery("#CDContent").hide();
-		jQuery("#HomeContent").hide();
-		jQuery("#ItemContent").show();
-		jQuery("#bandaContent").hide();
-		jQuery("#BusquedaContent").show();	
+		jQuery("#CDContent").hide("slow");
+		jQuery("#HomeContent").hide("slow");
+		jQuery("#bandaContent").hide("slow");
+		jQuery("#ItemContent").show("slow");
+		jQuery("#BusquedaContent").hide("slow");	
 		if ($('input:radio[name=tipo]').is(':checked'))
 			lastquery = ""+$('input:radio[name=tipo]:checked').val()+'='+$('input[type=text][name=busqueda]').val();
 		else
 			lastquery = "buscar="+$('input[type=text][name=busqueda]').val();
 		pedirPagina(lastquery,true);
+
+		
 	});
 	
 	jQuery("input:radio[name=orden]").click(function(){
