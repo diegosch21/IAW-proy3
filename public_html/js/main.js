@@ -147,6 +147,13 @@ function  busquedaTag(tag){
 		
 }
 
+function actualizarMG(idCD) {
+	jQuery.ajax({
+		type: "POST",
+		url: "data/likesFB.php",
+		data: { id: idCD }
+		});
+}
 	
 jQuery(document).ready(function($) {
   
@@ -179,6 +186,7 @@ jQuery(document).ready(function($) {
 		$('input:radio[name=tipo]').removeAttr("checked");
 
 	});
+
 	jQuery("#addArtistSubmin").click(function(){
 
 		if (jQuery("[name=element_7]select option:selected").val()=="nuevo")
@@ -300,6 +308,7 @@ jQuery(document).ready(function($) {
 	//	location.reload();
 	});
 
+
 	jQuery("#buttonSearch").click(function(){
 		jQuery("#CDContent").hide("slow");
 		jQuery("#HomeContent").hide("slow");
@@ -337,46 +346,8 @@ jQuery(document).ready(function($) {
 	}
 	
 	
-	jQuery("#imageArtistSubmitupload").click(function(){
-
-		clas = 'artista'; idArt = jQuery("[name=element_8_edit]select option:selected").val();
-		$.ajaxFileUpload
-		(
-			{
-				url:'data/upload_img.php?id='+idArt+'&class='+clas,
-				secureuri:false,
-				fileElementId:'fileToUpload',
-				data: { file:jQuery("#fileToUpload").val() },
-				dataType: 'file',
-				beforeSend:function()
-				{
-					$("#loadingImg").show();
-				},
-				complete:function()
-				{
-					$("#loadingImg").hide();
-				},				
-				success: function (data, status)
-				{
-					if(typeof(data.error) != 'undefined')
-					{
-						if(data.error != '')
-						{
-							alert(data.error);
-						}else
-						{
-							alert(data.msg);
-						}
-					}
-				},
-				error: function (data, status, e)
-				{
-					alert(e);
-				}
-			}
-		)
-	});
 	
+
 	jQuery("#imageArtistSubmitURL").click(function(){
 		$.ajax({
 			type: "POST",
@@ -386,6 +357,7 @@ jQuery(document).ready(function($) {
 
 		});
 		location.reload();
+
 	});
 	jQuery("#Backup").click(function(){
 		window.open("index.php", '_blanck');
