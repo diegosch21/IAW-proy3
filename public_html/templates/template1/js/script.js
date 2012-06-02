@@ -24,10 +24,15 @@ jQuery(function(){
 
 	jQuery("#buttonLogout").button({
 	   icons: {
-		  primary: 'ui-icon ui-icon-circle-close',
+		  primary: 'ui-icon ui-icon-close',
 	   }
 	});
 	jQuery("#buttonEdit").button({
+	   icons: {
+		  primary: 'ui-icon ui-icon-gear',
+	   }
+	});
+	jQuery("#buttonConfig").button({
 	   icons: {
 		  primary: 'ui-icon ui-icon-wrench',
 	   }
