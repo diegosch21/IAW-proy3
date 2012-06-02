@@ -17,6 +17,7 @@ $verURL = 'public_html/contents/verURL.php';
 
 
 session_start();
+
 if (isset($_SESSION['user'])){
 	if ($_SESSION['user']=='admin'){   
 		if (!(empty($_GET['edit']))&&$_GET['edit']==true)
