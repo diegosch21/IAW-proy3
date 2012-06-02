@@ -51,11 +51,15 @@
 				
 				</div>
 				<div class="MainContent">
-					<div class="HomeContent" id="HomeContent">			
+					<div id='loading'></div>	
+					<div class="HomeContent" id="HomeContent">		
+						
 						{maincontent}            
 					</div>
 					<div class="ItemContent" id="ItemContent">	
+						
 						<div class="bandaContent" id="bandaContent">
+						<div class='loading'></div>	
 							{itemcontent}  
 						</div>
 						<div  id="OpcionesBusqueda">
@@ -72,7 +76,8 @@
 								<input type="radio" name="mode" value="desc"/> descendente 	
 							</div>
 						</div>
-						<div class="BusquedaContent" id="BusquedaContent">				
+						<div class="BusquedaContent" id="BusquedaContent">	
+							<div id='loadingBusqueda'></div>			
 							{busquedacontent}            
 						</div>
 					</div>
