@@ -16,6 +16,7 @@ function getUrlVars() {
 
 
 function pedirPagina(query,state){
+	jQuery('#loadingBusqueda').show();
 	url= 'data/cds.php?'+query+'&page=1';
 	s = "?busqueda=true&"+query;
 	if(state && location.search != s) {
@@ -42,7 +43,9 @@ function pedirPagina(query,state){
 										cambiar(query,page);
 									  }
 		});
-		jQuery("#BusquedaContent").show("slow");	
+		jQuery('#loadingBusqueda').hide();
+		jQuery("#BusquedaContent").show("slow");
+		
 	});
   
 }
@@ -50,6 +53,9 @@ function pedirPagina(query,state){
 
 
 function verCD(cd){
+	jQuery('#loading').show();
+	jQuery("#ItemContent").hide("slow");
+	jQuery("#HomeContent").hide("slow");
 	query = 'id='+cd;
 	url= 'data/cd.php?'+query;
 	s = "?showCD="+cd;
@@ -59,24 +65,27 @@ function verCD(cd){
 		
 		var output = Mustache.render(jQuery("#templateCD").html(), data);
 		jQuery("#cdTarget").html(output);	
+		jQuery('#loading').hide();
+		jQuery("#CDContent").show("slow");
 		FB.XFBML.parse(document.getElementById("megusta"));
 		FB.XFBML.parse(document.getElementById("comments"));
+		
 	});
 	
-	jQuery("#CDContent").show("slow");
-	jQuery("#ItemContent").hide("slow");
-	jQuery("#HomeContent").hide("slow")
+
 	
 	
 	
 }
 
 function cambiar(query, pagina){
+	jQuery('#loadingBusqueda').show();
 	url= 'data/cds.php?'+query+'&page='+pagina;
 	jQuery.getJSON(url,function(data) {
 		info = data;
 		var output = Mustache.render(jQuery("#templateB").html(), data)
 		jQuery("#templateBusqueda").html(output);
+		jQuery('#loadingBusqueda').hide();
 	});
 }
 		
@@ -107,11 +116,9 @@ function vacio(q) {
 
 
 function loadItem(i) {  
+	jQuery('#loading').show();
 	jQuery("#CDContent").hide("slow");
 	jQuery("#HomeContent").hide("slow");
-	jQuery("#ItemContent").show("slow");
-	jQuery("#bandaContent").show("slow");
-	jQuery("#BusquedaContent").show("slow");
 	s = "?showArtist="+i;
 	if (location.search != s)
 		window.history.pushState("index.php"+s, "Artista", "index.php"+s);
@@ -120,18 +127,24 @@ function loadItem(i) {
 		jQuery("#templateTarget").html(output);
 		lastquery = "ar="+json.id;
 		pedirPagina(lastquery,false);
+		jQuery('#loading').hide();
+		jQuery("#ItemContent").show("slow");
+		jQuery("#bandaContent").show("slow");
+		jQuery("#BusquedaContent").show("slow");
+		
 		
 	});	  
 
 }
 function  busquedaTag(tag){
-		jQuery("#ItemContent").show("slow");
 		jQuery("#CDContent").hide("slow");
 		jQuery("#HomeContent").hide("slow");
 		jQuery("#bandaContent").hide("slow");
 		jQuery("#BusquedaContent").hide("slow");
-			lastquery = "tag="+tag;
+		jQuery("#ItemContent").show("slow");
+		lastquery = "tag="+tag;
 		pedirPagina(lastquery,true);
+		
 }
 
 	
@@ -272,13 +285,14 @@ jQuery(document).ready(function($) {
 		jQuery("#CDContent").hide("slow");
 		jQuery("#HomeContent").hide("slow");
 		jQuery("#bandaContent").hide("slow");
-		jQuery("#ItemContent").show("slow");
+		jQuery("#ItemContent").hide("slow");
 		jQuery("#BusquedaContent").hide("slow");	
 		if ($('input:radio[name=tipo]').is(':checked'))
 			lastquery = ""+$('input:radio[name=tipo]:checked').val()+'='+$('input[type=text][name=busqueda]').val();
 		else
 			lastquery = "buscar="+$('input[type=text][name=busqueda]').val();
 		pedirPagina(lastquery,true);
+		jQuery("#ItemContent").show("slow");
 
 		
 	});
@@ -306,21 +320,22 @@ jQuery(document).ready(function($) {
 	
 	jQuery("#imageArtistSubmitupload").click(function(){
 
+		clas = 'artista'; idArt = jQuery("[name=element_8_edit]select option:selected").val();
 		$.ajaxFileUpload
 		(
 			{
-				url:'data/upload_img.php',
+				url:'data/upload_img.php?id='+idArt+'&class='+clas,
 				secureuri:false,
 				fileElementId:'fileToUpload',
-				data: { file:jQuery("#fileToUpload").val(), class: 'artista', id:jQuery("[name=element_8_edit]select option:selected").val() },
+				data: { file:jQuery("#fileToUpload").val() },
 				dataType: 'file',
 				beforeSend:function()
 				{
-					$("#loading").show();
+					$("#loadingImg").show();
 				},
 				complete:function()
 				{
-					$("#loading").hide();
+					$("#loadingImg").hide();
 				},				
 				success: function (data, status)
 				{

@@ -15,6 +15,29 @@ div.Header-png
 	float:left;
 	position:relative;
 	width: 560px;
+	min-width: 550px;
+	min-height: 800px;
+}
+
+#loading {
+	z-index:1000;
+	position:fixed;
+	display: none;
+	background-image: url('../images/ajax-loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 550px;
+	height: 400px;
+}
+#loadingBusqueda {
+	z-index:1000;
+	position:fixed;
+    display: none;
+	background-image: url('../images/ajax-loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 550px;
+	height: 200px;
 }
 
 
@@ -52,6 +75,8 @@ div.Header-png
 	z-index:0;
 	margin-left: 10px;
 	width: 550px;
+	min-width: 550px;
+	min-height: 800px;
 	box-shadow: 4px 4px 4px #666;
 	-moz-box-shadow: 4px 4px 4px #666;
 	-webkit-box-shadow: 4px 4px 4px #666;
@@ -106,6 +131,8 @@ border: 0px;
 	z-index:0;
 	margin-left: 10px;
 	width: 550px;
+	min-width: 550px;
+	min-height: 800px;
 	box-shadow: 4px 4px 4px #666;
 	-moz-box-shadow: 4px 4px 4px #666;
 	-webkit-box-shadow: 4px 4px 4px #666;
@@ -121,8 +148,22 @@ border: 0px;
 	position:relative;
 	z-index:0;
 	margin-left: 10px;
-	width: 540px;
+	width: 545px;
+	min-width: 545px;
+	
 
+	
+}
+.bandaContent
+{
+	display:none;
+	float:left;
+	position:relative;
+	z-index:0;
+	margin-left: 10px;
+	width: 545px;
+	min-width: 545px;
+	
 	
 }
 .CDContent
@@ -133,8 +174,9 @@ border: 0px;
 	position:relative;
 	z-index:0;
 	margin-left: 10px;
-	width: 540px;
-
+	width: 550px;
+	min-width: 550px;
+	min-height: 800px;
 	
 }
 .right
