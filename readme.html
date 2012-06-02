@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>IAW - Proyecto 2 - Pecorari&Schwindt</title>
+</head>
+<body style="text-align: left">
+	<h1>README</h1>
+	<h2>[Proyecto 3, Ingenier&iacute;a de Aplicaciones Web 2012] By Enzo Pecorari & Diego Schwindt</h2>
+	<p>Cat&aacute;logo de CD de artistas.</p>
+	
+	<h3>Usuario admin:</h3>
+	<ul>
+		<li>User admin / Pass admin</li>
+	</ul>
+	
+	<h3>Navegadores soportados</h3>
+	<ul>
+		<li>El sitio fue testeado y optimizado para Firefox (v12) y Google Chrome (v18)</li>
+	</ul>
+	
+	<h3>To Do list: Por cuestiones de tiempo hay funcionalidades que quedarona medio implementar..</h3>
+	<ul>
+		<li>Agregado y upload de imágenes. Está implementado a nivel servidor, falta agregar la funcionalidad en la interfaz cliente</li>
+		<li>Bugs y mejoras en la interfaz gráfica</li>
+	</ul>
+	
+	<h3>Cuestiones técnicas</h3>
+	<ul>
+		<li>En el cliente la interacción se realiza enteramente por javascript, sin recargar la página, ni pedir html enteros al servidor</li>
+		<li>Mediante javascript se realiza reescritura e interpretación del URL. Con el método pushState de HTML5 y el evento popState, se puede navegar con los botones back y forward del browser</li>
+		<li>Los servicios provistos por el servidor, devuelven resultados en formato JSON. Todos estos servicios (obtener artista, CDs, busqueda, administracion, configuración, etc) se piden mediante AJAX</li>
+	</ul>
+	
+	<h3>Iframe</h3>
+	<ul>
+		<li>Para realizar una búsqueda y obtener una página en modo iframe, el URL debe ser <i>/index.php?iframe=true&busqueda=true&parametro=valor</i></li>
+		<li>La busqueda puede ser genérica (por cualquier campo), usando el parámetro <i>buscar</i>. Si no, puede usarse cualquiera de los parámetros que se muestran en la búsqueda avanzada</li>
+		<li><b>Ejemplos</b></li>
+		<li><div><i>index.php?iframe=true&showCD=1</i></div><iframe src="index.php?iframe=true&showCD=1" width=600px height=400px></iframe></li>
+			<li><div><i>index.php?iframe=true&busqueda=true&cancion=a</i></div><iframe src="index.php?iframe=true&busqueda=true&cancion=a" width=600px height=400px></iframe></li>
+	</ul>
+	
+	
+	
+	
+</body>
+</html>

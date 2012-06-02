@@ -124,6 +124,8 @@ div#fondo {
 	min-width:51px;
 	min-height:51px;
 }
+
+
 .left
 {
 	float:left;
@@ -403,7 +405,6 @@ width:200px;
 }
 
 #example .stage img {
-	float: left;
 	margin-right: 20px;
 }
 

@@ -17,7 +17,9 @@ function getUrlVars() {
 
 function pedirPagina(query,state){
 	jQuery('#loadingBusqueda').show();
+	jQuery("#HomeContent").hide("slow");
 	url= 'data/cds.php?'+query+'&page=1';
+
 	s = "?busqueda=true&"+query;
 	if(state && location.search != s) {
 		window.history.pushState("index.php?busqueda&"+query, "Busqueda", "index.php"+s);
@@ -45,6 +47,8 @@ function pedirPagina(query,state){
 		});
 		jQuery('#loadingBusqueda').hide();
 		jQuery("#BusquedaContent").show("slow");
+		jQuery('#ItemContent').show('slow');
+		jQuery('#MainContent').show('slow');
 		
 	});
   
@@ -168,6 +172,45 @@ function volverAutores(){
 	
 jQuery(document).ready(function($) {
   
+
+	
+	if(getUrlVars()['showCD']) {
+		verCD(getUrlVars()['showCD']);
+	}
+	else if (getUrlVars()['showArtist']) {
+		loadItem(getUrlVars()['showArtist']);
+	}
+	else if (getUrlVars()['busqueda']) {
+		
+		if (getUrlVars()['buscar']) {
+			
+			pedirPagina('buscar='+getUrlVars()['buscar'],true);
+		}
+		else if (getUrlVars()['cancion']) {
+			
+			pedirPagina('cancion='+getUrlVars()['cancion'],true);
+		}
+	else if (getUrlVars()['tag']) {
+			
+			pedirPagina('tag='+getUrlVars()['tag'],true);
+		}
+	else if (getUrlVars()['cd']) {
+		
+		pedirPagina('cd='+getUrlVars()['cd'],true);
+	}
+	else if (getUrlVars()['artista']) {
+		
+		pedirPagina('artista='+getUrlVars()['artista'],true);
+	}
+	else if (getUrlVars()['anio']) {
+		
+		pedirPagina('anio='+getUrlVars()['anio'],true);
+	}
+else if (getUrlVars()['cd']) {
+		
+		pedirPagina('cd='+getUrlVars()['cd'],true);
+	}
+	}
 	
 	$('span.autores').click(mostrarAutores);
 	$('a.volverAutores').click(volverAutores);
@@ -181,7 +224,7 @@ jQuery(document).ready(function($) {
 	
 	jQuery.getJSON('data/destacados.php',function(json) {
 		for(i=0;i<json.CDs.length;i++){
-			jQuery(".stage").append("<div class='item'><img width='300px' height='300px' src='"+json.CDs[i].imagen.url+"' alt='destacado'/><div class='text'><h3>"+json.CDs[i].artista+"</h3><h4>"+json.CDs[i].nombre+"</h4><p>"+json.CDs[i].genero+"</p></div></div>");
+			jQuery(".stage").append("<div class='item' style='text-align: center; font-size=medium;'><img width='300px' height='300px' src='"+json.CDs[i].imagen.url+"' alt='destacado'/><div class='text'><h3>"+json.CDs[i].artista+"</h3><h4>"+json.CDs[i].nombre+"</h4><p>"+json.CDs[i].genero+"</p></div></div>");
 			jQuery(".thumbnails").append("<li><a rel='quickbox' href='#'><img width='90px' height='90px' src='"+json.CDs[i].thumbnail+"'/></a></li>");
 		}
 		  new Carousel('example');
@@ -353,12 +396,6 @@ jQuery(document).ready(function($) {
 	});
 	
 	
-	if(getUrlVars()['showCD']) {
-		verCD(getUrlVars()['showCD']);
-	}
-	else if (getUrlVars()['showArtist']) {
-		loadItem(getUrlVars()['showArtist']);
-	}
 	
 	
 	
@@ -375,7 +412,7 @@ jQuery(document).ready(function($) {
 
 	});
 	jQuery("#Backup").click(function(){
-		window.open("index.php", '_blanck');
+		window.open("data/backup.php", '_blank');
 	});
 
 });  
