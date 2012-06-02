@@ -58,6 +58,30 @@
 			</div> 
 			</li>
 			<div  id="addArtistSubmin" title="Agregar">Agregar</div>
+			
+			<li id="li_211" style="display:none"  >
+		<label class="description" for="element_212">Puede hacer el upload de una imagen o ingresar un URL</label></p>
+		<div>
+
+			<label class="description" for="element_212">Subir imagen desde URL</label>
+			<div>
+				<input id="element_212" name="element_212" class="element text medium" type="text" maxlength="255" value=""/> 
+				<div  id="imageArtistSubmitURL2" title="Editar">Subir URL</div>
+			</div> 
+			<label class="description" for="element_213">Subir imagen desde tu computadora</label>
+			<div>
+			<input id="fileToUpload" type="file" size="45" name="fileToUpload" class="input">
+				<input id="element_213" name="element_213" class="element text medium"  type="file"/> 
+				<div  id="imageArtistSubmitupload2" title="Editar">Subir imagen</div>
+			</div> 
+
+		</div>
+				<div style="padding-bottom:50px;">
+				<div  id="imageArtistSubmitlisto2" title="Listo">Listo</div>
+				</div>
+
+		</li>
+		
 		</div>
 			
 
@@ -183,9 +207,33 @@
 				<input id="element_205" name="element_205" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
 		</div>
+		
+			
 				<div style="padding-bottom:50px;">
 			    <div  id="addCDSubmit" title="Agregar">Agregar</div>
 				</div>
+				<li id="li_311" style="display:none"  >
+		<label class="description" for="element_312">Puede hacer el upload de una imagen o ingresar un URL</label></p>
+		<div>
+
+			<label class="description" for="element_312">Subir imagen desde URL</label>
+			<div>
+				<input id="element_312" name="element_312" class="element text medium" type="text" maxlength="255" value=""/> 
+				<div  id="imageArtistSubmitURL3" title="Editar">Subir URL</div>
+			</div> 
+			<label class="description" for="element_313">Subir imagen desde tu computadora</label>
+			<div>
+			<input id="fileToUpload" type="file" size="45" name="fileToUpload" class="input">
+				<input id="element_313" name="element_313" class="element text medium"  type="file"/> 
+				<div  id="imageArtistSubmitupload3" title="Editar">Subir imagen</div>
+			</div> 
+
+		</div>
+				<div style="padding-bottom:50px;">
+				<div  id="imageArtistSubmitlisto3" title="Listo">Listo</div>
+				</div>
+
+		</li>
 
 		</li>		
 		
@@ -243,6 +291,32 @@
 		</div>
 			    <div  id="editCDSubmit" title="Editar">Editar</div>
 				<div  id="deleteCDSubmit" title="Borrar">Borrar</div>
+				<div  id="imageArtistSubmit2" title="Agregar imagen">Agregar imagen</div>
+
+
+
+		</li>
+		<li id="li_411" style="display:none"  >
+		<label class="description" for="element_412">Puede hacer el upload de una imagen o ingresar un URL</label></p>
+		<div>
+
+			<label class="description" for="element_412">Subir imagen desde URL</label>
+			<div>
+				<input id="element_412" name="element_412" class="element text medium" type="text" maxlength="255" value=""/> 
+				<div  id="imageArtistSubmitURL4" title="Editar">Subir URL</div>
+			</div> 
+			<label class="description" for="element_413">Subir imagen desde tu computadora</label>
+			<div>
+			<input id="fileToUpload" type="file" size="45" name="fileToUpload" class="input">
+				<input id="element_413" name="element_413" class="element text medium"  type="file"/> 
+				<div  id="imageArtistSubmitupload4" title="Editar">Subir imagen</div>
+			</div> 
+
+		</div>
+				<div style="padding-bottom:50px;">
+				<div  id="imageArtistSubmitlisto4" title="Listo">Listo</div>
+				</div>
+
 		</li>
 		</ul>
 		<div class="formReturn">
@@ -363,12 +437,62 @@
 		      primary: 'ui-icon ui-icon-check',
 		   }
 		});
+		jQuery("#imageArtistSubmitlisto2").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-check',
+		   }
+		});
+		jQuery("#imageArtistSubmitlisto3").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-check',
+		   }
+		});
+			jQuery("#imageArtistSubmitlisto4").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-check',
+		   }
+		});
+		jQuery("#imageArtistSubmitlisto2").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-check',
+		   }
+		});
 		jQuery("#imageArtistSubmitupload").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-document',
 		   }
 		});
+		jQuery("#imageArtistSubmitupload2").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-document',
+		   }
+		});
+		jQuery("#imageArtistSubmitupload3").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-document',
+		   }
+		});
+		jQuery("#imageArtistSubmitupload4").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-document',
+		   }
+		});
 		jQuery("#imageArtistSubmitURL").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-image',
+		   }
+		});
+		jQuery("#imageArtistSubmitURL2").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-image',
+		   }
+		});
+		jQuery("#imageArtistSubmitURL3").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-image',
+		   }
+		});
+		jQuery("#imageArtistSubmitURL4").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-image',
 		   }
@@ -384,6 +508,11 @@
 		   }
 		});
 		jQuery("#imageArtistSubmit").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-image',
+		   }
+		});
+				jQuery("#imageArtistSubmit2").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-image',
 		   }
@@ -461,6 +590,11 @@
 		});
 		jQuery("#imageArtistSubmit").click(function(){
 			jQuery('#li_10').hide("slow");
+			jQuery('#li_111').show("slow");
+		
+		});
+		jQuery("#imageArtistSubmit2").click(function(){
+			jQuery('#li_19').hide("slow");
 			jQuery('#li_111').show("slow");
 		
 		});

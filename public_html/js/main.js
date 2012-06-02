@@ -198,6 +198,7 @@ jQuery(document).ready(function($) {
 			else{
 				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El artista <strong>"+dato.artista.artista+"</strong> fue creado correctamente</p>");
 				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
+				jQuery("#li_211").show('slow');
 			}
 			
 		});
@@ -270,9 +271,9 @@ jQuery(document).ready(function($) {
 				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
 				}
 			else{
-			alert(msg);
 				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El CD <strong>"+dato.cd.nombre+"</strong> de "+dato.cd.artista+" fue creado correctamente</p>");
-				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
+				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow');
+				jQuery("#li_311").show();				
 			}
 		});
 	//	location.reload();
@@ -284,7 +285,7 @@ jQuery(document).ready(function($) {
 			url: "data/delete_artist.php",
 			data: { id: jQuery("[name=element_8_edit]select option:selected").val() }
 			}).done(function( msg ) {
-			alert( "Data Saved: " + msg );
+
 		});
 	//	location.reload();
 	});
@@ -294,7 +295,7 @@ jQuery(document).ready(function($) {
 			url: "data/delete_cd.php",
 			data: { id: jQuery("[name=element_15_edit]select option:selected").val() }
 			}).done(function( msg ) {
-			alert( "Data Saved: " + msg );
+
 		});
 	//	location.reload();
 	});
@@ -382,7 +383,7 @@ jQuery(document).ready(function($) {
 			url: "data/add_img.php",
 			data: { class: 'artista', id:jQuery("[name=element_8_edit]select option:selected").val(), url:jQuery("#element_112").val() }
 			}).done(function( msg ) {
-			alert( "Data Saved: " + msg );
+
 		});
 		location.reload();
 	});
