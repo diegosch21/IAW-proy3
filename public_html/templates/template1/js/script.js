@@ -43,6 +43,12 @@ jQuery(function(){
 		   }
 		});
 	
+	jQuery('#buttonDestacados').button({
+		   icons: {
+			      primary: 'ui-icon ui-icon-home',
+			   }
+			});
+	
 
 	jQuery('.bandaButton').each(function(index) {
 		 $(this).button();

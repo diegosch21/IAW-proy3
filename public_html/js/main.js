@@ -154,9 +154,24 @@ function actualizarMG(idCD) {
 		data: { id: idCD }
 		});
 }
+
+function mostrarAutores() {
+
+	jQuery('#fondo').show();
+	jQuery("#autores").show();
+}
+
+function volverAutores(){
+	jQuery('#fondo').hide();
+	jQuery("#autores").hide();
+}
 	
 jQuery(document).ready(function($) {
   
+	
+	$('span.autores').click(mostrarAutores);
+	$('a.volverAutores').click(volverAutores);
+	
 	$(window).bind('popstate', function(event) {
 		if (event.originalEvent.state) {
 			location.href = event.originalEvent.state;
@@ -356,7 +371,7 @@ jQuery(document).ready(function($) {
 			}).done(function( msg ) {
 
 		});
-		location.reload();
+		//location.reload();
 
 	});
 
