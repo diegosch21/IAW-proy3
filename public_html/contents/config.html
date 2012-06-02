@@ -15,7 +15,7 @@
 		<form id="staff_feedbackform">
 		<li class="section_break" id="break0">
 			
-			<div style="cursor:pointer" id="desplegarArtistSubmin" title="Registra un nuevo artista"><h3>Establecer parámetros de configuración general de la página</h3></div>
+			<div style="cursor:pointer" id="desplegarArtistSubmin" title="Establecer parametros"><h3>Establecer parámetros de configuración general de la página</h3></div>
 		</p>
 		</li>
 		<ul >		
@@ -68,9 +68,18 @@
 			<option value='12'>12</option>
 			<option value='15'>15</option>
 		</select></p>
-		</li>
 		<div  id="guardarCambios" title="guardar">Guardar configuración</div>
 		</div>
+		
+		</li>
+		<li class="section_break" id="break">
+			
+			<div style="cursor:pointer" id="desplegarBackup" title="Backup"><h3>Realizar back-up del servidor</h3></div>
+		</p>
+		<div style="display:none" id="divBackup"><div  id="Backup" title="Back up">Back up</div></div>
+		</li>
+		<ul >		
+
 
 		</ul>
 	
@@ -98,6 +107,11 @@
 		      primary: 'ui-icon ui-icon-disk',
 		   }
 		});
+		jQuery("#Backup").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-folder-collapsed',
+		   }
+		});
 		jQuery("#break0").click(function(){
 
 			if(jQuery("#li_7").css("display")=="none"){
@@ -106,6 +120,16 @@
 			}
 			 else{
 				jQuery("#li_7").hide("slow");
+			}
+		});
+		jQuery("#break").click(function(){
+
+			if(jQuery("#divBackup").css("display")=="none"){
+				jQuery("#divBackup").show("slow");
+
+			}
+			 else{
+				jQuery("#divBackup").hide("slow");
 			}
 		});
 		

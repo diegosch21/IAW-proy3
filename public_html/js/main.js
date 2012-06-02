@@ -374,6 +374,9 @@ jQuery(document).ready(function($) {
 		//location.reload();
 
 	});
+	jQuery("#Backup").click(function(){
+		window.open("index.php", '_blanck');
+	});
 
 });  
 
