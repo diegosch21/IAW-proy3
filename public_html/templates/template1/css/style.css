@@ -1,3 +1,22 @@
+div.Header-png
+{
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -480px;
+	width: 960px;
+	height: 150px;
+	background-image: url('../images/HeaderRockola.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+.MainContent {
+	float:left;
+	position:relative;
+	width: 560px;
+}
+
 
 .Sheet
 {
@@ -195,17 +214,7 @@ margin-bottom:10px;
 	width:100%;
 }
 
-div.Header-png
-{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 960px;
-	height: 150px;
-	background-image: url('../images/HeaderRockola.png');
-	background-repeat: no-repeat;
-	background-position: left top;
-}
+
 
 /*demo page css*/
 body{ font: 62.5% "Trebuchet MS", sans-serif;}
@@ -377,7 +386,7 @@ border: 0px;
 }
 .cd{
 	width: 150px;
-		height: 200px!important!;
+		height: 200px!important;
 }
 
 .jPaginate{
@@ -500,7 +509,7 @@ margin-left:10px;
 margin-bottom:10px;
 	float:left;
 	width: 160px;
-	height: 180px!important!;
+	height: 180px!important;
 	top: 100px;
 	right: 0px;
 	z-index: 1000;

@@ -3,33 +3,24 @@ class descriptor
 {
 	// Variable arreglo del descriptor
 	var $tags;
+	var $xml;
+	
 
 	// Constructor de la clase Descriptor
-	function descriptor($ruta)
+	function __construct($ruta,$temp_name)
 	{
-	   $this->cargaInicial($ruta);
+	   $this->xml = simplexml_load_file($ruta);
+	   $this->cargar('template',$temp_name);
 	}
 
-	function cargaInicial($ruta)
+	function cargar($campo,$temp)
 	{
-	  $sx = simplexml_load_file($ruta);
-	  $this->agregarItem(trim('template'), trim($sx->template));
-  	  $this->agregarItem(trim('titulo'), trim($sx->titulo));
-  	  $this->agregarItem(trim('header'), trim($sx->header));
-  	  $this->agregarItem(trim('footer'), trim($sx->footer));
-  	  $this->agregarItem(trim('anio'), trim($sx->anio));
-	  $this->agregarItem(trim('categorias'), trim($sx->categorias));
-	  $this->agregarItem(trim('Homecontent'), trim($sx->Homecontent));
-	  $this->agregarItem(trim('Itemcontent'), trim($sx->Itemcontent));
-	  $this->agregarItem(trim('Contactcontent'), trim($sx->Contactocontent));
-	  $this->agregarItem(trim('Bandascontent'), trim($sx->Bandascontent));
-	  $this->agregarItem(trim('add'), trim($sx->add));
-	  $this->agregarItem(trim('edit'), trim($sx->edit));
-	  $this->agregarItem(trim('delete'), trim($sx->delete));
-	  $this->agregarItem(trim('config'), trim($sx->config));
-	  $this->agregarItem(trim('backup'), trim($sx->backup));
-	  
+	  $s = trim($campo);	
+	  $t = trim($temp);
+	  $this->agregarItem($s, trim($this->xml->$t));
+  	   
 	}
+	
 	// FunciÃ³n que agrega un nuevo item al arreglo de tags.
 	function agregarItem($campo, $valor)
 	{
