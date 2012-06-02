@@ -27,6 +27,8 @@ if (isset($_SESSION['user'])){
 	if ($_SESSION['user']=='admin'){   
 		if (!(empty($_GET['edit']))&&$_GET['edit']==true)
 			$maincontent = 'admin';
+		if (!(empty($_GET['config']))&&$_GET['config']==true)
+			$maincontent = 'config';
 		$login = 'menuAdmin';
 	}
 	else {

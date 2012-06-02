@@ -16,5 +16,6 @@
 	<loginError>public_html/contents/loginError.html</loginError>
 	<menuAdmin>public_html/contents/menuAdmin.html</menuAdmin>
 	<admin>public_html/contents/admin.html</admin>
+	<config>public_html/contents/config.html</config>
 	<verURL>public_html/contents/verURL.php</verURL>
 </conf>

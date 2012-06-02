@@ -240,6 +240,24 @@ jQuery(document).ready(function($) {
 		});
 	//	location.reload();
 	});
+	jQuery("#guardarCambios").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "data/config.php",
+			data: { mode_destacados: jQuery("[name=element_58]select option:selected").val(),mostrar_destacados: true,cant_destacados: jQuery("[name=element_59]select option:selected").val(), order: jQuery("[name=element_510]select option:selected").val(),mode_order: jQuery("[name=element_511]select option:selected").val(),paginado: jQuery("[name=element_512]select option:selected").val(),busqueda: "cd"}
+			}).done(function( msg ) {
+			dato=(eval('(' + msg + ')'));
+			if (dato.error!=undefined){
+				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
+				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
+				}
+			else{
+				jQuery("#mensajeAviso").html("<strong>Exito: </strong> Configuración guardada");
+				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
+			}
+		});
+	//	location.reload();
+	});
 	jQuery("#addCDSubmit").click(function(){
 		$.ajax({
 			type: "POST",
@@ -367,9 +385,6 @@ jQuery(document).ready(function($) {
 			alert( "Data Saved: " + msg );
 		});
 		location.reload();
-	});
-	jQuery("#volverAlHome").click(function(){
-		
 	});
 
 });  

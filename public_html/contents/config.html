@@ -1,0 +1,115 @@
+﻿<div class="ui-state-error ui-corner-all" style="padding: 5px, 5px, 5px, 5px; display:none;" id="cartelError">
+
+				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+				<div id="mensajeError"></div>
+		</div>
+<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em; display:none;" id="cartelAviso">
+
+				<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+<div id="mensajeAviso"></div>
+
+
+			</div>
+
+<h2>Página de configuración</h2>
+		<form id="staff_feedbackform">
+		<li class="section_break" id="break0">
+			
+			<div style="cursor:pointer" id="desplegarArtistSubmin" title="Registra un nuevo artista"><h3>Establecer parámetros de configuración general de la página</h3></div>
+		</p>
+		</li>
+		<ul >		
+		<div id="li_7" style="display:none"> 
+		<li id="li_8">
+		<label class="description">Parámetro para obtener los CDs destacados</label>
+		<select class="element select medium" id="mode_destacados" name="element_58"> 
+			<option value='visitas' >Cantidad de visitas</option>"
+			<option value='megusta' >Cantidad de Me Gusta</option>"
+			<option value='nuevo' >Últimos CD</option>"
+			<option value='random' >Random</option>"
+		</select></p>		
+		</li>
+		<li id="li_9">
+		<label class="description">Cantidad de CDs destacados a mostrar</label>
+		<select class="element select medium" id="cant_destacados" name="element_59"> 
+			<option value='4'>4</option>
+			<option value='5'>5</option>
+			<option value='6' >6</option>
+			<option value='7' >7</option>
+			<option value='8' >8</option>
+			<option value='9' >9</option>
+			<option value='10' >10</option>
+		</select></p>
+		</li>	
+		<li id="li_10">
+		<label class="description">Parámetro predefinido para ordenar los resultados</label>
+		<select class="element select medium" id="order" name="element_510"> 
+			<option value='nombre'>Orden alfabético</option>
+			<option value='anio'>Año</option>
+			<option value='visitas' >Cantidad de visitas</option>
+			<option value='megusta' >Cantidad de Me Gusta</option>
+		</select></p>
+		</li>
+		</li>	
+		<li id="li_11">
+		<label class="description">Modo predefinido para ordenar los resultados</label>
+		<select class="element select medium" id="mode" name="element_511"> 
+			<option value='ASD'>Ascendente</option>
+			<option value='DESC'>Descendente</option>
+		</select></p>
+		</li>
+		</li>	
+		<li id="li_12">
+		<label class="description">Cantidad de resultados por página</label>
+		<select class="element select medium" id="paginado" name="element_512"> 
+			<option value='3'>3</option>
+			<option value='6'>6</option>
+			<option value='9'>9</option>
+			<option value='12'>12</option>
+			<option value='15'>15</option>
+		</select></p>
+		</li>
+		<div  id="guardarCambios" title="guardar">Guardar configuración</div>
+		</div>
+
+		</ul>
+	
+		<div class="formReturn">
+
+			<div><a href="index.php" id="volverAlHomeC">Volver al home</a></div>
+		</div>
+
+</form>
+	<script>
+		jQuery.getJSON('data/config.php',function(data) {
+			jQuery("[name=element_59]select option[value="+data.cant_destacados+"]").attr("selected", "selected");
+			jQuery("[name=element_58]select option[value="+data.mode_destacados+"]").attr("selected", "selected");
+			jQuery("[name=element_510]select option[value="+data.order+"]").attr("selected", "selected");
+			jQuery("[name=element_511]select option[value="+data.mode+"]").attr("selected", "selected");
+			jQuery("[name=element_512]select option[value="+data.paginado+"]").attr("selected", "selected");
+		});	
+		jQuery("#volverAlHomeC").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-circle-check',
+		   }
+		});
+		jQuery("#guardarCambios").button({
+		   icons: {
+		      primary: 'ui-icon ui-icon-disk',
+		   }
+		});
+		jQuery("#break0").click(function(){
+
+			if(jQuery("#li_7").css("display")=="none"){
+				jQuery("#li_7").show("slow");
+
+			}
+			 else{
+				jQuery("#li_7").hide("slow");
+			}
+		});
+		
+		</script>
+
+
+	
