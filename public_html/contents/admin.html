@@ -1,4 +1,4 @@
-﻿<div class="ui-state-error ui-corner-all" style="padding: 5px, 5px, 5px, 5px; display:none;" id="cartelError">
+<div class="ui-state-error ui-corner-all" style="padding: 5px, 5px, 5px, 5px; display:none;" id="cartelError">
 
 				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
 				<div id="mensajeError"></div>
@@ -11,7 +11,7 @@
 
 			</div>
 
-<h2>Página de configuración</h2>
+<h2>P&aacute;gina de configuraci&oacute;n</h2>
 		<form id="staff_feedbackform">
 		<li class="section_break" id="break0">
 			
@@ -20,16 +20,16 @@
 		</li>
 		<ul >			
 		<li id="li_7" style="display:none">
-		<label class="description">Género</label>
+		<label class="description">G&eacute;nero</label>
 		<div>
 		<select class="element select medium" id="generoList" name="element_7"> 
 			<option value='' selected='selected'></option>"
-			<option value='nuevo' >Nuevo género</option>"
+			<option value='nuevo' >Nuevo g&eacute;nero</option>"
 		</select>
 		</li>	
 		<li id="li_88" style="display:none;">
 		<div>
-		<label class="description">Nuevo Género</label>
+		<label class="description">Nuevo G&eacute;nero</label>
 			<input id="textNuevoGenero" name="element_88" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div>
 		</li>
@@ -59,7 +59,27 @@
 			</li>
 			<div  id="addArtistSubmin" title="Agregar">Agregar</div>
 		</div>
-			
+		<li id="newImgArt" style="display:none"  >
+		<label class="description" for="element_112">Puede hacer el upload de una imagen o ingresar un URL</label></p>
+		<div>
+
+			<label class="description" for="newImgArtURL">Subir imagen desde URL</label>
+			<div>
+				<input id="newImgArtURL" name="element_112" class="element text medium" type="text" maxlength="255" value=""/> 
+				<div  id="imageArtistSubmitURL" title="Agregar">Agregar imagen</div>
+			</div> 
+			<label class="description" for="element_113">Subir imagen desde tu computadora</label>
+			<div>
+			<input id="newImgArtUpload" type="file" size="45" name="fileToUpload" class="input">
+				<div  id="imageArtistSubmitupload" title="Agregar">Subir imagen</div>
+			</div> 
+
+		</div>
+				<div style="padding-bottom:50px;">
+				<div  id="imageArtistSubmitlisto" title="Listo">Listo</div>
+			</div>
+
+		</li>
 
 		</ul>
 
@@ -69,7 +89,7 @@
 		</li>
 		<ul >			
 		<li id="li_8" style="display:none">
-		<label class="description">Género</label>
+		<label class="description">G&eacute;nero</label>
 		<div>
 		<select class="element select medium" id="generoListEdir" name="element_7_edit"> 
 			<option value='' selected='selected'></option>"
@@ -92,7 +112,7 @@
 			<div>
 				<input id="element_101" name="element_101" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
-			<label class="description" for="element_102">Género </label>
+			<label class="description" for="element_102">G&eacute;nero </label>
 			<div>
 				<input id="element_102" name="element_102" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
@@ -108,14 +128,15 @@
 			<div>
 				<input id="element_105" name="element_105" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
-			<label class="description" for="element_105">Imágenes cargadas: </label></p>
+			<label class="description" for="element_105">Im&aacute;genes cargadas: </label></p>
 			<div id="imagenescargadas">
 				
 			</div> 
+			<div hidden=true id='cantimg'></div>
 		</div>
 				<div style="padding-bottom:50px;">
 				<div  id="editArtistSubmit" title="Editar">Editar</div>
-				<div  id="imageArtistSubmit" title="Agregar imagen">Agregar imagen</div>
+				<div  id="imageArtistSubmit" title="Agregar imagen">Cambiar imagen</div>
 				<div  id="deleteArtistSubmit" title="Borrar">Borrar</div>
 				</div>
 
@@ -132,7 +153,6 @@
 			<label class="description" for="element_113">Subir imagen desde tu computadora</label>
 			<div>
 			<input id="fileToUpload" type="file" size="45" name="fileToUpload" class="input">
-				<input id="element_113" name="element_113" class="element text medium"  type="file"/> 
 				<div  id="imageArtistSubmitupload" title="Editar">Subir imagen</div>
 			</div> 
 
@@ -149,7 +169,7 @@
 		</li>
 		<ul >			
 		<li id="li_13" style="display:none">
-		<label class="description">Género</label>
+		<label class="description">G&eacute;nero</label>
 		<div>
 		<select class="element select medium" id="generoListAddcd" name="element_11_edit"> 
 			<option value='' selected='selected'></option>"
@@ -170,7 +190,7 @@
 			<div>
 				<input id="element_200" name="element_200" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
-			<label class="description" for="element_201">Año </label>
+			<label class="description" for="element_201">A�o </label>
 			<div>
 				<input id="element_201" name="element_201" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
@@ -197,7 +217,7 @@
 		</li>
 		<ul >			
 		<li id="li_16" style="display:none">
-		<label class="description">Género</label>
+		<label class="description">G&eacute;nero</label>
 		<div>
 		<select class="element select medium" id="generoListEditcd" name="element_13_edit"> 
 			<option value='' selected='selected'></option>"
@@ -228,7 +248,7 @@
 			<div>
 				<input id="element_301" name="element_301" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
-			<label class="description" for="element_303">Año </label>
+			<label class="description" for="element_303">A�o </label>
 			<div>
 				<input id="element_303" name="element_303" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
@@ -251,226 +271,7 @@
 		</div>
 
 </form>
-	<script>
-
-			   jQuery.getJSON('data/categorias.php?',function(data) {
-					for(i=0;i<data.length;i++){
-					jQuery('#generoList').append("<option value='"+data[i].genero+"' >"+data[i].genero+"</option>");
-					jQuery('#generoListEdir').append("<option value='"+data[i].genero+"' >"+data[i].genero+"</option>");
-					jQuery('#generoListAddcd').append("<option value='"+data[i].genero+"' >"+data[i].genero+"</option>");
-					jQuery('#generoListEditcd').append("<option value='"+data[i].genero+"' >"+data[i].genero+"</option>");
-					}
-				});	
-				jQuery('[name=element_7]').change(function () {
-					if(jQuery("[name=element_7]select option:selected").val()=="nuevo"){
-							jQuery("#li_88").show("slow");
-						}
-						else{
-							jQuery("#li_88").hide("slow");
-						}
-					jQuery('#divDatos').show("slow");
-				});	
-				jQuery('[name=element_7_edit]').change(function () {
-					jQuery('#artistListEdir').html("<option value='' selected='selected'></option>");
-					jQuery('#li_9').show("slow");
-					jQuery('#li_10').hide("slow");
-					jQuery.getJSON('data/categorias.php?',function(data) {
-						for(i=0;i<data.length;i++){
-							if(data[i].genero==jQuery("[name=element_7_edit]select option:selected").val()){
-								for(j=0;j<data[i].artistas.length;j++)
-									jQuery('#artistListEdir').append("<option value='"+data[i].artistas[j].id+"' >"+data[i].artistas[j].artista+"</option>");
-							}
-						
-						}
-					});
-				});				
-				jQuery('[name=element_8_edit]').change(function () {
-					//jQuery('#artistListEdir').html("<option value='' selected='selected'></option>");
-					jQuery('#li_10').show("slow");
-					jQuery.getJSON('data/artist.php?id='+jQuery("[name=element_8_edit]select option:selected").val(),function(data) {	
-						jQuery('#element_101').val(data.artista);
-						jQuery('#element_102').val(data.genero);
-						jQuery('#element_103').val(data.nacionalidad);
-						jQuery('#element_104').val(data.banda);
-						jQuery('#element_105').val(data.link);
-						for(i=0;i<data.imagenes.length;i++){
-							jQuery('#imagenescargadas').append("<div class='tag2'>"+data.imagenes[i].url+"<div>");
-						}
-					});
-				});
-				jQuery('[name=element_11_edit]').change(function () {
-					jQuery('#artistListAddcd').html("<option value='' selected='selected'></option>");
-					jQuery('#li_14').show("slow");
-					jQuery.getJSON('data/categorias.php?',function(data) {
-						for(i=0;i<data.length;i++){
-							if(data[i].genero==jQuery("[name=element_11_edit]select option:selected").val()){
-								for(j=0;j<data[i].artistas.length;j++)
-									jQuery('#artistListAddcd').append("<option value='"+data[i].artistas[j].id+"' >"+data[i].artistas[j].artista+"</option>");
-							}
-						
-						}
-					});
-				});
-				jQuery('[name=element_12_edit]').change(function () {
-					//jQuery('#artistListEdir').html("<option value='' selected='selected'></option>");
-					jQuery('#li_15').show("slow");
-
-					});
-				jQuery('[name=element_13_edit]').change(function () {
-					jQuery('#li_18').hide("slow");
-					jQuery('#li_19').hide("slow");
-					jQuery('#cdListEditcd').html("<option value='' selected='selected'></option>");
-					jQuery('#artistListEditcd').html("<option value='' selected='selected'></option>");
-					jQuery('#li_17').show("slow");
-					jQuery.getJSON('data/categorias.php?',function(data) {
-						for(i=0;i<data.length;i++){
-							if(data[i].genero==jQuery("[name=element_13_edit]select option:selected").val()){
-								for(j=0;j<data[i].artistas.length;j++)
-									jQuery('#artistListEditcd').append("<option value='"+data[i].artistas[j].id+"' >"+data[i].artistas[j].artista+"</option>");
-							}
-						
-						}
-					});
-				});	
-				jQuery('[name=element_14_edit]').change(function () {	
-					jQuery('#li_19').hide("slow");
-					jQuery('#cdListEditcd').html("<option value='' selected='selected'></option>");
-					jQuery('#li_18').show("slow");
-					jQuery.getJSON('data/cds.php?ar='+jQuery("[name=element_14_edit]select option:selected").val(),function(data) {
-						for(i=0;i<data.CDs.length;i++){
-							jQuery('#cdListEditcd').append("<option value='"+data.CDs[i].id+"' >"+data.CDs[i].nombre+"</option>");
-						}						
-					});
-				});	
-				jQuery('[name=element_15_edit]').change(function () {					
-						jQuery('#li_19').show("slow");
-						jQuery.getJSON('data/cd.php?id='+jQuery("[name=element_15_edit]select option:selected").val(),function(data) {	
-						jQuery('#element_301').val(data.nombre);
-						jQuery('#element_303').val(data.anio);
-						jQuery('#element_304').val(data.canciones);
-						jQuery('#element_305').val(data.link);
-					});
-				});
-
-
-		jQuery("#addArtistSubmin").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-circle-plus',
-		   }
-		});
-		jQuery("#imageArtistSubmitlisto").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-check',
-		   }
-		});
-		jQuery("#imageArtistSubmitupload").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-document',
-		   }
-		});
-		jQuery("#imageArtistSubmitURL").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-image',
-		   }
-		});
-		jQuery("#editArtistSubmit").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-pencil',
-		   }
-		});		
-		jQuery("#deleteArtistSubmit").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-trash',
-		   }
-		});
-		jQuery("#imageArtistSubmit").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-image',
-		   }
-		});
-		jQuery("#addCDSubmit").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-circle-plus',
-		   }
-		});
-		jQuery("#editCDSubmit").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-pencil',
-		   }
-		});
-		jQuery("#deleteCDSubmit").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-trash',
-		   }
-		});
-		jQuery("#volverAlHome").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-circle-check',
-		   }
-		});
-
-
-		jQuery("#break").click(function(){
-
-			if(jQuery("#li_8").css("display")=="none"){
-				jQuery("#li_8").show("slow");
-
-			}
-			 else{
-				jQuery("#li_8").hide("slow");
-				jQuery("#li_9").hide("slow");
-				jQuery("#li_10").hide("slow");
-			}
-		});
-		jQuery("#break0").click(function(){
-
-			if(jQuery("#li_7").css("display")=="none"){
-				jQuery("#li_7").show("slow");
-
-			}
-			 else{
-				jQuery("#li_7").hide("slow");
-				jQuery("#divDatos").hide("slow");
-			}
-		});
-		jQuery("#break1").click(function(){
-
-			if(jQuery("#li_13").css("display")=="none"){
-				jQuery("#li_13").show("slow");
-
-			}
-			 else{
-				jQuery("#li_13").hide("slow");
-				jQuery("#li_14").hide("slow");
-				jQuery("#li_15").hide("slow");
-
-			}
-		});
-		jQuery("#break2").click(function(){
-
-			if(jQuery("#li_16").css("display")=="none"){
-				jQuery("#li_16").show("slow");
-
-			}
-			 else{
-				jQuery("#li_16").hide("slow");
-				jQuery("#li_17").hide("slow");
-				jQuery("#li_18").hide("slow");
-				jQuery("#li_19").hide("slow");
-			}
-		});
-		jQuery("#imageArtistSubmit").click(function(){
-			jQuery('#li_10').hide("slow");
-			jQuery('#li_111').show("slow");
-		
-		});
-		jQuery("#imageArtistSubmitlisto").click(function(){
-			jQuery('#li_10').show("slow");
-			jQuery('#li_111').hide("slow");
-		
-		});
-		
-		</script>
-
+	<script type="text/javascript" src="public_html/js/admin.js"></script>
+	
 
 	
