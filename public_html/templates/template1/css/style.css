@@ -102,7 +102,16 @@ div#fondo {
 	width: 550px;
 	height: 200px;
 }
-
+#loadingAdmin {
+	z-index:1000;
+	position:fixed;
+	display: none;
+	background-image: url('../images/ajax-loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 550px;
+	height: 400px;
+}
 
 .Sheet
 {
@@ -132,6 +141,7 @@ div#fondo {
 	position:relative;
 	z-index:0;
 	width: 200px;
+	min-width: 200px;
 	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.3);
 	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
 	box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
@@ -143,10 +153,10 @@ div#fondo {
 	border-radius: .6em;
 	
 	z-index:1;
-background-color:#fff;
-  background-image: -moz-linear-gradient(top, #fff, #eee);
-  background-image: -webkit-gradient(linear, left top,left bottom, from(#fff), to(#eee));
-  background-image: linear-gradient(top, #fff, #eee);
+	background-color:#fff;
+	  background-image: -moz-linear-gradient(top, #fff, #eee);
+	  background-image: -webkit-gradient(linear, left top,left bottom, from(#fff), to(#eee));
+	  background-image: linear-gradient(top, #fff, #eee);
 }
 .HomeContent
 {
@@ -743,4 +753,14 @@ margin-bottom:2px;
 }
 .opBasicas:hover {
 	font-style: italic;
+}
+
+input.element {
+	display:inline;
+}
+
+textarea.element {
+	display:inline;
+	min-height: 150px;
+	min-width: 350px;
 }

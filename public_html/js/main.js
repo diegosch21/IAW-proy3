@@ -76,10 +76,6 @@ function verCD(cd){
 		
 	});
 	
-
-	
-	
-	
 }
 
 function cambiar(query, pagina){
@@ -169,11 +165,13 @@ function volverAutores(){
 	jQuery('#fondo').hide();
 	jQuery("#autores").hide();
 }
+
+
 	
 jQuery(document).ready(function($) {
   
 
-	
+	//Analiza URL y carga la información pedida
 	if(getUrlVars()['showCD']) {
 		verCD(getUrlVars()['showCD']);
 	}
@@ -181,35 +179,28 @@ jQuery(document).ready(function($) {
 		loadItem(getUrlVars()['showArtist']);
 	}
 	else if (getUrlVars()['busqueda']) {
-		
+	
 		if (getUrlVars()['buscar']) {
-			
 			pedirPagina('buscar='+getUrlVars()['buscar'],true);
 		}
 		else if (getUrlVars()['cancion']) {
-			
 			pedirPagina('cancion='+getUrlVars()['cancion'],true);
 		}
-	else if (getUrlVars()['tag']) {
-			
+		else if (getUrlVars()['tag']) {
 			pedirPagina('tag='+getUrlVars()['tag'],true);
 		}
-	else if (getUrlVars()['cd']) {
-		
-		pedirPagina('cd='+getUrlVars()['cd'],true);
-	}
-	else if (getUrlVars()['artista']) {
-		
-		pedirPagina('artista='+getUrlVars()['artista'],true);
-	}
-	else if (getUrlVars()['anio']) {
-		
-		pedirPagina('anio='+getUrlVars()['anio'],true);
-	}
-else if (getUrlVars()['cd']) {
-		
-		pedirPagina('cd='+getUrlVars()['cd'],true);
-	}
+		else if (getUrlVars()['cd']) {
+			pedirPagina('cd='+getUrlVars()['cd'],true);
+		}
+		else if (getUrlVars()['artista']) {
+			pedirPagina('artista='+getUrlVars()['artista'],true);
+		}
+		else if (getUrlVars()['anio']) {
+			pedirPagina('anio='+getUrlVars()['anio'],true);
+		}
+		else if (getUrlVars()['genero']) {
+			pedirPagina('genero='+getUrlVars()['genero'],true);
+		}
 	}
 	
 	$('span.autores').click(mostrarAutores);
@@ -245,126 +236,7 @@ else if (getUrlVars()['cd']) {
 
 	});
 
-	jQuery("#addArtistSubmin").click(function(){
-
-		if (jQuery("[name=element_7]select option:selected").val()=="nuevo")
-			_genero = jQuery("#textNuevoGenero").val();
-		else
-			_genero = jQuery("[name=element_7]select option:selected").val();
-		$.ajax({
-			type: "POST",
-			url: "data/add_artist.php",
-			data: { genero: _genero, nombre: jQuery("#element_2").val(),nacion: jQuery("#element_5").val(), banda: jQuery("#element_4").val(),link: jQuery("#element_3").val() }
-			}).done(function( msg ) {
-			dato=(eval('(' + msg + ')'));
-			if (dato.error!=undefined){
-				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
-				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
-				}
-			else{
-				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El artista <strong>"+dato.artista.artista+"</strong> fue creado correctamente</p>");
-				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
-				jQuery("#li_211").show('slow');
-			}
-			
-		});
-	//	location.reload();
-	});
 	
-	jQuery("#editArtistSubmit").click(function(){
-		$.ajax({
-			type: "POST",
-			url: "data/edit_artist.php",
-			data: { id:jQuery("[name=element_8_edit]select option:selected").val(), genero: jQuery("#element_102").val(), nombre: jQuery("#element_101").val(),nacion: jQuery("#element_103").val(), banda: jQuery("#element_104").val(),link: jQuery("#element_105").val() }
-			}).done(function( msg ) {
-			dato=(eval('(' + msg + ')'));
-			if (dato.error!=undefined){
-				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
-				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
-				}
-			else{
-				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El artista <strong>"+dato.artista+"</strong> fue editado correctamente</p>");
-				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
-			}
-		});
-	//	location.reload();
-	});
-	jQuery("#editCDSubmit").click(function(){
-		$.ajax({
-			type: "POST",
-			url: "data/edit_cd.php",
-			data: { id:jQuery("[name=element_15_edit]select option:selected").val(),id_ar:jQuery("[name=element_14_edit]select option:selected").val(), genero: jQuery("[name=element_13_edit]select option:selected").val(), nombre: jQuery("#element_301").val(),anio: jQuery("#element_303").val(), canc: jQuery("#element_404").val(),link: jQuery("#element_405").val() }
-			}).done(function( msg ) {
-			dato=(eval('(' + msg + ')'));
-			if (dato.error!=undefined){
-				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
-				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
-				}
-			else{
-				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El CD <strong>"+dato.nombre+"</strong> de "+dato.artista+" fue editado correctamente</p>");
-				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
-			}
-		});
-	//	location.reload();
-	});
-	jQuery("#guardarCambios").click(function(){
-		$.ajax({
-			type: "POST",
-			url: "data/config.php",
-			data: { mode_destacados: jQuery("[name=element_58]select option:selected").val(),mostrar_destacados: true,cant_destacados: jQuery("[name=element_59]select option:selected").val(), order: jQuery("[name=element_510]select option:selected").val(),mode_order: jQuery("[name=element_511]select option:selected").val(),paginado: jQuery("[name=element_512]select option:selected").val(),busqueda: "cd"}
-			}).done(function( msg ) {
-			dato=(eval('(' + msg + ')'));
-			if (dato.error!=undefined){
-				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
-				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
-				}
-			else{
-				jQuery("#mensajeAviso").html("<strong>Exito: </strong> Configuración guardada");
-				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow'); 
-			}
-		});
-	//	location.reload();
-	});
-	jQuery("#addCDSubmit").click(function(){
-		$.ajax({
-			type: "POST",
-			url: "data/add_cd.php",
-			data: { id_ar: jQuery("[name=element_12_edit]select option:selected").val(), nombre: jQuery("#element_200").val(), anio: jQuery("#element_201").val(), canc: jQuery("#element_204").val(), link: jQuery("#element_205").val()  }
-			}).done(function( msg ) {
-			dato=(eval('(' + msg + ')'));
-			if (dato.error!=undefined){
-				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
-				jQuery("#cartelError").fadeIn().delay(2000).fadeOut('slow'); 
-				}
-			else{
-				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El CD <strong>"+dato.cd.nombre+"</strong> de "+dato.cd.artista+" fue creado correctamente</p>");
-				jQuery("#cartelAviso").fadeIn().delay(2000).fadeOut('slow');
-				jQuery("#li_311").show();				
-			}
-		});
-	//	location.reload();
-	});
-	
-	jQuery("#deleteArtistSubmit").click(function(){
-		$.ajax({
-			type: "POST",
-			url: "data/delete_artist.php",
-			data: { id: jQuery("[name=element_8_edit]select option:selected").val() }
-			}).done(function( msg ) {
-
-		});
-	//	location.reload();
-	});
-	jQuery("#deleteCDSubmit").click(function(){
-		$.ajax({
-			type: "POST",
-			url: "data/delete_cd.php",
-			data: { id: jQuery("[name=element_15_edit]select option:selected").val() }
-			}).done(function( msg ) {
-
-		});
-	//	location.reload();
-	});
 
 
 	jQuery("#buttonSearch").click(function(){
@@ -400,20 +272,7 @@ else if (getUrlVars()['cd']) {
 	
 	
 
-	jQuery("#imageArtistSubmitURL").click(function(){
-		$.ajax({
-			type: "POST",
-			url: "data/add_img.php",
-			data: { class: 'artista', id:jQuery("[name=element_8_edit]select option:selected").val(), url:jQuery("#element_112").val() }
-			}).done(function( msg ) {
 
-		});
-		//location.reload();
-
-	});
-	jQuery("#Backup").click(function(){
-		window.open("data/backup.php", '_blank');
-	});
 
 });  
 

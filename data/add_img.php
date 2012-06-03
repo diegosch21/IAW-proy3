@@ -38,13 +38,13 @@ else{
 		else {
 			$idGen = $art['id_genero'];
 			$imgs = $art['imagenes'];
-			if ($imgs =="") {
+			//if ($imgs =="") {
 				$imgs = $url;
-			}
+			/*}
 			else {
 				$imgs .= '|-|'.$url;
 			}
-			
+			*/
 			$res = $db->execute("UPDATE artistas SET  imagenes = ? WHERE id_artista = ?",array($imgs,$id));
 			
 			$result['id'] = $id;

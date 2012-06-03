@@ -46,12 +46,12 @@ try {
 					$url = 'data/' . $path;
 					$result['uploaded'] = $url;
 
-					if ($imgs == "") {
+				//	if ($imgs == "") {
 						$imgs = $url;
-					} else {
+				/*	} else {
 						$imgs .= '|-|' . $url;
 					}
-
+*/
 					$res = $db -> execute("UPDATE artistas SET  imagenes = ? WHERE id_artista = ?", array($imgs, $id));
 					if ($res > 0)
 						$result['added'] = true;
