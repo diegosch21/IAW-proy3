@@ -44,13 +44,18 @@ else{
 		
 		$db->execute("INSERT INTO CDs VALUES(?,?,?,?,?,?,?,?,0,0)",array($id,$idAr,$nom,$anio,$canc,$thumb,$imgs,$link));
 		
-		
+		/*
 		$cant_tag = (isset($_POST['cant_tag'])) ? $_POST['cant_tag'] : 0;
 		$tags = array();
 		for ($i=1;$i<=$cant_tag;$i++) {
 			$tags[$i-1] = (isset($_POST['tag'.$i])) ? $_POST['tag'.$i] : "";
 		}
+		 * 
+		 */
+		$t = (isset($_POST['tags'])) ? $_POST['tags'] : "";
+		$tags = explode(" ",$t); 
 		//Inserta TAGS (verifica si son tags q ya existen)
+		
 		$id_tags = addTags($db,$tags);
 		foreach($id_tags as $idTag) {
 			$db->execute("INSERT INTO cd_tag VALUES(?,?)",array($id,$idTag));

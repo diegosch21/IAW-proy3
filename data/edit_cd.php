@@ -57,12 +57,15 @@ else{
 			$link = (isset($_POST['link'])) ? $_POST['link'] : null;  		
 			
 			$db->execute("UPDATE CDs SET id_artista = ?, nombre = ?, anio = ?, canciones= ?,thumbnail = ?, imagenes = ?, link = ? WHERE id_cd = ?",array($idAr,$nom,$anio,$canc,$thumb,$imgs,$link,$id));
-			
+			/*
 			$cant_tag = (isset($_POST['cant_tag'])) ? $_POST['cant_tag'] : 0;
 			$tags = array();
 			for ($i=1;$i<=$cant_tag;$i++) {
 				$tags[$i-1] = (isset($_POST['tag'.$i])) ? $_POST['tag'.$i] : "";
 			}
+			 */
+			$t = (isset($_POST['tags'])) ? $_POST['tags'] : "";
+		$tags = explode(" ",$t); 
 			//Inserta TAGS (verifica si son tags q ya existen)
 			$id_tags = addTags($db,$tags);
 			$db->execute("DELETE FROM cd_tag WHERE id_cd = ?",array($id));

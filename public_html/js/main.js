@@ -1,4 +1,4 @@
-﻿$.noConflict();
+﻿//$.noConflict();
 
 
 var info;
@@ -14,6 +14,26 @@ function getUrlVars() {
     return vars;
 }
 
+function paginacion(query) {
+	jQuery("#paginate").paginate({
+		count 		: info.pages,
+		start 		: 1,
+		display     : 5,
+		border					: false,
+		text_color  			: '#79B5E3',
+		background_color    	: 'none',	
+		text_hover_color  		: '#2573AF',
+		background_hover_color	: 'none', 
+		images		: false,
+		mouse		: 'press',
+		onChange     			: function(page){
+									jQuery('._current','#paginacion').removeClass('_current').hide();
+									jQuery('#p'+page).addClass('_current').show();
+									cambiar(query,page);
+								  }
+	});
+}
+
 
 function pedirPagina(query,state){
 	jQuery('#loadingBusqueda').show();
@@ -26,29 +46,13 @@ function pedirPagina(query,state){
 	}
    jQuery.getJSON(url,function(data) {
 		info = data;
-		var output = Mustache.render(jQuery("#templateB").html(), data)
+		var output = Mustache.render(jQuery("#templateB").html(), data);
 		jQuery("#templateBusqueda").html(output);
-		jQuery("#paginate").paginate({
-			count 		: info.pages,
-			start 		: 1,
-			display     : 5,
-			border					: false,
-			text_color  			: '#79B5E3',
-			background_color    	: 'none',	
-			text_hover_color  		: '#2573AF',
-			background_hover_color	: 'none', 
-			images		: false,
-			mouse		: 'press',
-			onChange     			: function(page){
-										jQuery('._current','#paginacion').removeClass('_current').hide();
-										jQuery('#p'+page).addClass('_current').show();
-										cambiar(query,page);
-									  }
-		});
 		jQuery('#loadingBusqueda').hide();
 		jQuery("#BusquedaContent").show("slow");
 		jQuery('#ItemContent').show('slow');
 		jQuery('#MainContent').show('slow');
+		paginacion(query);
 		
 	});
   
@@ -137,14 +141,13 @@ function loadItem(i) {
 
 }
 function  busquedaTag(tag){
-		jQuery("#CDContent").hide("slow");
-		jQuery("#HomeContent").hide("slow");
-		jQuery("#bandaContent").hide("slow");
-		jQuery("#BusquedaContent").hide("slow");
-		jQuery("#ItemContent").show("slow");
 		lastquery = "tag="+tag;
 		pedirPagina(lastquery,true);
-		
+		jQuery("#CDContent").hide("slow");
+		jQuery("#HomeContent").hide("slow");
+		jQuery("#BusquedaContent").show("slow");
+		jQuery("#ItemContent").show("slow");
+		jQuery("#bandaContent").hide("slow");
 }
 
 function actualizarMG(idCD) {
@@ -171,6 +174,17 @@ function volverAutores(){
 jQuery(document).ready(function($) {
   
 
+	
+	
+	$('span.autores').click(mostrarAutores);
+	$('a.volverAutores').click(volverAutores);
+	
+	$(window).bind('popstate', function(event) {
+		if (event.originalEvent.state) {
+			location.href = event.originalEvent.state;
+		}
+	});
+	
 	//Analiza URL y carga la información pedida
 	if(getUrlVars()['showCD']) {
 		verCD(getUrlVars()['showCD']);
@@ -202,15 +216,6 @@ jQuery(document).ready(function($) {
 			pedirPagina('genero='+getUrlVars()['genero'],true);
 		}
 	}
-	
-	$('span.autores').click(mostrarAutores);
-	$('a.volverAutores').click(volverAutores);
-	
-	$(window).bind('popstate', function(event) {
-		if (event.originalEvent.state) {
-			location.href = event.originalEvent.state;
-		}
-	});
 		 	
 	
 	jQuery.getJSON('data/destacados.php',function(json) {

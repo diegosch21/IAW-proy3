@@ -6,7 +6,7 @@ function loadCategorias() {
 			html+=json[i].genero + '</a></h3> <div>';
 			for (j=0;j<json[i].artistas.length;j++) {
 				var ar = json[i].artistas[j];
-				html+="<div><a onclick='loadItem("+ar.id+")' style='cursor: pointer' class='linkGenero'>"; 
+				html+="<div><a onclick='loadItem("+ar.id+")' style='cursor: pointer; padding-bottom: 4px;' class='linkGenero'>"; 
 				//html+="<a href='index.php?ar="+ar.id+"' class='linkGenero'>"; //no tiene q ser un link a otra pag
 				html+=ar.artista+"</a></div>";
 			}
@@ -15,7 +15,7 @@ function loadCategorias() {
 			
 			html+='</div></div>';
 		}
-		jQuery('#menuCategorias').html(html).accordion({ header: "h3" });
+		jQuery('#menuCategorias').html(html).accordion({ header: "h3", autoHeight: false, collapsible: true, animated: 'easeslide' });
 	});
 }
 

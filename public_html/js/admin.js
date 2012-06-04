@@ -144,6 +144,13 @@ function listaGeneros() {
 			jQuery('#element_303').val(data.anio);
 			jQuery('#element_304').val(data.canciones);
 			jQuery('#element_305').val(data.link);
+			listaTags = "";
+			if (data.listatags && data.listatags.tags) {
+				for(i=0;i<data.listatags.tags.length;i++)
+					listaTags+=data.listatags.tags[i]+" ";
+			}
+			
+			jQuery('#element_306').val(listaTags);
 			
 			if(data.thumbnail) {
 				thumbnail=true;
@@ -237,7 +244,7 @@ function listaGeneros() {
 	jQuery("#imageArtistSubmitURL2").click(function() {
 		imgURL = jQuery("#imgURL2").val();
 		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
-		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+		if ((imgURL=='')){// || (!imgURL.match(RegExPattern))) {
 			alert('URL no valida');
 		}
 		else {
@@ -393,7 +400,7 @@ function listoEditArt(){
 	jQuery("#imageArtistSubmitURL").click(function() {
 		imgURL = jQuery("#imgURL").val();
 		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
-		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+		if ((imgURL=='')){// || (!imgURL.match(RegExPattern))) {
 			alert('URL no valida');
 		}
 		else {
@@ -465,7 +472,7 @@ function listoEditArt(){
 		jQuery.ajax({
 			type: "POST",
 			url: "data/add_cd.php",
-			data: { id_ar: jQuery("[name=element_12_edit]select option:selected").val(), nombre: jQuery("#element_200").val(), anio: jQuery("#element_201").val(), canc: jQuery("#element_204").val(), link: jQuery("#element_205").val()  }
+			data: { id_ar: jQuery("[name=element_12_edit]select option:selected").val(), nombre: jQuery("#element_200").val(), anio: jQuery("#element_201").val(), canc: jQuery("#element_204").val(), link: jQuery("#element_205").val(), tags: jQuery("#element_206").val()  }
 		}).done(function( msg ) {
 			dato=(eval('(' + msg + ')'));
 			if (dato.error!=undefined){
@@ -483,6 +490,7 @@ function listoEditArt(){
 				jQuery('#element_201').attr('readonly', true);
 				jQuery('#element_204').attr('readonly', true);
 				jQuery('#element_205').attr('readonly', true);
+				jQuery('#element_206').attr('readonly', true);
 				cdID = dato.cd.id;
 			}
 			jQuery("#loadingAdmin").hide();
@@ -493,7 +501,7 @@ function listoEditArt(){
 	jQuery("#imageArtistSubmitURL3t").click(function() {
 		imgURL = jQuery("#imgURL3t").val();
 		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
-		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+		if ((imgURL=='')){ //|| (!imgURL.match(RegExPattern))) {
 			alert('URL no valida');
 		}
 		else {
@@ -561,7 +569,7 @@ function listoEditArt(){
 	jQuery("#imageArtistSubmitURL3").click(function() {
 		imgURL = jQuery("#imgURL3").val();
 		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
-		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+		if ((imgURL=='')) {//|| (!imgURL.match(RegExPattern))) {
 			alert('URL no valida');
 		}
 		else {
@@ -642,6 +650,7 @@ function listoAddCD() {
 	jQuery('#element_201').val("").removeAttr('readonly');
 	jQuery('#element_204').val("").removeAttr('readonly');
 	jQuery('#element_205').val("").removeAttr('readonly');
+	jQuery('#element_206').val("").removeAttr('readonly');
 	cdID = 0;
 }
 function listoEditCD(){
@@ -660,7 +669,7 @@ function listoEditCD(){
 		else
 			thumbURL = "";
 		listaImgs = imgsCD.join("|-|");
-		alert(listaImgs);
+		
 		jQuery("#loadingAdmin").show();
 		jQuery.ajax({
 			type: "POST",
@@ -673,7 +682,8 @@ function listoEditCD(){
 				canc: jQuery("#element_304").val(),
 				link: jQuery("#element_305").val(),
 				thumb: thumbURL,
-				imgs: listaImgs }
+				imgs: listaImgs,
+				tags: jQuery("#element_306").val() }
 		}).done(function( msg ) {
 			dato=(eval('(' + msg + ')'));
 			if (dato.error!=undefined){
@@ -716,7 +726,7 @@ function listoEditCD(){
 	jQuery("#imageArtistSubmitURL4t").click(function() {
 		imgURL = jQuery("#imgURL4t").val();
 		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
-		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+		if ((imgURL=='')){ //|| (!imgURL.match(RegExPattern))) {
 			alert('URL no valida');
 		}
 		else {
@@ -784,7 +794,7 @@ function listoEditCD(){
 	jQuery("#imageArtistSubmitURL4").click(function() {
 		imgURL = jQuery("#imgURL4").val();
 		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
-		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+		if ((imgURL=='')){ //|| (!imgURL.match(RegExPattern))) {
 			alert('URL no valida');
 		}
 		else {
