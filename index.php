@@ -5,7 +5,7 @@ require_once('_lib/descriptor.php');
 require_once('_lib/db.php');
 
 
-$db = new DB("db/iaw_proy3");
+$db = new DB("datos/iaw_proy3");
 
 
 

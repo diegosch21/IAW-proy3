@@ -40,7 +40,7 @@ function getUserType() {
 
 function validateUser($user, $pass) {
 
-	$db = new DB("db/iaw_proy3");
+	$db = new DB("datos/iaw_proy3");
 	$usuarios = $db->query("SELECT pass FROM usuarios WHERE user='$user'");
 	$usuario = $db->getRow($usuarios); 
 

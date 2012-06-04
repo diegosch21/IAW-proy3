@@ -3,7 +3,7 @@ try {
 
 if(isset($_GET['showCD'])){
 	require_once('/_lib/db.php');
-	$db = new DB('db/iaw_proy3');
+	$db = new DB('datos/iaw_proy3');
 	$id = $_GET['showCD'];	
 	$infoCD = $db->query("SELECT nombre, thumbnail FROM CDs WHERE id_cd = $id");
 	$cd = $db->getRow($infoCD);

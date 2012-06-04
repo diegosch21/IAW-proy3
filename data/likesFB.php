@@ -5,7 +5,7 @@ require_once('../_lib/db.php');
 
 try {
 
-$db = new DB('../db/iaw_proy3');
+$db = new DB('../datos/iaw_proy3');
 
 $id = $_POST['id'];
 

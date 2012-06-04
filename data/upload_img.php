@@ -17,7 +17,7 @@ try {
 	} else {
 		$file = $_FILES['file'];
 
-		$db = new DB('../db/iaw_proy3');
+		$db = new DB('../datos/iaw_proy3');
 
 		$id = $_GET['id'];
 
@@ -96,6 +96,7 @@ try {
 
 				if ($path == 'error') {
 					$result['uploaded'] = false;
+					$result['error'] = 'Archivo no aceptado';
 				} else {
 					$url = 'data/' . $path;
 					$result['uploaded'] = $url;

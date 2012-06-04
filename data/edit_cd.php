@@ -20,7 +20,7 @@ else if(!isset($_POST['nombre']) || $_POST['nombre']=="") {
 }	
 else{
 	
-	$db = new DB('../db/iaw_proy3');
+	$db = new DB('../datos/iaw_proy3');
 	
 	$id = $_POST['id'];
 		
@@ -45,12 +45,15 @@ else{
 			$anio = (isset($_POST['anio']) && is_numeric($_POST['anio'])) ? $_POST['anio'] : null;
 			$canc = (isset($_POST['canc'])) ? $_POST['canc'] : null;   //recibe arregl? hacer implode
 			$thumb = (isset($_POST['thumb'])) ? $_POST['thumb'] : null; 
+			/*
 			$cant_img = (isset($_POST['cant_img'])) ? $_POST['cant_img'] : 0;
 			$img = array();
 			for ($i=1;$i<=$cant_img;$i++) {
 				$img[$i-1] = (isset($_POST['img'.$i])) ? $_POST['img'.$i] : "";
 			}
-			$imgs = implode("|-|",$img);
+			 * */
+			//$imgs = implode("|-|",$img);
+			$imgs = (isset($_POST['imgs'])) ? $_POST['imgs'] : "";
 			$link = (isset($_POST['link'])) ? $_POST['link'] : null;  		
 			
 			$db->execute("UPDATE CDs SET id_artista = ?, nombre = ?, anio = ?, canciones= ?,thumbnail = ?, imagenes = ?, link = ? WHERE id_cd = ?",array($idAr,$nom,$anio,$canc,$thumb,$imgs,$link,$id));

@@ -20,7 +20,7 @@ else if(!isset($_POST['nombre']) || $_POST['nombre']=="") {
 }	
 else{
 	
-	$db = new DB('../db/iaw_proy3');
+	$db = new DB('../datos/iaw_proy3');
 	$id = $_POST['id'];
 		
 	$artistas = $db->query("SELECT COUNT() FROM artistas WHERE id_artista = $id");

@@ -18,7 +18,7 @@ else if(!isset($_POST['nombre']) || $_POST['nombre']=="") {
 }	
 else{
 	
-	$db = new DB('../db/iaw_proy3');
+	$db = new DB('../datos/iaw_proy3');
 	
 	$idAr = $_POST['id_ar'];
 	$artistas = $db->query("SELECT nombre, id_genero FROM artistas WHERE id_artista = $idAr");

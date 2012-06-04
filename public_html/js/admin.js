@@ -57,15 +57,17 @@ function listaGeneros() {
 			
 //			if(data.imagenes) 
 //				for(i=0;i<data.imagenes.length;i++){
-
-			actualizarImgArt(data.imagenes[0].url);
+			if(data.imagenes) 
+				actualizarImgArt(data.imagenes[0].url);
+			else
+				actualizarImgArt("");
 			jQuery("#loadingAdmin").hide();
 		});
 	});
 	
 	function actualizarImgArt(url) {
 		if(url!="") {
-		imgs = "<div id='imgArt' style='width: 50px;margin: 0 auto 0 auto;'><img id='imgArtURL' style='max-width:50px; max-height:50px;' src='"+url+"' /><a class='tag2' style='cursor:pointer;' onClick='quitarImgArt();'>Quitar</a><div>";
+		imgs = "<div id='imgArt' style='width: 50px;margin: 0 auto 0 auto;'><img id='imgArtURL' style='max-width:50px; max-height:50px;' src='"+url+"' /><a class='tag2' style='cursor:pointer;' onClick='quitarImgArt();'>Quitar</a></div>";
 		cantImgArt = 1;
 		jQuery('#imagenescargadas').html(imgs);
 		}
@@ -125,9 +127,11 @@ function listaGeneros() {
 		jQuery('#li_18').show("slow");
 		jQuery("#loadingAdmin").show();
 		jQuery.getJSON('data/cds.php?ar='+jQuery("[name=element_14_edit]select option:selected").val(),function(data) {
+			if(data.CDs) {
 			for(i=0;i<data.CDs.length;i++){
 				jQuery('#cdListEditcd').append("<option value='"+data.CDs[i].id+"' >"+data.CDs[i].nombre+"</option>");
 			}	
+			}
 			jQuery("#loadingAdmin").hide();
 		});
 	});	
@@ -140,9 +144,59 @@ function listaGeneros() {
 			jQuery('#element_303').val(data.anio);
 			jQuery('#element_304').val(data.canciones);
 			jQuery('#element_305').val(data.link);
+			
+			if(data.thumbnail) {
+				thumbnail=true;
+				actualizarThumb(data.thumbnail);
+			}
+			else {
+				thumbnail=false;
+				actualizarThumb("");
+			}
+			imgsCD = new Array();
+			if(data.imagenes)
+			{
+
+				for(i=0;i<data.imagenes.length;i++){
+					imgsCD[i] = data.imagenes[i].url;
+				}
+				actualizarImgsCD();
+			}
+			
+			
 			jQuery("#loadingAdmin").hide();
 		});
 	});
+	
+	function actualizarThumb(url) {
+		if(url!="") {
+		imgs = "<div id='thumbCD' style='width: 50px;margin: 0 auto 0 auto;'><img id='thumbURL' style='max-width:50px; max-height:50px;' src='"+url+"' /><a class='tag2' style='cursor:pointer;' onClick='quitarThumb();'>Quitar</a></div>";
+		thumbnail = true;
+		jQuery('#thumbnailCD').html(imgs);
+		}
+		else
+			jQuery('#thumbnailCD').html("");
+	}
+
+	function quitarThumb() {
+		thumbnail = false;
+		jQuery("#thumbCD").hide();
+	}
+	
+	function actualizarImgsCD() {
+		imgs="";
+		for(i=0;i<imgsCD.length;i++){
+			if(imgsCD[i] != "")
+				imgs+= "<div id='imgCD"+i+"' style='width: 50px;margin: 0 auto 0 auto; padding-bottom: 6px; padding-top:6px'><img id='imgCdURL"+i+"' style='max-width:50px; max-height:50px;' src='"+imgsCD[i]+"' /><a class='tag2' style='cursor:pointer;' onClick='quitarImgCD("+i+");'>Quitar</a></div>";
+		}
+		jQuery('#imagenesCD').html(imgs);
+	}
+
+	function quitarImgCD(i) {
+		imgsCD.splice(i,1);
+		actualizarImgsCD();
+	}
+		
 			
 	jQuery("#addArtistSubmin").click(function(){
 
@@ -209,6 +263,9 @@ function listaGeneros() {
 		}
 	});
 	jQuery("#imageArtistSubmitUpload2").click(function() {
+		if (jQuery('#fileToUpload2').val()=='') 
+			alert('No seleccionaste imagen valida para subir');
+		else {
 		jQuery("#loadingAdmin").show();
 		jQuery.ajaxFileUpload({
             url:'data/upload_img.php?class=artista&id='+artID, 
@@ -242,6 +299,7 @@ function listaGeneros() {
                 jQuery("#loadingAdmin").hide();
             }
         });
+		}
 	});
 			
 	jQuery("#imageArtistSubmitListo2").click(function() {
@@ -281,6 +339,7 @@ function listoEditArt(){
 			lista = jQuery("#imgArtURL").attr('src');
 		else
 			lista = "";
+		
 		jQuery("#loadingAdmin").show();
 		jQuery.ajax({
 			type: "POST",
@@ -360,6 +419,9 @@ function listoEditArt(){
 		}
 	});
 	jQuery("#imageArtistSubmitUpload").click(function() {
+		if (jQuery('#fileToUpload').val()=='') 
+			alert('No seleccionaste imagen valida para subir');
+		else {
 		jQuery("#loadingAdmin").show();
 		jQuery.ajaxFileUpload({
             url:'data/upload_img.php?class=artista&id='+jQuery("[name=element_8_edit]select option:selected").val(), 
@@ -393,16 +455,225 @@ function listoEditArt(){
                 jQuery("#loadingAdmin").hide();
             }
         });
+		}
 	});
 	
+	/*CDS*/
+	
+	jQuery("#addCDSubmit").click(function(){
+		jQuery("#loadingAdmin").show();
+		jQuery.ajax({
+			type: "POST",
+			url: "data/add_cd.php",
+			data: { id_ar: jQuery("[name=element_12_edit]select option:selected").val(), nombre: jQuery("#element_200").val(), anio: jQuery("#element_201").val(), canc: jQuery("#element_204").val(), link: jQuery("#element_205").val()  }
+		}).done(function( msg ) {
+			dato=(eval('(' + msg + ')'));
+			if (dato.error!=undefined){
+				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
+				jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+				}
+			else{
+				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El CD <strong>"+dato.cd.nombre+"</strong> de "+dato.cd.artista+" fue creado correctamente</p>");
+				jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow');
+				jQuery("#DIVaddCDSubmit").hide();
+				jQuery("#li_311").show();	
+				jQuery('#generoListAddcd').attr('disabled', true);
+				jQuery('#artistListAddcd').attr('disabled', true);
+				jQuery('#element_200').attr('readonly', true);
+				jQuery('#element_201').attr('readonly', true);
+				jQuery('#element_204').attr('readonly', true);
+				jQuery('#element_205').attr('readonly', true);
+				cdID = dato.cd.id;
+			}
+			jQuery("#loadingAdmin").hide();
+		});
+	//	location.reload();
+	});
+		
+	jQuery("#imageArtistSubmitURL3t").click(function() {
+		imgURL = jQuery("#imgURL3t").val();
+		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
+		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+			alert('URL no valida');
+		}
+		else {
+			jQuery("#loadingAdmin").show();
+			jQuery.ajax({
+				type: "POST",
+				url: "data/add_img.php",
+				data: { id: cdID, url: imgURL, class:'cd', thumb: true }
+			}).done(function( msg ) {
+				dato=(eval('(' + msg + ')'));
+				if (dato.error!=undefined){
+					jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+dato.error+" </p>");
+					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+				}
+				else{
+					jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen miniatura agregada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#imgURL3t").val("");
+					//listoAddCD();
+				}
+				jQuery("#loadingAdmin").hide();
+			});
+		}
+	});
+	jQuery("#imageArtistSubmitUpload3t").click(function() {
+		if (jQuery('#fileToUpload3t').val()=='') 
+			alert('No seleccionaste imagen valida para subir');
+		else {
+			
+		jQuery("#loadingAdmin").show();
+		jQuery.ajaxFileUpload({
+            url:'data/upload_img.php?class=cd&id='+cdID+'&thumb=true', 
+            fileElementId:'fileToUpload3t',
+            dataType: 'json',
+            success: function (data, status)
+            {
+                
+            	if(data.error != undefined)
+                {
+                    if(data.error != '')
+                    {
+                    	jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+data.error+" </p>");
+    					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+                    }
+                    else
+                    	alert('error');
+                }
+                else
+                {
+                	jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen miniatura subida y agregada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#fileToUpload3").val("");
+					//listoAddCD();
+                }
+                jQuery("#loadingAdmin").hide();
+            },
+            error: function (data, status, e)
+            {
+                alert(e);
+                jQuery("#loadingAdmin").hide();
+            }
+        });
+		}
+	});
+	jQuery("#imageArtistSubmitURL3").click(function() {
+		imgURL = jQuery("#imgURL3").val();
+		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
+		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+			alert('URL no valida');
+		}
+		else {
+			jQuery("#loadingAdmin").show();
+			jQuery.ajax({
+				type: "POST",
+				url: "data/add_img.php",
+				data: { id: cdID, url: imgURL, class:'cd' }
+			}).done(function( msg ) {
+				dato=(eval('(' + msg + ')'));
+				if (dato.error!=undefined){
+					jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+dato.error+" </p>");
+					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+				}
+				else{
+					jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen agregada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#imgURL3").val("");
+					//listoAddCD();
+				}
+				jQuery("#loadingAdmin").hide();
+			});
+		}
+	});
+	jQuery("#imageArtistSubmitUpload3").click(function() {
+		if (jQuery('#fileToUpload3').val() == '') 
+			alert('No seleccionaste imagen valida para subir');
+		else {
+		jQuery("#loadingAdmin").show();
+		jQuery.ajaxFileUpload({
+            url:'data/upload_img.php?class=cd&id='+cdID, 
+            fileElementId:'fileToUpload3',
+            dataType: 'json',
+            success: function (data, status)
+            {
+                
+            	if(data.error != undefined)
+                {
+                    if(data.error != '')
+                    {
+                    	jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+data.error+" </p>");
+    					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+                    }
+                    else
+                    	alert('error');
+                }
+                else
+                {
+                	jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen subida y agregada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#fileToUpload3").val("");
+					//listoAddCD();
+                }
+                jQuery("#loadingAdmin").hide();
+            },
+            error: function (data, status, e)
+            {
+                alert(e);
+                jQuery("#loadingAdmin").hide();
+            }
+        });
+		}
+	});
+			
+	jQuery("#imageArtistSubmitListo3").click(function() {
+		listoAddCD();
+	});
+	
+function listoAddCD() {
+	jQuery("#DIVaddCDSubmit").show();
+	jQuery("#li_311").hide('slow');
+	jQuery("#li_13").hide("slow");
+	jQuery("#li_14").hide("slow");
+	jQuery("#li_15").hide("slow");
+	jQuery('#generoListAddcd').val("").removeAttr('disabled');
+	jQuery('#artistListAddcd').val("").removeAttr('disabled');
+	jQuery('#element_200').val("").removeAttr('readonly');
+	jQuery('#element_201').val("").removeAttr('readonly');
+	jQuery('#element_204').val("").removeAttr('readonly');
+	jQuery('#element_205').val("").removeAttr('readonly');
+	cdID = 0;
+}
+function listoEditCD(){
+	jQuery('#li_19').hide("slow");
+	jQuery('#li_18').hide("slow");
+	jQuery('#li_17').hide("slow");
+	jQuery('#li_16').hide("slow");
+}
+
+
 	
 
 	jQuery("#editCDSubmit").click(function(){
+		if(thumbnail)
+			thumbURL = jQuery("#thumbURL").attr('src');
+		else
+			thumbURL = "";
+		listaImgs = imgsCD.join("|-|");
+		alert(listaImgs);
 		jQuery("#loadingAdmin").show();
 		jQuery.ajax({
 			type: "POST",
 			url: "data/edit_cd.php",
-			data: { id:jQuery("[name=element_15_edit]select option:selected").val(),id_ar:jQuery("[name=element_14_edit]select option:selected").val(), genero: jQuery("[name=element_13_edit]select option:selected").val(), nombre: jQuery("#element_301").val(),anio: jQuery("#element_303").val(), canc: jQuery("#element_404").val(),link: jQuery("#element_405").val() }
+			data: { id:jQuery("[name=element_15_edit]select option:selected").val(),
+				id_ar:jQuery("[name=element_14_edit]select option:selected").val(),
+				genero: jQuery("[name=element_13_edit]select option:selected").val(),
+				nombre: jQuery("#element_301").val(),
+				anio: jQuery("#element_303").val(),
+				canc: jQuery("#element_304").val(),
+				link: jQuery("#element_305").val(),
+				thumb: thumbURL,
+				imgs: listaImgs }
 		}).done(function( msg ) {
 			dato=(eval('(' + msg + ')'));
 			if (dato.error!=undefined){
@@ -412,11 +683,176 @@ function listoEditArt(){
 			else{
 				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El CD <strong>"+dato.nombre+"</strong> de "+dato.artista+" fue editado correctamente</p>");
 				jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+				listoEditCD();
 			}
 			jQuery("#loadingAdmin").hide();
 		});
 	//	location.reload();
 	});
+	
+	
+	jQuery("#deleteCDSubmit").click(function(){
+		jQuery("#loadingAdmin").show();
+		jQuery.ajax({
+			type: "POST",
+			url: "data/delete_cd.php",
+			data: { id: jQuery("[name=element_15_edit]select option:selected").val() }
+		}).done(function( msg ) {
+			dato=(eval('(' + msg + ')'));
+			if (dato.error!=undefined){
+				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
+				jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+				}
+			else{
+				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El CD fue eliminado correctamente</p>");
+				jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+				listoEditCD();
+			}
+			jQuery("#loadingAdmin").hide();
+		});
+	//	location.reload();
+	});
+	
+	jQuery("#imageArtistSubmitURL4t").click(function() {
+		imgURL = jQuery("#imgURL4t").val();
+		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
+		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+			alert('URL no valida');
+		}
+		else {
+			jQuery("#loadingAdmin").show();
+			jQuery.ajax({
+				type: "POST",
+				url: "data/add_img.php",
+				data: { id: jQuery("[name=element_14_edit]select option:selected").val(), url: imgURL, class:'cd', thumb: true }
+			}).done(function( msg ) {
+				dato=(eval('(' + msg + ')'));
+				if (dato.error!=undefined){
+					jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+dato.error+" </p>");
+					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+				}
+				else{
+					jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen miniatura agregada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#imgURL4t").val("");
+					actualizarThumb(imgURL);
+				}
+				jQuery("#loadingAdmin").hide();
+			});
+		}
+	});
+	jQuery("#imageArtistSubmitUpload4t").click(function() {
+		if (jQuery('#fileToUpload4t').val()=='') 
+			alert('No seleccionaste imagen valida para subir');
+		else {
+			
+		jQuery("#loadingAdmin").show();
+		jQuery.ajaxFileUpload({
+            url:'data/upload_img.php?class=cd&id='+jQuery("[name=element_14_edit]select option:selected").val()+'&thumb=true', 
+            fileElementId:'fileToUpload4t',
+            dataType: 'json',
+            success: function (data, status)
+            {
+                
+            	if(data.error != undefined)
+                {
+                    if(data.error != '')
+                    {
+                    	jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+data.error+" </p>");
+    					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+                    }
+                    else
+                    	alert('error');
+                }
+                else
+                {
+                	jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen miniatura subida y agregada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#fileToUpload4t").val("");
+					actualizarThumb(data.uploaded);
+                }
+                jQuery("#loadingAdmin").hide();
+            },
+            error: function (data, status, e)
+            {
+                alert(e);
+                jQuery("#loadingAdmin").hide();
+            }
+        });
+		}
+	});
+	jQuery("#imageArtistSubmitURL4").click(function() {
+		imgURL = jQuery("#imgURL4").val();
+		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
+		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+			alert('URL no valida');
+		}
+		else {
+			jQuery("#loadingAdmin").show();
+			jQuery.ajax({
+				type: "POST",
+				url: "data/add_img.php",
+				data: { id: jQuery("[name=element_14_edit]select option:selected").val(), url: imgURL, class:'cd', thumb: true }
+			}).done(function( msg ) {
+				dato=(eval('(' + msg + ')'));
+				if (dato.error!=undefined){
+					jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+dato.error+" </p>");
+					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+				}
+				else{
+					jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen miniatura agregada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#imgURL4").val("");
+					imgsCD[imgsCD.length] = imgURL;
+					actualizarImgsCD();
+				}
+				jQuery("#loadingAdmin").hide();
+			});
+		}
+	});
+	jQuery("#imageArtistSubmitUpload4").click(function() {
+		if (jQuery('#fileToUpload4').val()=='') 
+			alert('No seleccionaste imagen valida para subir');
+		else {
+			
+		jQuery("#loadingAdmin").show();
+		jQuery.ajaxFileUpload({
+            url:'data/upload_img.php?class=cd&id='+jQuery("[name=element_14_edit]select option:selected").val()+'&thumb=true', 
+            fileElementId:'fileToUpload4',
+            dataType: 'json',
+            success: function (data, status)
+            {
+                
+            	if(data.error != undefined)
+                {
+                    if(data.error != '')
+                    {
+                    	jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+data.error+" </p>");
+    					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+                    }
+                    else
+                    	alert('error');
+                }
+                else
+                {
+                	jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen miniatura subida y agregada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#fileToUpload4").val("");
+					imgsCD[imgsCD.length] = data.uploaded;
+					actualizarImgsCD();
+                }
+                jQuery("#loadingAdmin").hide();
+            },
+            error: function (data, status, e)
+            {
+                alert(e);
+                jQuery("#loadingAdmin").hide();
+            }
+        });
+		}
+	});
+	
+	
 	
 	jQuery("#guardarCambios").click(function(){
 		jQuery("#loadingAdmin").show();
@@ -439,54 +875,10 @@ function listoEditArt(){
 	//	location.reload();
 	});
 
-	jQuery("#addCDSubmit").click(function(){
-		jQuery("#loadingAdmin").show();
-		jQuery.ajax({
-			type: "POST",
-			url: "data/add_cd.php",
-			data: { id_ar: jQuery("[name=element_12_edit]select option:selected").val(), nombre: jQuery("#element_200").val(), anio: jQuery("#element_201").val(), canc: jQuery("#element_204").val(), link: jQuery("#element_205").val()  }
-		}).done(function( msg ) {
-			dato=(eval('(' + msg + ')'));
-			if (dato.error!=undefined){
-				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
-				jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
-				}
-			else{
-				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El CD <strong>"+dato.cd.nombre+"</strong> de "+dato.cd.artista+" fue creado correctamente</p>");
-				jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow');
-				jQuery("#li_311").show();				
-			}
-			jQuery("#loadingAdmin").hide();
-		});
-	//	location.reload();
-	});
-			
+	
 
-	jQuery("#deleteCDSubmit").click(function(){
-		jQuery("#loadingAdmin").show();
-		jQuery.ajax({
-			type: "POST",
-			url: "data/delete_cd.php",
-			data: { id: jQuery("[name=element_15_edit]select option:selected").val() }
-		}).done(function( msg ) {
-			jQuery("#loadingAdmin").hide();
-		});
-	//	location.reload();
-	});
-				
-/*
-	jQuery("#imageArtistSubmitURL").click(function(){
-		jQuery.ajax({
-			type: "POST",
-			url: "data/add_img.php",
-			data: { class: 'artista', id:jQuery("[name=element_8_edit]select option:selected").val(), url:jQuery("#element_112").val() }
-			}).done(function( msg ) {
 
-		});
-		//location.reload();
 
-	});
-*/
 	jQuery("#Backup").click(function(){
 		window.open("data/backup.php", '_blank');
 	});
@@ -542,11 +934,7 @@ function listoEditArt(){
 		}
 	});
 
-	jQuery("#imageArtistSubmit2").click(function(){
-		jQuery('#li_19').hide("slow");
-		jQuery('#li_411').show("slow");
-	
-	});
+
 
 			
 
@@ -587,11 +975,21 @@ function listoEditArt(){
 		      primary: 'ui-icon ui-icon-document',
 		   }
 		});
+		jQuery("#imageArtistSubmitUpload3t").button({
+			   icons: {
+			      primary: 'ui-icon ui-icon-document',
+			   }
+			});
 		jQuery("#imageArtistSubmitUpload4").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-document',
 		   }
 		});
+		jQuery("#imageArtistSubmitUpload4t").button({
+			   icons: {
+			      primary: 'ui-icon ui-icon-document',
+			   }
+			});
 		jQuery("#imageArtistSubmitURL").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-image',
@@ -607,11 +1005,21 @@ function listoEditArt(){
 		      primary: 'ui-icon ui-icon-image',
 		   }
 		});
+		jQuery("#imageArtistSubmitURL3t").button({
+			   icons: {
+			      primary: 'ui-icon ui-icon-image',
+			   }
+			});
 		jQuery("#imageArtistSubmitURL4").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-image',
 		   }
 		});
+		jQuery("#imageArtistSubmitURL4t").button({
+			   icons: {
+			      primary: 'ui-icon ui-icon-image',
+			   }
+			});
 		jQuery("#editArtistSubmit").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-pencil',
@@ -622,11 +1030,7 @@ function listoEditArt(){
 		      primary: 'ui-icon ui-icon-trash',
 		   }
 		});
-		jQuery("#imageArtistSubmit2").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-image',
-		   }
-		});
+
 		jQuery("#addCDSubmit").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-circle-plus',

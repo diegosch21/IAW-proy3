@@ -5,7 +5,7 @@ try {
 
 session_start();	
 
-$db = new DB('../db/iaw_proy3');
+$db = new DB('../datos/iaw_proy3');
 	
 if (isset($_SESSION['user']) && $_SESSION['user']== 'admin' && !(empty($_POST)) ) {
 	$params = array();

@@ -14,7 +14,7 @@ else if(!isset($_POST['id']) || $_POST['id']=="" || !is_numeric($_POST['id'])){
 }	
 else{
 	
-	$db = new DB('../db/iaw_proy3');
+	$db = new DB('../datos/iaw_proy3');
 	
 	$id = $_POST['id'];
 	

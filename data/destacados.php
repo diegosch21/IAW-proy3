@@ -3,7 +3,7 @@ require_once('../_lib/db.php');
 
 try {
 	
-$db = new DB('../db/iaw_proy3');
+$db = new DB('../datos/iaw_proy3');
 
 /* CONFIGURACION DEFAULT */
 $conf = $db->query('SELECT * FROM config');   //si hay varios usuarios podria elegir config depende el user (NO IMPLEMENTADO)

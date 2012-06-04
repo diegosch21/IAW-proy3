@@ -1,28 +1,25 @@
 <div id='loadingAdmin'>
 	<!--<img width="55" height="55" src="img/ajax-loader.gif" alt="loading" title="loading" />-->
 </div>	
+
 <div class="ui-state-error ui-corner-all" style="padding: 5px, 5px, 5px, 5px; display:none;" id="cartelError">
+	<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+	<div id="mensajeError"></div></p>
+</div>
+<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em; display:none;" id="cartelAviso">
+	<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+	<div id="mensajeAviso"></div></p>
+</div>
 
-				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-				<div id="mensajeError"></div>
-		</div>
-<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em; display:none;" id="cartelAviso"></p>
-
-				<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-<div id="mensajeAviso"></div>
-
-
-			</div></p>
-
-<h2>P&aacute;gina de administraci&oacute;n</h2>
+<h1>P&aacute;gina de administraci&oacute;n</h1>
 
 		<form id="staff_feedbackform">
 		<li class="section_break" id="break0">
 			
-			<div  style="cursor:pointer" id="desplegarArtistSubmin" title="Registra un nuevo artista"><h3>Registrar un nuevo artista</h3></div>
+			<div  style="cursor:pointer" id="desplegarArtistSubmin" title="Registra un nuevo artista"><h2>Registrar un nuevo artista</h2></div>
 
 		</li>
-		<ul >			
+		<ul>			
 		<li id="li_7" style="display:none">
 		<label class="description">G&eacute;nero</label>
 		<div>
@@ -89,7 +86,7 @@
 		</ul>
 
 		<li class="section_break" id="break">
-			<h3 style="cursor:pointer">Editar/Borrar un artista</h3>
+			<h2 style="cursor:pointer">Editar/Borrar un artista</h2>
 			<p></p>
 		</li>
 		<ul >			
@@ -133,7 +130,7 @@
 			<div>
 				<input id="element_105" name="element_105" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
-			<label class="description" for="element_105">Imagen cargada: </label>
+			<label class="description" >Imagen cargada: </label>
 			<div id="imagenescargadas">
 				
 			</div> 
@@ -144,7 +141,7 @@
 					<label class="description" for="imgURL">Subir imagen desde URL</label>
 					<div>
 						<input id="imgURL" name="imgURL" class="element text medium" type="text" maxlength="255" value=""/> 
-						<div  id="imageArtistSubmitURL" title="Editar">Subir URL</div>
+						<div  id="imageArtistSubmitURL" title="Editar">Agregar imagen</div>
 					</div> 
 					<label class="description" for="fileToUpload">Subir imagen desde tu computadora</label>
 					<div>
@@ -163,7 +160,7 @@
 	
 		
 		<li class="section_break" id="break1">
-			<h3 style="cursor:pointer">Agregar un CD</h3>
+			<h2 style="cursor:pointer">Agregar un CD</h2>
 			<p></p>
 		</li>
 		<ul >			
@@ -189,7 +186,7 @@
 			<div>
 				<input id="element_200" name="element_200" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
-			<label class="description" for="element_201">A&ntildeo </label>
+			<label class="description" for="element_201">A&ntilde;o </label>
 			<div>
 				<input id="element_201" name="element_201" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
@@ -204,37 +201,54 @@
 		</div>
 		
 			
-				<div style="padding-bottom:50px;">
+				<div id="DIVaddCDSubmit" style="padding-bottom:50px;">
 			    <div  id="addCDSubmit" title="Agregar">Agregar</div>
 				</div>
+
 				<li id="li_311" style="display:none"  >
-		<label class="description" for="element_312">Puede hacer el upload de una imagen o ingresar un URL</label></p>
-		<div>
+					<label class="description"><i><h3>Imagen miniatura:</h3></i><i>Puede ingresar un URL o hacer upload de una imagen (.jpg, .png o .gif)</i></label>
+					<div>
+			
+						<label class="description" for="imgURL3t">Subir imagen desde URL</label>
+						<div>
+							<input id="imgURL3t" name="imgURL3t" class="element text medium" type="text" maxlength="255" value=""/> 
+							<div  id="imageArtistSubmitURL3t" title="Editar">Agregar imagen</div>
+						</div> 
+						<label class="description" for="fileToUpload3t">Subir imagen desde tu computadora</label>
+						<div>
+							<input id="fileToUpload3t" type="file" size="45" name="file" class="input">
+							<div  id="imageArtistSubmitUpload3t" title="Editar">Subir imagen</div>
+						</div> 
+			
+					</div>
+		
+					<label class="description" ><i><h3>Imagenes del CD:</h3></i><i> Puede ingresar un URL o hacer upload de una imagen (.jpg, .png o .gif):</i></label>
+					<div>
+			
+						<label class="description" for="imgURL3">Subir imagen desde URL</label>
+						<div>
+							<input id="imgURL3" name="imgURL3" class="element text medium" type="text" maxlength="255" value=""/> 
+							<div  id="imageArtistSubmitURL3" title="Editar">Agregar imagen</div>
+						</div> 
+						<label class="description" for="fileToUpload3">Subir imagen desde tu computadora</label>
+						<div>
+							<input id="fileToUpload3" type="file" size="45" name="file" class="input">
+							<div  id="imageArtistSubmitUpload3" title="Editar">Subir imagen</div>
+						</div> 
+			
+					</div>
+					<div style="padding-bottom:50px;">
+					<div  id="imageArtistSubmitListo3" title="Listo">Listo</div>
+					</div>
 
-			<label class="description" for="imgURL3">Subir imagen desde URL</label>
-			<div>
-				<input id="imgURL3" name="imgURL3" class="element text medium" type="text" maxlength="255" value=""/> 
-				<div  id="imageArtistSubmitURL3" title="Editar">Subir URL</div>
-			</div> 
-			<label class="description" for="fileToUpload3">Subir imagen desde tu computadora</label>
-			<div>
-				<input id="fileToUpload3" type="file" size="45" name="file" class="input">
-				<div  id="imageArtistSubmitUpload3" title="Editar">Subir imagen</div>
-			</div> 
-
-		</div>
-				<div style="padding-bottom:50px;">
-				<div  id="imageArtistSubmitListo3" title="Listo">Listo</div>
-				</div>
-
-		</li>
+				</li>
 
 		</li>		
 		
 		
 		
 		<li class="section_break" id="break2">
-			<h3 style="cursor:pointer">Editar/Borrar un CD</h3>
+			<h2 style="cursor:pointer">Editar/Borrar un CD</h2>
 			<p></p>
 		</li>
 		<ul >			
@@ -270,7 +284,7 @@
 			<div>
 				<input id="element_301" name="element_301" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
-			<label class="description" for="element_303">A&ntildeo </label>
+			<label class="description" for="element_303">A&ntilde;o </label>
 			<div>
 				<input id="element_303" name="element_303" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
@@ -282,35 +296,62 @@
 			<div>
 				<input id="element_305" name="element_305" class="element text medium" type="text" maxlength="255" value=""/> 
 			</div> 
+			
+			<label class="description" ><h3>Imagen miniatura:</h3> </label>
+			<div id="thumbnailCD">
+				
+			</div> 
+		
+			<label class="description"><i><h3>Cambiar imagen miniatura:</h3></i><i>Puede ingresar un URL o hacer upload de una imagen (.jpg, .png o .gif)</i></label>
+				<div>
+			
+						<label class="description" for="imgURL3t">Subir imagen desde URL</label>
+						<div>
+							<input id="imgURL4t" name="imgURL4t" class="element text medium" type="text" maxlength="255" value=""/> 
+							<div  id="imageArtistSubmitURL4t" title="Editar">Agregar imagen</div>
+						</div> 
+						<label class="description" for="fileToUpload4t">Subir imagen desde tu computadora</label>
+						<div>
+							<input id="fileToUpload4t" type="file" size="45" name="file" class="input">
+							<div  id="imageArtistSubmitUpload4t" title="Editar">Subir imagen</div>
+						</div> 
+			
+					</div>
+			<label class="description" ><h3>Imagenes cargadas:</h3> </label>
+			<div id="imagenesCD">
+				
+			</div> 
+		
+					<label class="description" ><i><h3>Agregar imagenes al CD:</h3></i><i> Puede ingresar un URL o hacer upload de una imagen (.jpg, .png o .gif):</i></label>
+					<div>
+			
+						<label class="description" for="imgURL4">Subir imagen desde URL</label>
+						<div>
+							<input id="imgURL4" name="imgURL4" class="element text medium" type="text" maxlength="255" value=""/> 
+							<div  id="imageArtistSubmitURL4" title="Editar">Agregar imagen</div>
+						</div> 
+						<label class="description" for="fileToUpload3">Subir imagen desde tu computadora</label>
+						<div>
+							<input id="fileToUpload4" type="file" size="45" name="file" class="input">
+							<div  id="imageArtistSubmitUpload4" title="Editar">Subir imagen</div>
+						</div> 
+			
+					</div>
 		</div>
-			    <div  id="editCDSubmit" title="Editar">Editar</div>
-				<div  id="deleteCDSubmit" title="Borrar">Borrar</div>
-				<div  id="imageArtistSubmit2" title="Agregar imagen">Agregar imagen</div>
-
-
+		
+		
+			    <div  id="editCDSubmit" title="Editar">Guardar cambios</div>
+				<div  id="deleteCDSubmit" title="Borrar">Borrar CD</div>
+	
 
 		</li>
-		<li id="li_411" style="display:none"  >
-		<label class="description" for="element_412">Puede hacer el upload de una imagen o ingresar un URL</label></p>
-		<div>
+		
+		
+		
+		
+		
+		
 
-			<label class="description" for="imgURL4">Subir imagen desde URL</label>
-			<div>
-				<input id="imgURL4" name="imgURL4" class="element text medium" type="text" maxlength="255" value=""/> 
-				<div  id="imageArtistSubmitURL4" title="Editar">Subir URL</div>
-			</div> 
-			<label class="description" for="fileToUpload4">Subir imagen desde tu computadora</label>
-			<div>
-				<input id="fileToUpload4" type="file" size="45" name="file" class="input">
-				<div  id="imageArtistSubmitUpload4" title="Editar">Subir imagen</div>
-			</div> 
-
-		</div>
-				<div style="padding-bottom:50px;">
-				<div  id="imageArtistSubmitListo4" title="Listo">Listo</div>
-				</div>
-
-		</li>
 		</ul>
 		<div class="formReturn">
 

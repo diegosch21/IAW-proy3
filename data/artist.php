@@ -5,7 +5,7 @@ require_once('../_lib/data.php');
 try{
 
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
-	$db = new DB('../db/iaw_proy3');
+	$db = new DB('../datos/iaw_proy3');
 	$id = (int)$_GET['id'];	
 	$db->execute("UPDATE artistas SET visitas = visitas+1 WHERE id_artista= ?",array($id));
 	$result = getArtist($db,$id);

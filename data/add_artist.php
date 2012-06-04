@@ -17,7 +17,7 @@ else if(!isset($_POST['nombre']) || $_POST['nombre']=="") {
 }	
 else{
 	
-	$db = new DB('../db/iaw_proy3');
+	$db = new DB('../datos/iaw_proy3');
 	
 	$nom = $_POST['nombre'];
 	$artistas = $db->query("SELECT id_artista FROM artistas WHERE nombre LIKE '$nom'");

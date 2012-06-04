@@ -21,7 +21,7 @@ else if(!isset($_POST['url']) || $_POST['url']==""){
 else{
 	$url = $_POST['url'];
 	
-	$db = new DB('../db/iaw_proy3');
+	$db = new DB('../datos/iaw_proy3');
 	
 	$id = $_POST['id'];
 	
