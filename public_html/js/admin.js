@@ -1,14 +1,16 @@
 function listaGeneros() {
 	jQuery("#loadingAdmin").show();
 	jQuery.getJSON('data/categorias.php',function(data) {
-		options ="<option value='' selected='selected'></option><option value='nuevo' >Nuevo g&eacute;nero</option>";
+		option1 ="<option value='' selected='selected'></option>";
+		option2 ="<option value='' selected='selected'></option><option value='nuevo' >Nuevo g&eacute;nero</option>";
+		options = "";
 		for(i=0;i<data.length;i++){
 			options+="<option value='"+data[i].genero+"' >"+data[i].genero+"</option>";
 		}
-		jQuery('#generoList').html(options);
-		jQuery('#generoListEdir').html(options);
-		jQuery('#generoListAddcd').html(options);
-		jQuery('#generoListEditcd').html(options);
+		jQuery('#generoList').html(option2+options);
+		jQuery('#generoListEdir').html(option1+options);
+		jQuery('#generoListAddcd').html(option1+options);
+		jQuery('#generoListEditcd').html(option1+options);
 		jQuery("#loadingAdmin").hide();
 	});	
 }
@@ -52,12 +54,30 @@ function listaGeneros() {
 			jQuery('#element_103').val(data.nacionalidad);
 			jQuery('#element_104').val(data.banda);
 			jQuery('#element_105').val(data.link);
-			for(i=0;i<data.imagenes.length;i++){
-				jQuery('#imagenescargadas').append("<div class='tag2'>"+data.imagenes[i].url+"<div>");
-			}
+			
+//			if(data.imagenes) 
+//				for(i=0;i<data.imagenes.length;i++){
+
+			actualizarImgArt(data.imagenes[0].url);
 			jQuery("#loadingAdmin").hide();
 		});
 	});
+	
+	function actualizarImgArt(url) {
+		if(url!="") {
+		imgs = "<div id='imgArt' style='width: 50px;margin: 0 auto 0 auto;'><img id='imgArtURL' style='max-width:50px; max-height:50px;' src='"+url+"' /><a class='tag2' style='cursor:pointer;' onClick='quitarImgArt();'>Quitar</a><div>";
+		cantImgArt = 1;
+		jQuery('#imagenescargadas').html(imgs);
+		}
+		else
+			jQuery('#imagenescargadas').html("");
+	}
+
+	function quitarImgArt() {
+		cantImgArt = 0;
+		jQuery("#imgArt").hide();
+	}
+		
 
 	jQuery('[name=element_11_edit]').change(function () {
 		jQuery('#artistListAddcd').html("<option value='' selected='selected'></option>");
@@ -175,7 +195,7 @@ function listaGeneros() {
 			}).done(function( msg ) {
 				dato=(eval('(' + msg + ')'));
 				if (dato.error!=undefined){
-					jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
+					jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+dato.error+" </p>");
 					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
 				}
 				else{
@@ -189,35 +209,42 @@ function listaGeneros() {
 		}
 	});
 	jQuery("#imageArtistSubmitUpload2").click(function() {
-/*		imgURL = jQuery("#imgURL2").val();
-		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
-		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
-			alert('URL no valida');
-		}
-		else {
-			jQuery("#loadingAdmin").show();
-			jQuery.ajax({
-				type: "POST",
-				url: "data/add_img.php",
-				data: { id: artID, url: imgURL, class:'artista' }
-			}).done(function( msg ) {
-				dato=(eval('(' + msg + ')'));
-				if (dato.error!=undefined){
-					jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
-					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
-				}
-				else{
-					jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen subida y agregada</p>");
+		jQuery("#loadingAdmin").show();
+		jQuery.ajaxFileUpload({
+            url:'data/upload_img.php?class=artista&id='+artID, 
+            fileElementId:'fileToUpload2',
+            dataType: 'json',
+            success: function (data, status)
+            {
+                
+            	if(data.error != undefined)
+                {
+                    if(data.error != '')
+                    {
+                    	jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+data.error+" </p>");
+    					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+                    }
+                    else
+                    	alert('error');
+                }
+                else
+                {
+                	jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen subida y agregada</p>");
 					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#fileToUpload2").val("");
 					listoAdd();
-				}
-				jQuery("#loadingAdmin").hide();
-			});
-		}*/
+                }
+                jQuery("#loadingAdmin").hide();
+            },
+            error: function (data, status, e)
+            {
+                alert(e);
+                jQuery("#loadingAdmin").hide();
+            }
+        });
 	});
-	
 			
-	jQuery("#imageArtistSubmitlisto2").click(function() {
+	jQuery("#imageArtistSubmitListo2").click(function() {
 		listoAdd();
 	});
 	
@@ -235,27 +262,140 @@ function listoAdd() {
 	artID = 0;
 	listaGeneros();
 }
+function listoEditArt(){
+	jQuery("#li_8").hide("slow");
+	jQuery("#li_9").hide("slow");
+	jQuery("#li_10").hide("slow");
+	jQuery('#element_101').val("");
+	jQuery('#element_102').val("");
+	jQuery('#element_103').val("");
+	jQuery('#element_104').val("");
+	jQuery('#element_105').val("");
+	jQuery('#imagenescargadas').html("");
+	listaGeneros();
+}
+
 	
 	jQuery("#editArtistSubmit").click(function(){
+		if(cantImgArt==1)
+			lista = jQuery("#imgArtURL").attr('src');
+		else
+			lista = "";
 		jQuery("#loadingAdmin").show();
 		jQuery.ajax({
 			type: "POST",
 			url: "data/edit_artist.php",
-			data: { id:jQuery("[name=element_8_edit]select option:selected").val(), genero: jQuery("#element_102").val(), nombre: jQuery("#element_101").val(),nacion: jQuery("#element_103").val(), banda: jQuery("#element_104").val(),link: jQuery("#element_105").val() }
+			data:
+			{ id:jQuery("[name=element_8_edit]select option:selected").val(),
+				genero: jQuery("#element_102").val(),
+				nombre: jQuery("#element_101").val(),
+				nacion: jQuery("#element_103").val(),
+				banda: jQuery("#element_104").val(),
+				link: jQuery("#element_105").val(),
+				imgs: lista }
 		}).done(function( msg ) {
 			dato=(eval('(' + msg + ')'));
 			if (dato.error!=undefined){
 				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
 				jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
-				}
+			}
 			else{
 				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El artista <strong>"+dato.artista+"</strong> fue editado correctamente</p>");
 				jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+				listoEditArt();
 			}
 			jQuery("#loadingAdmin").hide();
 		});
 	//	location.reload();
 	});
+	jQuery("#deleteArtistSubmit").click(function(){
+		jQuery("#loadingAdmin").show();
+		jQuery.ajax({
+			type: "POST",
+			url: "data/delete_artist.php",
+			data: { id: jQuery("[name=element_8_edit]select option:selected").val() }
+		}).done(function( msg ) {
+			dato=(eval('(' + msg + ')'));
+			if (dato.error!=undefined){
+				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
+				jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+			}
+			else{
+				jQuery("#mensajeAviso").html("<strong>Exito: </strong> El artista fue eliminado correctamente</p>");
+				jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+				listoEditArt();
+			}
+			jQuery("#loadingAdmin").hide();
+			
+		});
+	//	location.reload();
+	});
+	
+	jQuery("#imageArtistSubmitURL").click(function() {
+		imgURL = jQuery("#imgURL").val();
+		RegExPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \?=.-]*)*\/?$/;
+		if ((imgURL=='') || (!imgURL.match(RegExPattern))) {
+			alert('URL no valida');
+		}
+		else {
+			jQuery("#loadingAdmin").show();
+			jQuery.ajax({
+				type: "POST",
+				url: "data/add_img.php",
+				data: { id:jQuery("[name=element_8_edit]select option:selected").val(), url: imgURL, class:'artista' }
+			}).done(function( msg ) {
+				dato=(eval('(' + msg + ')'));
+				if (dato.error!=undefined){
+					jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+dato.error+" </p>");
+					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+				}
+				else{
+					jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen cambiada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#imgURL").val("");
+					actualizarImgArt(imgURL);
+				}
+				jQuery("#loadingAdmin").hide();
+			});
+		}
+	});
+	jQuery("#imageArtistSubmitUpload").click(function() {
+		jQuery("#loadingAdmin").show();
+		jQuery.ajaxFileUpload({
+            url:'data/upload_img.php?class=artista&id='+jQuery("[name=element_8_edit]select option:selected").val(), 
+            fileElementId:'fileToUpload',
+            dataType: 'json',
+            success: function (data, status)
+            {
+                
+            	if(data.error != undefined)
+                {
+                    if(data.error != '')
+                    {
+                    	jQuery("#mensajeError").html("<strong>Error al agregar imagen: </strong> "+data.error+" </p>");
+    					jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
+                    }
+                    else
+                    	alert('error');
+                }
+                else
+                {
+                	jQuery("#mensajeAviso").html("<strong>Exito: </strong> Imagen subida y agregada</p>");
+					jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
+					jQuery("#fileToUpload").val("");
+					actualizarImgArt(data.uploaded);
+                }
+                jQuery("#loadingAdmin").hide();
+            },
+            error: function (data, status, e)
+            {
+                alert(e);
+                jQuery("#loadingAdmin").hide();
+            }
+        });
+	});
+	
+	
 
 	jQuery("#editCDSubmit").click(function(){
 		jQuery("#loadingAdmin").show();
@@ -321,18 +461,6 @@ function listoAdd() {
 	//	location.reload();
 	});
 			
-	jQuery("#deleteArtistSubmit").click(function(){
-		jQuery("#loadingAdmin").show();
-		jQuery.ajax({
-			type: "POST",
-			url: "data/delete_artist.php",
-			data: { id: jQuery("[name=element_8_edit]select option:selected").val() }
-		}).done(function( msg ) {
-			jQuery("#loadingAdmin").hide();
-			
-		});
-	//	location.reload();
-	});
 
 	jQuery("#deleteCDSubmit").click(function(){
 		jQuery("#loadingAdmin").show();
@@ -413,21 +541,13 @@ function listoAdd() {
 			jQuery("#li_19").hide("slow");
 		}
 	});
-	jQuery("#imageArtistSubmit").click(function(){
-		jQuery('#li_10').hide("slow");
-		jQuery('#li_111').show("slow");
-	
-	});
+
 	jQuery("#imageArtistSubmit2").click(function(){
 		jQuery('#li_19').hide("slow");
 		jQuery('#li_411').show("slow");
 	
 	});
-	jQuery("#imageArtistSubmitlisto").click(function(){
-		jQuery('#li_10').show("slow");
-		jQuery('#li_111').hide("slow");
-	
-	});
+
 			
 
 
@@ -436,47 +556,38 @@ function listoAdd() {
 		      primary: 'ui-icon ui-icon-circle-plus',
 		   }
 		});
-		jQuery("#imageArtistSubmitlisto").button({
+
+		jQuery("#imageArtistSubmitListo2").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-check',
 		   }
 		});
-		jQuery("#imageArtistSubmitlisto2").button({
+		jQuery("#imageArtistSubmitListo3").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-check',
 		   }
 		});
-		jQuery("#imageArtistSubmitlisto3").button({
+			jQuery("#imageArtistSubmitListo4").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-check',
 		   }
 		});
-			jQuery("#imageArtistSubmitlisto4").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-check',
-		   }
-		});
-		jQuery("#imageArtistSubmitlisto2").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-check',
-		   }
-		});
-		jQuery("#imageArtistSubmitupload").button({
+		jQuery("#imageArtistSubmitUpload").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-document',
 		   }
 		});
-		jQuery("#imageArtistSubmitupload2").button({
+		jQuery("#imageArtistSubmitUpload2").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-document',
 		   }
 		});
-		jQuery("#imageArtistSubmitupload3").button({
+		jQuery("#imageArtistSubmitUpload3").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-document',
 		   }
 		});
-		jQuery("#imageArtistSubmitupload4").button({
+		jQuery("#imageArtistSubmitUpload4").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-document',
 		   }
@@ -511,12 +622,7 @@ function listoAdd() {
 		      primary: 'ui-icon ui-icon-trash',
 		   }
 		});
-		jQuery("#imageArtistSubmit").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-image',
-		   }
-		});
-				jQuery("#imageArtistSubmit2").button({
+		jQuery("#imageArtistSubmit2").button({
 		   icons: {
 		      primary: 'ui-icon ui-icon-image',
 		   }

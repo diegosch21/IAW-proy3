@@ -42,6 +42,7 @@ try {
 
 				if ($path == 'error') {
 					$result['uploaded'] = false;
+					$result['error'] = 'Archivo no aceptado';
 				} else {
 					$url = 'data/' . $path;
 					$result['uploaded'] = $url;
