@@ -1,31 +1,30 @@
-﻿<div class="ui-state-error ui-corner-all" style="padding: 5px, 5px, 5px, 5px; display:none;" id="cartelError">
-
-				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-				<div id="mensajeError"></div>
-		</div>
+<div id='loadingAdmin'>
+	<!--<img width="55" height="55" src="img/ajax-loader.gif" alt="loading" title="loading" />-->
+</div>	
+<div class="ui-state-error ui-corner-all" style="padding: 5px, 5px, 5px, 5px; display:none;" id="cartelError">
+	<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+	<div id="mensajeError"></div></p>
+</div>
 <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em; display:none;" id="cartelAviso">
+	<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+	<div id="mensajeAviso"></div></p>
+</div>
 
-				<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-<div id="mensajeAviso"></div>
-
-
-			</div>
-
-<h2>Página de configuración</h2>
+<h2>P&aacute;gina de configuraci&oacute;n</h2>
 		<form id="staff_feedbackform">
 		<li class="section_break" id="break0">
 			
-			<div style="cursor:pointer" id="desplegarArtistSubmin" title="Establecer parametros"><h3>Establecer parámetros de configuración general de la página</h3></div>
+			<div style="cursor:pointer" id="desplegarArtistSubmin" title="Establecer parametros"><h3>Establecer par&aacute;metros de configuraci&oacute;n general de la p&aacute;gina</h3></div>
 		</p>
 		</li>
-		<ul >		
+		<ul>		
 		<div id="li_7" style="display:none"> 
 		<li id="li_8">
-		<label class="description">Parámetro para obtener los CDs destacados</label>
+		<label class="description">Par&aacute;metro para obtener los CDs destacados</label>
 		<select class="element select medium" id="mode_destacados" name="element_58"> 
 			<option value='visitas' >Cantidad de visitas</option>"
 			<option value='megusta' >Cantidad de Me Gusta</option>"
-			<option value='nuevo' >Últimos CD</option>"
+			<option value='nuevo' >�ltimos CD</option>"
 			<option value='random' >Random</option>"
 		</select></p>		
 		</li>
@@ -42,10 +41,10 @@
 		</select></p>
 		</li>	
 		<li id="li_10">
-		<label class="description">Parámetro predefinido para ordenar los resultados</label>
+		<label class="description">Par&aacute;metro predefinido para ordenar los resultados</label>
 		<select class="element select medium" id="order" name="element_510"> 
-			<option value='nombre'>Orden alfabético</option>
-			<option value='anio'>Año</option>
+			<option value='nombre'>Orden alfab&eacute;tico</option>
+			<option value='anio'>A&ntilde;o</option>
 			<option value='visitas' >Cantidad de visitas</option>
 			<option value='megusta' >Cantidad de Me Gusta</option>
 		</select></p>
@@ -60,7 +59,7 @@
 		</li>
 		</li>	
 		<li id="li_12">
-		<label class="description">Cantidad de resultados por página</label>
+		<label class="description">Cantidad de resultados por p&aacute;gina</label>
 		<select class="element select medium" id="paginado" name="element_512"> 
 			<option value='3'>3</option>
 			<option value='6'>6</option>
@@ -68,20 +67,19 @@
 			<option value='12'>12</option>
 			<option value='15'>15</option>
 		</select></p>
-		<div  id="guardarCambios" title="guardar">Guardar configuración</div>
+		<div  id="guardarCambios" title="guardar">Guardar configuraci&oacute;n</div>
 		</div>
 		
 		</li>
 		<li class="section_break" id="break">
 			
 			<div style="cursor:pointer" id="desplegarBackup" title="Backup"><h3>Realizar back-up del servidor</h3></div>
-		</p>
-		<div style="display:none" id="divBackup"><div  id="Backup" title="Back up">Back up</div></div>
 		</li>
-		<ul >		
-
-
-		</ul>
+		
+		<div style="display:none" id="divBackup"><div  id="Backup" title="Back up">Crear Backup</div><br/>
+		<a id='linkBackup' style="display:none">Download Backup</a></div>
+		
+</ul>
 	
 		<div class="formReturn">
 
@@ -89,51 +87,7 @@
 		</div>
 
 </form>
-	<script>
-		jQuery.getJSON('data/config.php',function(data) {
-			jQuery("[name=element_59]select option[value="+data.cant_destacados+"]").attr("selected", "selected");
-			jQuery("[name=element_58]select option[value="+data.mode_destacados+"]").attr("selected", "selected");
-			jQuery("[name=element_510]select option[value="+data.order+"]").attr("selected", "selected");
-			jQuery("[name=element_511]select option[value="+data.mode+"]").attr("selected", "selected");
-			jQuery("[name=element_512]select option[value="+data.paginado+"]").attr("selected", "selected");
-		});	
-		jQuery("#volverAlHomeC").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-circle-check',
-		   }
-		});
-		jQuery("#guardarCambios").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-disk',
-		   }
-		});
-		jQuery("#Backup").button({
-		   icons: {
-		      primary: 'ui-icon ui-icon-folder-collapsed',
-		   }
-		});
-		jQuery("#break0").click(function(){
-
-			if(jQuery("#li_7").css("display")=="none"){
-				jQuery("#li_7").show("slow");
-
-			}
-			 else{
-				jQuery("#li_7").hide("slow");
-			}
-		});
-		jQuery("#break").click(function(){
-
-			if(jQuery("#divBackup").css("display")=="none"){
-				jQuery("#divBackup").show("slow");
-
-			}
-			 else{
-				jQuery("#divBackup").hide("slow");
-			}
-		});
-		
-		</script>
+<script type="text/javascript" src="public_html/js/config.js"></script>
 
 
 	

@@ -734,7 +734,7 @@ function listoEditCD(){
 			jQuery.ajax({
 				type: "POST",
 				url: "data/add_img.php",
-				data: { id: jQuery("[name=element_14_edit]select option:selected").val(), url: imgURL, class:'cd', thumb: true }
+				data: { id: jQuery("[name=element_15_edit]select option:selected").val(), url: imgURL, class:'cd', thumb: true }
 			}).done(function( msg ) {
 				dato=(eval('(' + msg + ')'));
 				if (dato.error!=undefined){
@@ -758,7 +758,7 @@ function listoEditCD(){
 			
 		jQuery("#loadingAdmin").show();
 		jQuery.ajaxFileUpload({
-            url:'data/upload_img.php?class=cd&id='+jQuery("[name=element_14_edit]select option:selected").val()+'&thumb=true', 
+            url:'data/upload_img.php?class=cd&id='+jQuery("[name=element_15_edit]select option:selected").val()+'&thumb=true', 
             fileElementId:'fileToUpload4t',
             dataType: 'json',
             success: function (data, status)
@@ -802,7 +802,7 @@ function listoEditCD(){
 			jQuery.ajax({
 				type: "POST",
 				url: "data/add_img.php",
-				data: { id: jQuery("[name=element_14_edit]select option:selected").val(), url: imgURL, class:'cd', thumb: true }
+				data: { id: jQuery("[name=element_15_edit]select option:selected").val(), url: imgURL, class:'cd', thumb: true }
 			}).done(function( msg ) {
 				dato=(eval('(' + msg + ')'));
 				if (dato.error!=undefined){
@@ -827,7 +827,7 @@ function listoEditCD(){
 			
 		jQuery("#loadingAdmin").show();
 		jQuery.ajaxFileUpload({
-            url:'data/upload_img.php?class=cd&id='+jQuery("[name=element_14_edit]select option:selected").val()+'&thumb=true', 
+            url:'data/upload_img.php?class=cd&id='+jQuery("[name=element_15_edit]select option:selected").val()+'&thumb=true', 
             fileElementId:'fileToUpload4',
             dataType: 'json',
             success: function (data, status)
@@ -863,37 +863,12 @@ function listoEditCD(){
 	});
 	
 	
-	
-	jQuery("#guardarCambios").click(function(){
-		jQuery("#loadingAdmin").show();
-		jQuery.ajax({
-			type: "POST",
-			url: "data/config.php",
-			data: { mode_destacados: jQuery("[name=element_58]select option:selected").val(),mostrar_destacados: true,cant_destacados: jQuery("[name=element_59]select option:selected").val(), order: jQuery("[name=element_510]select option:selected").val(),mode_order: jQuery("[name=element_511]select option:selected").val(),paginado: jQuery("[name=element_512]select option:selected").val(),busqueda: "cd"}
-		}).done(function( msg ) {
-			dato=(eval('(' + msg + ')'));
-			if (dato.error!=undefined){
-				jQuery("#mensajeError").html("<strong>Error: </strong> "+dato.error+" </p>");
-				jQuery("#cartelError").fadeIn().delay(3000).fadeOut('slow'); 
-				}
-			else{
-				jQuery("#mensajeAviso").html("<strong>Exito: </strong> Configuración guardada");
-				jQuery("#cartelAviso").fadeIn().delay(3000).fadeOut('slow'); 
-			}
-			jQuery("#loadingAdmin").hide();
-		});
-	//	location.reload();
-	});
+
 
 	
 
 
 
-	jQuery("#Backup").click(function(){
-		window.open("data/backup.php", '_blank');
-	});
-	
-	
 	jQuery("#break").click(function(){
 
 		if(jQuery("#li_8").css("display")=="none"){

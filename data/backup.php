@@ -18,7 +18,7 @@ try {
         	
             $file = str_replace('\\', '/', $file);
 			
-			if (!stripos($file, '.git')) {
+			if (!stripos($file, '.git') && !stripos($file, 'backup.zip')) {
 				
 	            if (is_dir($file) === true)
 	            {
@@ -40,16 +40,19 @@ try {
     {
         $zip->addFromString(basename($source), file_get_contents($source));
     }
-    
+   /* 
 	header("Content-type: application/octet-stream");
 	header("Content-disposition: attachment; filename=backup.zip");
 	header ("Content-Length: ".filesize($destination));
 	readfile($destination);
 	unlink($destination);
+    * */
+    $result['file'] = 'data/backup.zip';
+	echo json_encode($result);
 	
 	
 } catch(Exception $e){
-	echo $e->getMessage();
+	echo json_encode($e->getMessage());
 }
 
 
