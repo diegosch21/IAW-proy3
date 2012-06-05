@@ -1,5 +1,7 @@
-IAW-proy3: Catálogo temático
+IAW-proy3: Catálogo temático - La Rockola CDs
 ============================
+
+http://larockolacds.nixiweb.com
 
 [PHP - SQLite - AJAX]  
 
