@@ -11,7 +11,7 @@ if(isset($_GET['showCD'])){
 		
 		echo "<meta property='og:title' content='La Rockola CD: ".$cd['nombre']."' />";
 		echo "<meta property='og:image' content='".$cd['thumbnail']."' />";
-		echo "<meta property='og:url' content='http://www.larockolacds.nixiweb.com/index.php?showCD&amp;id=".$id."' />";
+		echo "<meta property='og:url' content='http://www.larockolacds.nixiweb.com/index.php?showCD=".$id."' />";
 	}
 
 }
