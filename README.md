@@ -3,7 +3,7 @@ IAW-proy3: Catálogo temático - La Rockola CDs
 
 http://larockolacds.nixiweb.com
 
-[PHP - SQLite - AJAX]  
+*[PHP - SQLite - AJAX]*  
 
 El  proyecto  consiste  en  la  implementación  de  una aplicación  web  que  permita  la  administración  de un catálogo relacionado  con  un  tema  específico.  La  aplicación  debe  ser visualmente  atractiva, con  un aspecto  acorde  al  tema  elegido,  permitiendo  un  fácil  acceso  a  los ítems  del  catálogo,  los  cuales  deberán estar agrupados por categorías y etiquetas o palabras clave.
 
